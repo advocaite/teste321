@@ -1,0 +1,1 @@
+define(["lib/invariant"],function(e){var t=function(t){var n={},r;e(t instanceof Object&&!Array.isArray(t));for(r in t){if(!t.hasOwnProperty(r))continue;n[r]=r}return n};return t});

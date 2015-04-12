@@ -60,7 +60,7 @@ app.enable('trust proxy');
 app.use(compression());
 
 var twoWeeksInSeconds = 1209600;
-app.use(express.static(path.join(__dirname, '/client'), { maxAge: twoWeeksInSeconds * 1000 }));
+app.use(express.static(path.join(__dirname, '/build'), { maxAge: twoWeeksInSeconds * 1000 }));
 
 app.use(function(req, res, next) {
     var sessionId = req.cookies.id;

@@ -1,0 +1,1 @@
+define(["dispatcher/AppDispatcher","constants/AppConstants"],function(e,t){var n={say:function(n){e.handleViewAction({actionType:t.ActionTypes.SAY_CHAT,msg:n})},updateInputText:function(n){e.handleViewAction({actionType:t.ActionTypes.SET_CHAT_INPUT_TEXT,text:n})},setHeight:function(n){e.handleViewAction({actionType:t.ActionTypes.SET_CHAT_HEIGHT,newHeight:n})}};return n});

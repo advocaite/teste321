@@ -1,0 +1,1 @@
+define(["dispatcher/Dispatcher","lib/lodash","constants/AppConstants"],function(e,t,n){var r=t.extend(new e,{handleViewAction:function(e){this.dispatch({source:n.PayloadSources.VIEW_ACTION,action:e})}});return r});
