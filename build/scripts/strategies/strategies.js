@@ -1,0 +1,1 @@
+define(["strategies/auto-bet","strategies/custom"],function(e,t){return{autoBet:e,custom:t}});

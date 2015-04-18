@@ -1,0 +1,1 @@
+define([],function(){return{baseBet:1,autoCashAt:2,onLossSelectedOpt:"return_to_base",onLossIncreaseQty:2,onWinSelectedOpt:"return_to_base",onWinIncreaseQty:2,invalidData:!1,maxBetStop:1e6}});

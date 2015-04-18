@@ -1,0 +1,1 @@
+({baseUrl:"scripts",out:"../build/main-built.js",preserveLicenseComments:!1,name:"lib/almond",mainConfigFile:"scripts/main.js",include:"main",insertRequire:["main"]});

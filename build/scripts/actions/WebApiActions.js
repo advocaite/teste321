@@ -1,0 +1,1 @@
+define(["dispatcher/AppDispatcher","constants/AppConstants"],function(e,t){var n={serverEvent:function(n,r,i){var s={};s.actionType=t.ServerToAction[n],r&&(s[r]=i),e.handleServerAction(s)},joined:function(n){e.handleServerAction({actionType:t.ActionTypes.JOINED,resp:n})},join_error:function(n){e.handleServerAction({actionType:t.ActionTypes.JOIN_ERR,err:n})}};return n});

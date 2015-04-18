@@ -1,0 +1,1 @@
+define(["dispatcher/AppDispatcher","constants/AppConstants"],function(e,t){var n={selectTab:function(n){e.handleViewAction({actionType:t.ActionTypes.SELECT_TAB,tab:n})}};return n});
