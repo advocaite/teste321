@@ -74,9 +74,15 @@ exports.register  = function(req, res, next) {
  * Login a user
  */
 exports.login = function(req, res, next) {
+    var recaptcha = lib.removeNullsAndTrim(req.body['g-recaptcha-response']);
     var username = lib.removeNullsAndTrim(req.body.username);
     var password = lib.removeNullsAndTrim(req.body.password);
     var otp = lib.removeNullsAndTrim(req.body.otp);
+
+    if (!recaptcha) {
+        console.warn('No recaptca found');
+        return res.render('login', {warning: 'Please complete recaptcha'});
+    }
 
     if (!username || !password)
         return res.render('login', { warning: 'no username or password' });
