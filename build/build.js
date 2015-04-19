@@ -1,0 +1,1 @@
+({appDir:".",baseUrl:"scripts",dir:"../build",name:"lib/almond",preserveLicenseComments:!1,include:"main",mainConfigFile:"scripts/main.js",insertRequire:["main"],optimizeCss:"standard"});

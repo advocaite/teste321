@@ -1,0 +1,1 @@
+define(["lib/react","components/Game","lib/clib","game-logic/engine"],function(e,t,n,r){var i=e.createFactory(t);e.render(i(),document.getElementById("game")),r.on("all",function(){var e=document.getElementById("balance_bits");e&&(e.innerHTML=n.formatSatoshis(r.balanceSatoshis,2))})});

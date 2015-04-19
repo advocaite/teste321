@@ -1,0 +1,1 @@
+define(["lib/react","components/Calculator"],function(e,t){var n=e.createFactory(t);e.render(n(null),document.getElementById("calculator"))});
