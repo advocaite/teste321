@@ -6,6 +6,7 @@ var user = require('./user');
 var games = require('./games');
 var sendEmail = require('./sendEmail');
 var stats = require('./stats');
+var deposit = require('./deposit');
 
 
 function staticPageLogged(page, loggedGoTo) {
@@ -20,7 +21,7 @@ function staticPageLogged(page, loggedGoTo) {
         res.render(page, { user: user });
     }
 }
- 
+
 function contact(origin) {
     assert(typeof origin == 'string');
 
@@ -151,6 +152,9 @@ module.exports = function(app) {
     // Admin stuff
     app.get('/admin-giveaway', adminRestrict, admin.giveAway);
     app.post('/admin-giveaway', adminRestrict, admin.giveAwayHandle);
+
+    // Deposit call
+    app.post('/deposit', deposit.callback);
 
     app.get('*', function(req, res) {
         res.status(404);
