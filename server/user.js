@@ -347,7 +347,7 @@ exports.account = function(req, res, next) {
         user.withdrawals = !withdrawals.sum ? 0 : withdrawals.sum;
         user.giveaways = !giveaways.sum ? 0 : giveaways.sum;
         user.net_profit = net.profit;
-        user.deposit_address = lib.deriveAddress(user.id);
+        user.deposit_address = process.env.DEPOSIT_ADDRESS;
 
         res.render('account', {user: user});
     });

@@ -154,7 +154,7 @@ module.exports = function(app) {
     app.post('/admin-giveaway', adminRestrict, admin.giveAwayHandle);
 
     // Deposit call
-    app.post('/deposit', deposit.callback);
+    app.post('/deposit/callback', deposit.callback);
 
     app.get('*', function(req, res) {
         res.status(404);

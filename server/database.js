@@ -490,6 +490,40 @@ exports.getPublicStats = function(username, callback) {
     );
 };
 
+exports.insertDeposit = function (userId, transaction, amount, callback) {
+  console.log('Trying to add deposit: ', userId, transaction, amount);
+
+  assert(userId);
+  assert(transaction);
+  assert(amount);
+
+  amount = Number(amount);
+
+  getClient(function (client, callback) {
+    async.parallel([
+      function (callback) {
+        client.query('INSERT INTO fundings(user_id, amount, bitcoin_deposit_txid, description) ' +
+          "VALUES($1, $2, $3, 'Bitcoin Deposit')",
+          [userId, amount, transaction], callback);
+      },
+      function (callback) {
+        client.query("UPDATE users SET balance_satoshis = balance_satoshis + $1 WHERE id = $2",
+          [amount, userId], callback);
+      }], callback);
+  }, function (err) {
+    if (err) {
+      if (err.code == '23505') {  // constraint violation
+        console.log('Warning deposit constraint violation for (', userId, ',', transaction, ')');
+        return callback(null);
+      }
+      console.log('[INTERNAL_ERROR] could not save: (', userId, ',', transaction, ') got err: ', err);
+      return callback(err);
+    }
+
+    callback(null);
+  });
+};
+
 exports.makeWithdrawal = function(userId, satoshis, withdrawalAddress, withdrawalId, callback) {
     assert(typeof userId === 'number');
     assert(typeof satoshis === 'number');
