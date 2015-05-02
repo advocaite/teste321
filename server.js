@@ -32,6 +32,12 @@ var timeago_strings = _.extend(timeago.settings.strings, {
 });
 timeago.settings.strings = timeago_strings;
 
+app.use(function (req, res, next) {
+  if(req.headers['user-agent'] === 'NXTPN') {
+    req.headers['content-type'] = 'application/json';
+  }
+  next();
+});
 app.use(bodyParser());
 app.use(cookieParser());
 
