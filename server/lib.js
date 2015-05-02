@@ -87,7 +87,7 @@ exports.formatSatoshis = function(n, decimals) {
     if (typeof decimals === 'undefined')
         decimals = 2;
 
-    return (n/100).toFixed(decimals).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    return (n/Math.pow(10,8)).toFixed(decimals).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 };
 
 exports.isInt = function isInteger (nVal) {
