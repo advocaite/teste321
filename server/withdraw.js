@@ -2,11 +2,12 @@ var assert = require('assert');
 var bc = require('./bitcoin_client');
 var db = require('./database');
 var request = require('request');
+var nxtClient = require('./nxt_client');
 
 // Doesn't validate
 module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, callback) {
     assert(typeof userId === 'number');
-    assert(satoshis > 10000);
+    assert(satoshis > Math.pow(10,8));
     assert(typeof withdrawalAddress === 'string');
     assert(typeof callback === 'function');
 
@@ -23,20 +24,26 @@ module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, cal
 
         assert(fundingId);
 
-        var amountToSend = (satoshis - 10000) / 1e8;
-        bc.sendToAddress(withdrawalAddress, amountToSend, function (err, hash) {
+        var amount = satoshis - Math.pow(10, 8); // -1 NXT fee
+
+        nxtClient.sendWithdrawal(amount, withdrawalAddress, function (err, hash) {
             if (err) {
-                if (err.message === 'Insufficient funds')
-                    return callback('PENDING');
-                return callback('FUNDING_QUEUED');
-            }
-
-            db.setFundingsWithdrawalTxid(fundingId, hash, function (err) {
-                if (err)
+                if (err === 'NOT_ENOUGH_FUNDS' || err === 'HOT_WALLET_OFFLINE') {
+                    db.reverseWithdrawal(userId, satoshis, fundingId, function (err, result) {
+                      return callback('HOT_WALLET_ERROR');
+                    });
+                } else {
+                  return callback('FUNDING_QUEUED');
+                }
+            } else {
+                db.setFundingsWithdrawalTxid(fundingId, hash, function (err) {
+                  if (err) {
                     return callback(new Error('Could not set fundingId ' + fundingId + ' to ' + hash + ': \n' + err));
+                  }
 
-                callback(null);
-            });
+                  callback(null);
+                });
+            }
         });
     });
 };

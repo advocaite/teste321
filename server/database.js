@@ -557,6 +557,28 @@ exports.makeWithdrawal = function(userId, satoshis, withdrawalAddress, withdrawa
     }, callback);
 };
 
+exports.reverseWithdrawal = function(userId, satoshis, fundingId, callback) {
+    getClient(function(client, callback) {
+
+        client.query('UPDATE users SET balance_satoshis = balance_satoshis + $1 WHERE id = $2',
+          [satoshis, userId], function(err, response) {
+              if (err) return callback(err);
+
+              if (response.rowCount !== 1)
+                  return callback(new Error('Unexpected withdrawal row count: \n' + response));
+
+              client.query('DELETE FROM fundings WHERE id = $1', [fundingId],
+                function(err, response) {
+                    if (err) return callback(err);
+
+                    callback(null);
+                }
+              );
+          });
+
+    }, callback);
+};
+
 exports.getWithdrawals = function(userId, callback) {
     assert(userId && callback);
 

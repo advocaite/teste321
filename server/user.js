@@ -687,22 +687,16 @@ exports.handleWithdrawRequest = function(req, res, next) {
     if (!r.test(amount))
         return res.render('withdraw_request', { user: user, id: uuid.v4(),  warning: 'Not a valid amount' });
 
-    amount = Math.round(parseFloat(amount) * 100);
+    amount = Math.round(parseFloat(amount) * Math.pow(10, 8));
     assert(Number.isFinite(amount));
 
-    if (amount < 20000)
-        return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must more 200 bits or more' });
+    if (amount < Math.pow(10, 8))
+        return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must be 1 NXT or more' });
 
     if (typeof destination !== 'string')
         return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Destination address not provided' });
 
-    try {
-        var version = bitcoinjs.Address.fromBase58Check(destination).version;
-        if (version !== bitcoinjs.networks.bitcoin.pubKeyHash && version !== bitcoinjs.networks.bitcoin.scriptHash)
-            return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Destination address is not a bitcoin one' });
-    } catch(ex) {
-        return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Not a valid destination address' });
-    }
+    // TODO: validate NXT address
 
     if (!password)
         return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must enter a password' });
@@ -725,6 +719,8 @@ exports.handleWithdrawRequest = function(req, res, next) {
             if (err) {
                 if (err === 'NOT_ENOUGH_MONEY')
                     return res.render('withdraw_request', {user: user, id: uuid.v4(), warning: 'Not enough money to process withdraw.'});
+                else if (err === 'HOT_WALLET_ERROR')
+                    return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Hot wallet offline or empty. Please try again later.' });
                 else if (err === 'PENDING') //TODO: Whats with this error code?
                     return res.render('withdraw_request', { user: user,  id: uuid.v4(), success: 'Withdrawal successful, however hot wallet was empty. Withdrawal will be reviewed and sent ASAP' });
                 else if(err === 'SAME_WITHDRAWAL_ID')

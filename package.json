@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "async": "~0.8.0",
+    "axios": "^0.5.4",
     "better-assert": "^1.0.0",
     "bitcoin": "^2.2.0",
     "bitcoinjs-lib": "^1.1.1",
@@ -29,7 +30,6 @@
     "timeago": "^0.1.0",
     "uuid": "~1.4.1"
   },
-
   "scripts": {
     "start-dev": "env $(cat .env | xargs) nodemon server",
     "start": "node server"
