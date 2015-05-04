@@ -3,7 +3,7 @@
 
             <div class="title">
                 <a href="/">
-                    <h1 class="hide-for-small-only">bustabit</h1>
+                    <h1 class="hide-for-small-only">NXTBubble</h1>
                 </a>
             </div>
 
@@ -15,9 +15,11 @@
 
             <div class="show-for-small-up user-login">
             {{?it.user}}
+                <a href="/play">Play now!</a>
                 <div class="balance-bits">Bits: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span></div>
                 <div class="username"><a href="/account">{{=it.user.username}}</a></div>
             {{??}}
+                <a href="/play">Play now!</a>
                 <a href="/register">Register</a>
                 <a href="/login">Log in</a>
             {{?}}
