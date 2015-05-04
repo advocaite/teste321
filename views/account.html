@@ -45,16 +45,14 @@
                 <b>Deposit Address:</b>
                 <span>{{=it.user.deposit_address}}</span>
                 <br/>
-                <strong>You must attach a message with this number: {{=it.user.id}}</strong>
+                <strong>You must attach a message with this number: "{{=it.user.id}}"</strong>
+                <strong>If you fail to do so, the deposit can't be added to your account.</strong>
             </p>
             <div class="row">
-                <div class="large-5 columns">
-                    <img class="show-for-medium-up qr" src="https://blockchain.info/qr?data={{=it.user.deposit_address}}&size=150" alt=""/>
-                </div>
                 <div class="large-6 columns">
-                    Transfer bitcoins to this address to have your account credited. Accounts are only credited after <b>one bitcoin confirmation</b>
+                    Transfer NXT, with the unique number attached, to this address to have your account credited. Accounts are only credited after <b>one NXT confirmation</b>
                     which depending on external factors can take a while. You can check
-                     <a href="https://blockchain.info/address/{{=it.user.deposit_address}}">blockchain.info</a> to see if your transactions have confirmed yet.
+                     <a href="http://nxtportal.org/accounts/{{=it.user.deposit_address}}">nxtportal.org</a> to see if your transactions have confirmed yet.
                     <strong><a href="/faq#deposit"> <small>more?</small></a></strong>
                 </div>
             </div>
@@ -71,7 +69,7 @@
                     <h5>{{#def.format:{n: it.user.withdrawals, decimals:2} }} bits</h5>
                 </div>
                 <div class="columns data large-3">
-                    <p><b>Free Bits Collected </b></p>
+                    <p><b>Free NXT Collected </b></p>
                     <h5>{{#def.format:{n: it.user.giveaways, decimals:2} }}</h5>
                 </div>
                 <div class="columns data large-3">
@@ -83,10 +81,10 @@
             <br>
             {{?typeof it.user.eligible !== 'number' }}
                 {{?it.user.balance_satoshis > 100}}
-                    <div class="success bits">You are eligible for a free 2 bits <a href="/request">CLICK HERE TO REQUEST THEM!</a></div>
+                    <div class="success bits">You are eligible for free 0.02 NXT <a href="/request">CLICK HERE TO REQUEST THEM!</a></div>
                 {{?}}
             {{??}}
-                <div class="success bits">You'll be eligible for 2 free bits in {{=it.user.eligible}} minutes</div>
+                <div class="success bits">You'll be eligible for 0.02 free NXT in {{=it.user.eligible}} minutes</div>
             {{?}}
         </div>
     </div>
