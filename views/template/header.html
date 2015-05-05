@@ -3,29 +3,27 @@
 
             <div class="title">
                 <a href="/">
-                    <h1 class="hide-for-small-only">NXTBubble</h1>
+                    <h1 class="hide-for-small-only">bustabit</h1>
                 </a>
             </div>
 
             {{?it.amount}}
             <div class="table-title">
-                <h2> {{=it.amount/100}} NXT Table </h2>
+                <h2> {{=it.amount/100}} Bit Table </h2>
             </div>
             {{?}}
 
             <div class="show-for-small-up user-login">
             {{?it.user}}
-                <a href="/play"><h2>  Play now!  </h2></a>
-                <div class="balance-bits"><h2>      NXT Balance: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span></h2></div>
-                <div class="username"><a href="/account"><h2>{{=it.user.username}}  </h2></a></div>
-                <a href="/request"><h2>  Faucet  </h2></a>
-                <a href="/leaderboard"><h2>  Leaderboard  </h2></a>
-                <a href="/faq"><h2>  FAQ  </h2></a>
+                <div class="balance-bits">Bits: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span></div>
+                <div class="username"><a href="/account">{{=it.user.username}}</a></div>
+                <div class="username"><a href="/play">Play</a></div>
+                <div class="username"><a href="/request">Faucet</a></div>
+                <div class="username"><a href="/leaderboard">Leaderboard</a></div>
+                <div class="username"><a href="/faq">FAQ</a></div>
             {{??}}
-                <a href="/play"><h2>  Play Now!  </h2></a>
-                <a href="/faq"><h2>  FAQ  </h2></a>
-                <a href="/register"><h2>  Register  </h2></a>
-                <a href="/login"><h2>  Login  </h2></a>
+                <a href="/register">Register</a>
+                <a href="/login">Log in</a>
             {{?}}
             </div>
 
