@@ -66,10 +66,10 @@ exports.isEligibleForGiveAway = function(lastGiveAway) {
     var created = new Date(lastGiveAway);
     var timeElapsed = (new Date().getTime() - created.getTime()) / 60000; //minutes elapsed since last giveaway
 
-    if (timeElapsed > 60)
+    if (timeElapsed > 2)
         return true;
 
-    return Math.round(60 - timeElapsed);
+    return Math.round(2 - timeElapsed);
 };
 
 var derivedPubKey = process.env.BIP32_DERIVED_KEY;

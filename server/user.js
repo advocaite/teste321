@@ -302,8 +302,8 @@ exports.giveawayRequest = function(req, res, next) {
 
                         return next(new Error('Unable to add giveaway: \n' + err));
                     }
-                    user.eligible = 240;
-                    user.balance_satoshis += 200;
+                    user.eligible = 2400000; // 0.024NXT
+                    user.balance_satoshis += 2000000; // 0.02 NXT
                     return res.redirect('/play?m=received');
                 });
             }
