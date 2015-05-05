@@ -21,6 +21,6 @@ define([
     Engine.on('all', function() {
         var elem = document.getElementById('balance_bits');
         if (elem)
-            elem.innerHTML = Clib.formatSatoshis(Engine.balanceSatoshis, 2);
+            elem.innerHTML = Clib.formatSatoshis(Engine.balanceSatoshis, 4);
     });
 });

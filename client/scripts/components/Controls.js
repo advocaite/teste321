@@ -86,7 +86,7 @@ define([
 
         _placeBet: function () {
 
-            var bet = parseInt(this.state.betSize.replace(/k/g, '000')) * 100;
+            var bet = parseFloat(this.state.betSize * Math.pow(10, 8));
             console.assert(_.isFinite(bet));
 
             var cashOut = parseFloat(this.state.cashOut);
@@ -128,7 +128,7 @@ define([
             if(co instanceof Error)
                 return co.message;
 
-            if (self.state.engine.balanceSatoshis < bet * 100)
+            if (self.state.engine.balanceSatoshis < bet * Math.pow(10, 8))
                 return 'Not enough bits';
 
             return null;
@@ -187,7 +187,7 @@ define([
                     return D.span(null,
                         'Busted @ ', D.b({className: 'red'},
                             this.state.engine.tableHistory[0].game_crash / 100, 'x'),
-                        ' / You lost ', D.b({className: 'red'}, pi.bet / 100), ' ', Clib.grammarBits(pi.bet),
+                        ' / You lost ', D.b({className: 'red'}, pi.bet / Math.pow(10, 8)), ' ', Clib.grammarBits(pi.bet),
                         bonus
                     );
 
@@ -214,13 +214,16 @@ define([
                 D.input({
                     type: 'text',
                     name: 'bet-size',
+                    min: 0.01,
+                    step: 0.01,
+                    type: 'number',
                     value: self.state.betSize,
                     onChange: function (e) {
                         //self.setState({ betSize: e.target.value })
                         self._setBetSize(e.target.value);
                     }
                 }),
-                D.span({ className: 'sticky' }, 'Bits')
+                D.span({ className: 'sticky' }, 'NXT')
             );
 
             var autoCashOut = D.div(null,

@@ -21,7 +21,7 @@ define([
             else
                 decimals = 4;
         }
-        return n.toFixed(decimals).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        return n.toFixed(decimals).toString();
     }
 
     return {
@@ -44,19 +44,16 @@ define([
         parseBet: function (betString) {
             betString = String(betString);
 
-            if (!/^\d+k*$/.test(betString))
-                return new Error('Bet may only contain digits, and k (to mean 1000)');
+            //if (!/^\d+k*$/.test(betString))
+            //    return new Error('Bet may only contain digits, and k (to mean 1000)');
 
-            var bet = parseInt(betString.replace(/k/g, '000'));
+            var bet = parseFloat(betString);
 
-            if (bet < 1)
-                return new Error('The bet should be at least 1 bit');
+            if (bet < 0.01)
+                return new Error('The bet should be at least 0.01 NXT');
 
             if (bet * 100 > AppConstants.Engine.MAX_BET)
-                return new Error('The bet must be less no more than ' + formatSatoshis(AppConstants.Engine.MAX_BET) + ' bits');
-
-            if (_.isNaN(bet) || Math.floor(bet) !== bet)
-                return new Error('The bet should be an integer greater than or equal to one');
+                return new Error('The bet must be less no more than ' + formatSatoshis(AppConstants.Engine.MAX_BET) + ' NXT');
 
             return bet;
         },
@@ -154,7 +151,7 @@ define([
 
         //Returns plural or singular, for a given amount of bits.
         grammarBits: function (bits) {
-            return bits <= 100 ? 'bit' : 'bits';
+            return bits <= 100 ? 'NXT' : 'NXT';
         },
 
         //Calculate the payout based on the time
