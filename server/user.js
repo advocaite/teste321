@@ -690,8 +690,8 @@ exports.handleWithdrawRequest = function(req, res, next) {
     amount = Math.round(parseFloat(amount) * Math.pow(10, 8));
     assert(Number.isFinite(amount));
 
-    if (amount < Math.pow(10, 8))
-        return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must be 1 NXT or more' });
+    if (amount <= Math.pow(10, 8))
+        return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must be over 1 NXT' });
 
     if (typeof destination !== 'string')
         return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Destination address not provided' });
