@@ -19,13 +19,18 @@ var client = {
 
     url += querystring.stringify(params);
 
+    console.log('withdrawalUrl:', url);
+
     axios.post(url, null).then(function (response) {
+      console.log('withdrawal response:');
+      console.log(response);
       if (response && response.data && response.data.transaction) {
         callback(null, response.data.transaction);
       } else if (response && response.data.errorCode) {
         if(response.data.errorCode == 6) { // Not enough funds
-          return callback('NOT_ENOUGH_FUNDS')
+          return callback('NOT_ENOUGH_FUNDS');
         }
+        return callback('HOT_WALLET_OFFLINE');
       }
     }).catch(function () {
       return callback('HOT_WALLET_OFFLINE');
