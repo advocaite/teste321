@@ -19,7 +19,7 @@ define([
             if (n % 100 === 0)
                 decimals = 0;
             else
-                decimals = 2;
+                decimals = 4;
         }
         return n.toFixed(decimals).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     }

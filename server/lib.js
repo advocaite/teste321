@@ -85,7 +85,7 @@ exports.deriveAddress = function(index) {
 
 exports.formatSatoshis = function(n, decimals) {
     if (typeof decimals === 'undefined')
-        decimals = 2;
+        decimals = 4;
 
     return (n/Math.pow(10,8)).toFixed(decimals).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 };
