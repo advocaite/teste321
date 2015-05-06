@@ -710,3 +710,18 @@ exports.getSiteStats = function(callback) {
     });
 
 };
+
+function refreshView() {
+
+    query('REFRESH MATERIALIZED VIEW CONCURRENTLY leaderboard;', function(err) {
+        if (err) {
+            console.error('[INTERNAL_ERROR] unable to refresh leaderboard got: ', err);
+        } else {
+            console.log('leaderboard refreshed');
+        }
+
+        setTimeout(refreshView, 5    * 60 * 1000);
+    });
+
+}
+setTimeout(refreshView, 1000);

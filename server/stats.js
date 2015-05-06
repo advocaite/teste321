@@ -20,21 +20,6 @@ function getSiteStats() {
 setInterval(getSiteStats, 1000 * 60 * 20);
 getSiteStats();
 
-function refreshView() {
-
-    query('REFRESH MATERIALIZED VIEW CONCURRENTLY leaderboard;', function(err) {
-        if (err) {
-            console.error('[INTERNAL_ERROR] unable to refresh leaderboard got: ', err);
-        } else {
-            console.log('leaderboard refreshed');
-        }
-
-        setTimeout(refreshView, 10 * 60 * 1000);
-    });
-
-}
-setTimeout(refreshView, 1000);
-
 exports.index = function(req, res, next) {
     if (!stats) {
         return next('Stats are loading');
