@@ -48,20 +48,20 @@
                     <span>{{=it.user.deposit_address}}</span>
                     <br/>
                     <br/>
-                    <strong>You must attach a message with this number:
+                    <strong>You must attach an unencrypted message with this number:
                         "<span style="color: black; font-size: 120%; background-color: lightgray"> {{=it.user.id}} </span>" <span style="color: red;">*</span>
                     </strong>
 
                 </div>
 
-                <strong style="color: red;">* If you fail to attach this message, the deposit can't be added to your account.</strong>
+                <strong style="color: red;">* If you fail to attach this message <strong>unencrypted</strong>, the deposit can't be added to your account.</strong>
             </div>
             <div class="large-6 columns">
-                Transfer NXT, with the unique number attached, to this address to have your account credited. Accounts
+                Transfer NXT, with the unique number attached <strong>unencrypted</strong>, to this address to have your account credited. Accounts
                 are only credited after <b>one NXT confirmation</b>
                 which depending on external factors can take a while. You can check
                 <a href="http://nxtportal.org/accounts/{{=it.user.deposit_address}}">nxtportal.org</a> to see if your
-                transactions have confirmed yet.
+                transactions have confirmed yet. Deposits take two confirmations, so about four minutes.
                 <strong><a href="/faq#deposit">
                     <small>more?</small>
                 </a></strong>
