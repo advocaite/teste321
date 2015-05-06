@@ -1,8 +1,8 @@
 {{##def.page_title = 'Your account' #}}
 {{##def.content:
 <script type="text/javascript">
-    function logout() {
-        if (document.getElementById('logout') ) {
+    function logout () {
+        if (document.getElementById('logout')) {
             if (confirm("Are you sure you want to log out?")) {
                 document.getElementById("logout").submit();
             }
@@ -16,7 +16,7 @@
         <div class="small-2 columns">
             <ul class="menu">
                 <li class="active">
-                   Account
+                    Account
                 </li>
                 <li>
                     <a href="/security">Security</a>
@@ -38,58 +38,70 @@
                 </li>
             </ul>
         </div>
-        <div class="small-10 columns sets-content">
+        <div class="small-10 columns">
             <h5>Account</h5>
             <hr>
-            <p class="account">
-                <b>Deposit Address:</b>
-                <span>{{=it.user.deposit_address}}</span>
-                <br/>
-                <strong>You must attach a message with this number: "{{=it.user.id}}"<br></strong>
-                <strong>If you fail to do so, the deposit can't be added<br> to your account.</strong>
-            </p>
-            <div class="row">
-                <div class="large-6 columns">
-                    Transfer NXT, with the unique number attached, to this address to have your account credited. Accounts are only credited after <b>one NXT confirmation</b>
-                    which depending on external factors can take a while. You can check
-                     <a href="http://nxtportal.org/accounts/{{=it.user.deposit_address}}">nxtportal.org</a> to see if your transactions have confirmed yet.
-                    <strong><a href="/faq#deposit"> <small>more?</small></a></strong>
+            <div class="large-6 columns">
+                <div class="panel radius">
+                    <b>Deposit Address:</b>
+                    <br/>
+                    <span>{{=it.user.deposit_address}}</span>
+                    <br/>
+                    <br/>
+                    <strong>You must attach a message with this number:
+                        "<span style="color: black; font-size: 120%; background-color: lightgray"> {{=it.user.id}} </span>" <span style="color: red;">*</span>
+                    </strong>
+
                 </div>
+
+                <strong style="color: red;">* If you fail to attach this message, the deposit can't be added to your account.</strong>
             </div>
-            <br>
-            <a class="border-button blue right"href="/user/{{=it.user.username}}">Your Public Profile</a>
-            <br>
-            <br>
-            <h5>Account Information</h5>
-            <div id="statistics" class="row">
-                <div class="columns data large-3">
-                    <p><b>Deposits </b></p>
-                    <h5>{{#def.format:{n: it.user.deposits, decimals:4} }} NXT</h5>
-                </div>
-                <div class="columns data large-3">
-                    <p><b>Withdrawals </b></p>
-                    <h5>{{#def.format:{n: it.user.withdrawals, decimals:4} }} NXT</h5>
-                </div>
-                <div class="columns data large-3">
-                    <p><b>Free NXT Collected </b></p>
-                    <h5>{{#def.format:{n: it.user.giveaways, decimals:4} }} NXT</h5>
-                </div>
-                <div class="columns data large-3">
-                    <p><b>Net Profit</b></p>
-                    <h5>{{#def.format:{n: it.user.net_profit, decimals:4} }} NXT</h5>
+            <div class="large-6 columns">
+                Transfer NXT, with the unique number attached, to this address to have your account credited. Accounts
+                are only credited after <b>one NXT confirmation</b>
+                which depending on external factors can take a while. You can check
+                <a href="http://nxtportal.org/accounts/{{=it.user.deposit_address}}">nxtportal.org</a> to see if your
+                transactions have confirmed yet.
+                <strong><a href="/faq#deposit">
+                    <small>more?</small>
+                </a></strong>
+            </div>
+            <br/>
+
+            <div class="large-12 columns" style="margin-top: 20px;">
+                <h5>Account Information</h5>
+                <div id="statistics" >
+                    <div class="columns data large-3">
+                        <p><b>Deposits </b></p>
+                        <h5>{{#def.format:{n: it.user.deposits, decimals:4} }} NXT</h5>
+                    </div>
+                    <div class="columns data large-3">
+                        <p><b>Withdrawals </b></p>
+                        <h5>{{#def.format:{n: it.user.withdrawals, decimals:4} }} NXT</h5>
+                    </div>
+                    <div class="columns data large-3">
+                        <p><b>Free NXT Collected </b></p>
+                        <h5>{{#def.format:{n: it.user.giveaways, decimals:4} }} NXT</h5>
+                    </div>
+                    <div class="columns data large-3">
+                        <p><b>Net Profit</b></p>
+                        <h5>{{#def.format:{n: it.user.net_profit, decimals:4} }} NXT</h5>
+                    </div>
                 </div>
             </div>
 
-            <br>
-            {{?typeof it.user.eligible !== 'number' }}
+            <div class="large-12 columns" style="margin-top: 20px;">
+                {{?typeof it.user.eligible !== 'number' }}
                 {{?it.user.balance_satoshis > 100}}
-                    <div class="success bits">You are eligible for free 0.02 NXT <a href="/request">CLICK HERE TO REQUEST THEM!</a></div>
+                <div class="success bits">You are eligible for free 0.02 NXT <a href="/request">CLICK HERE TO REQUEST
+                    THEM!</a></div>
                 {{?}}
-            {{??}}
+                {{??}}
                 <div class="success bits">You'll be eligible for 0.02 free NXT in {{=it.user.eligible}} minutes</div>
-            {{?}}
+                {{?}}
+            </div>
         </div>
     </div>
-    </div>
+</div>
 #}}
 {{#def.include('./template/main')}}
