@@ -45,7 +45,7 @@ define(['lib/clib'], function(Clib){
                     }
                 }
 
-                var fixedCurrentBet = Math.round(currentBet / Math.pow(10,8)) * Math.pow(10,8);
+                var fixedCurrentBet = (currentBet / Math.pow(10,8)) * Math.pow(10,8);
 
                 if(fixedCurrentBet > 0 && fixedCurrentBet <= engine.getBalance() && fixedCurrentBet <= engine.getMaxBet() && fixedCurrentBet <= maxBetStop) {
                     engine.placeBet(fixedCurrentBet, Math.round(autoCashAt * 100), false);
