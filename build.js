@@ -67,7 +67,3 @@ var contents = fs.readFileSync('./views/template/head.html', { encoding: 'UTF-8'
 contents = sreplace(contents, '/css/app.css',  '/css/' + cssHash + '.css');
 contents = sreplace(contents, '/css/game.css',  '/css/' + gameCssHash + '.css');
 fs.writeFileSync('./views/template/head.html', contents);
-
-
-
-

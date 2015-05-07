@@ -168,11 +168,13 @@ define([
                 if (username && message.username != username && r.test(message.message)) {
                     pri += ' msg-highlight-message';
                 }
+
                 return D.li({ className: pri , key: 'msg' + index },
                     D.a({
                             href: '/user/' + message.username,
                             target: '_blank'
                         },
+                        '(' + message.userid + ') ',
                         message.username, ':'),
                         ' ',
                         D.span({
