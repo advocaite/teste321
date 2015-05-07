@@ -133,7 +133,7 @@ define([
                             user.username)),
                         D.td(null, '-'),
                         D.td(null,
-                            user.bet ? Clib.formatSatoshis(user.bet, 0) : '?'
+                            user.bet ? Clib.formatSatoshis(user.bet, 2) : '?'
                         ),
                         D.td({ className: bonusClass }, bonus),
                         D.td(null, '-')
@@ -158,7 +158,7 @@ define([
                             },
                             user.username)),
                         D.td(null, user.stopped_at/100 + 'x'),
-                        D.td(null, Clib.formatSatoshis(user.bet, 0)),
+                        D.td(null, Clib.formatSatoshis(user.bet, 2)),
                         D.td({ className: bonusClass }, bonus),
                         D.td(null, Clib.formatSatoshis(profit))
                     ));
@@ -199,7 +199,7 @@ define([
                             },
                             entry.username)),
                         D.td(null, '-'),
-                        D.td(null, Clib.formatSatoshis(entry.bet, 0)),
+                        D.td(null, Clib.formatSatoshis(entry.bet, 2)),
                         D.td(null, bonus),
                         D.td(null, profit)
                     );
@@ -232,7 +232,7 @@ define([
                             },
                             entry.username)),
                         D.td(null, stopped / 100, 'x'),
-                        D.td(null, Clib.formatSatoshis(bet, 0)),
+                        D.td(null, Clib.formatSatoshis(bet, 2)),
                         D.td(null, bonus),
                         D.td(null, profit)
                     );

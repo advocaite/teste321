@@ -85,7 +85,7 @@ define([
                             className: 'chat-log-tab ' + ((this.state.selectedTab === 'strategyEditor') ? 'tab-active' : ''),
                             onClick: this._selectTab('strategyEditor')
                         },
-                        D.a(null, 'Strategy')
+                        D.a(null, 'Auto-bet')
                     )
                 ),
                 D.div({ className: 'log-chat-container ' + contClass },
