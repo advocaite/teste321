@@ -1,4 +1,4 @@
-{{##def.format:param:{{=(param.n/100000000).toFixed(param.decimals).toString()}}#}}
+{{##def.format:param:{{=(param.n/Math.pow(10,8)).toFixed(param.decimals).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
 
 <!DOCTYPE html>
 <html>

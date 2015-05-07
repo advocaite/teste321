@@ -30,15 +30,15 @@
 
                         <tr>
                             <td><b>Deposits:</b></td>
-                            <td>{{#def.format: {n: it.stats.deposits.sum} }} NXT</td>
+                            <td>{{#def.format: {n: it.stats.deposits.sum, decimals: 2} }} NXT</td>
                         </tr>
                         <tr>
                             <td><b>Withdrawals:</b></td>
-                            <td>{{#def.format: { n: it.stats.withdrawals.sum } }} NXT</td>
+                            <td>{{#def.format: { n: it.stats.withdrawals.sum, decimals: 2 } }} NXT</td>
                         </tr>
                         <tr>
                             <td class="strong">Net:</td>
-                            <td class="strong">{{#def.format: { n: (it.stats.deposits.sum - (it.stats.withdrawals.sum * -1)) } }} NXT</td>
+                            <td class="strong">{{#def.format: { n: (it.stats.deposits.sum - (it.stats.withdrawals.sum * -1)), decimals: 2 } }} NXT</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -46,30 +46,30 @@
                         </tr>
                         <tr>
                             <td><b>Total Wagered:</b></td>
-                            <td>{{#def.format: {n: it.stats.plays.total_bet } }} NXT</td>
+                            <td>{{#def.format: {n: it.stats.plays.total_bet, decimals: 2 } }} NXT</td>
                         </tr>
                         <tr>
                             <td><b>Players won in cashed:</b></td>
-                            <td>{{#def.format: {n: it.stats.plays.cashed_out } }} NXT <small>(
+                            <td>{{#def.format: {n: it.stats.plays.cashed_out, decimals: 2 } }} NXT <small>(
                                    {{= (it.stats.plays.cashed_out / it.stats.plays.total_bet * 100).toFixed(2) }}%
                                 )</small></td>
                         </tr>
                         <tr>
                             <td><b>Players won in bonuses:</b></td>
-                            <td>{{#def.format: {n: it.stats.plays.bonused } }} NXT <small>(
+                            <td>{{#def.format: {n: it.stats.plays.bonused, decimals: 2 } }} NXT <small>(
                                 {{= (it.stats.plays.bonused / it.stats.plays.total_bet * 100).toFixed(2) }}%
                                 )</small></td>
                         </tr>
                         <tr>
                             <td><b>Players won in total: </b></td>
-                            <td>{{#def.format: {n: (9 + it.stats.plays.cashed_out + it.stats.plays.bonused) } }} NXT <small>(
+                            <td>{{#def.format: {n: (9 + it.stats.plays.cashed_out + it.stats.plays.bonused), decimals: 2 } }} NXT <small>(
                                 {{= ((it.stats.plays.cashed_out + it.stats.plays.bonused) / it.stats.plays.total_bet * 100).toFixed(2) }}%
                                 )</small></td>
                         </tr>
                         <tr>
                             <td class="strong">Our Profit:</td>
                             <td class="strong">
-                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused  } }} NXT
+                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused, decimals: 2  } }} NXT
                                 <small>(
                                     {{= ((it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused ) / it.stats.plays.total_bet * 100).toFixed(2) }}%
                                     )</small>
@@ -82,13 +82,13 @@
                         <tr>
                             <td class="strong">Bankroll:</td>
                             <td class="strong">
-                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset } }} NXT
+                                {{#def.format: {n: it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset, decimals: 2 } }} NXT
                             </td>
                         </tr>
                         <tr>
                             <td class="strong">Max win per game:</td>
                             <td>
-                                {{#def.format: {n: (it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset)*0.03 } }} NXT
+                                {{#def.format: {n: (it.stats.plays.total_bet - it.stats.plays.cashed_out - it.stats.plays.bonused + it.stats.bankroll_offset)*0.03, decimals: 2 } }} NXT
                             </td>
                         </tr>
                         <tr>

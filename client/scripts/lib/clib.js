@@ -21,7 +21,8 @@ define([
             else
                 decimals = 4;
         }
-        return n.toFixed(decimals).toString();
+        return n.toFixed(decimals).toString()
+          .replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,");
     }
 
     return {
