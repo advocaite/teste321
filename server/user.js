@@ -553,17 +553,17 @@ exports.sendPasswordRecover = function(req, res, next) {
     var messageSentAndNotEmail = { success: 'We\'ve sent an email to you if there is a recovery email.' };
     var messageNotUser = { warning: 'That username does not exist :/' };
 
-    database.getUserFromUsername (username, function(err, user) { 
+    database.getUserFromUsername (username, function(err, user) {
         if (err) {
             if (err === 'NO_USER')
                 return res.render('forgot-password', messageNotUser);
-            else 
+            else
                 return next(new Error('Unable to get user ' + user +  'from username: \n' + err));
         }
         if (!user.email)
             return res.render('forgot-password',  messageSentAndNotEmail);
 
-        database.addRecoverId(user.id, function(err, recoveryId) { 
+        database.addRecoverId(user.id, function(err, recoveryId) {
             if (err)
                 return next(new Error('Unable to add recovery id ' + recoveryId + ' for user ' + user.id + ':\n' + err));
 
@@ -752,5 +752,5 @@ exports.withdrawRequest = function(req, res) {
  **/
 exports.contact = function(req, res) {
     assert(req.user);
-    res.render('support', { user: req.user })
+    res.render('support', { user: req.user, contact: process.env.CONTACT_EMAIL })
 };
