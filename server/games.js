@@ -51,6 +51,10 @@ exports.show = function(req, res, next) {
              byDb = 'net_profit';
              order = 'ASC';
              break;
+        case 'gross_desc':
+             byDb = 'gross_profit';
+             order = 'DESC';
+             break;
          default :
              byDb = 'net_profit';
              order = 'DESC';
