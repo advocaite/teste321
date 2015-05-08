@@ -489,7 +489,7 @@ CREATE MATERIALIZED VIEW leaderboard AS
     t.gross_profit,
     t.net_profit,
     t.games_played,
-    rank() OVER (ORDER BY t.gross_profit DESC) AS rank
+    rank() OVER (ORDER BY t.net_profit DESC) AS rank
    FROM t;
 
 CREATE UNIQUE INDEX leaderboard_user_id_idx
