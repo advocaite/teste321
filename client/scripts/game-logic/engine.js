@@ -425,6 +425,7 @@ define([
      * @param {function} callback(err, result)
      */
     Engine.prototype.bet = function(amount, autoCashOut, callback) {
+        amount -= Math.abs(amount) % 100; // multiples of hunderd
         console.assert(typeof amount == 'number');
         console.assert(Clib.isInteger(amount));
         console.assert(!autoCashOut || (typeof autoCashOut === 'number' && autoCashOut >= 100));
