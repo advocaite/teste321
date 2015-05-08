@@ -1,9 +1,13 @@
+@import url("reset.css");
 @import url("../lib/foundation/css/foundation.css");
 @import url("../lib/foundation-icons/foundation-icons.css");
 @import url("../lib/font-awesome/css/font-awesome.css");
 @import url("header.css");
 
-
+@font-face {
+    font-family: tale;
+    src: url(fonts/tale.otf);
+}
 @font-face {
     font-family: rbn;
     src: url(fonts/RBN.otf);

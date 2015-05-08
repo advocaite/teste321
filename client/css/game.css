@@ -654,7 +654,7 @@ i {
     height: 2rem;
 }
 
-@media only screen and (max-width: 40em) { 
+@media only screen and (max-width: 40em) {
     .advanced-options {
         height: 8rem;
     }
@@ -712,7 +712,7 @@ i {
     font-size: 15px;
 }
 
-@media only screen and (max-width: 40em) { 
+@media only screen and (max-width: 40em) {
     .selector-input {
         width: 5rem;
     }
@@ -1169,4 +1169,14 @@ tr.user-cashed.me {
 /* Colors for the players cashed and won */
 .bet-bar-cashed, .bet-bar-won {
     background-color: #408609;
+}
+
+.user-login {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: inherit;
+}
+
+.user-login a {
+  margin-right: 5px;
 }
