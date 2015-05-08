@@ -118,7 +118,7 @@ define([
             var self = this;
 
             if (self.state.engine.balanceSatoshis < 100)
-                return 'Not enough bits to play';
+                return 'Not enough NXT to play';
 
             var bet = Clib.parseBet(self.state.betSize);
             if(bet instanceof Error)
@@ -129,7 +129,7 @@ define([
                 return co.message;
 
             if (self.state.engine.balanceSatoshis < bet * Math.pow(10, 8))
-                return 'Not enough bits';
+                return 'Not enough NXT';
 
             return null;
         },
