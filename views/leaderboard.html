@@ -42,10 +42,10 @@
                         <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
                     </td>
                     <td>
-                        {{#def.format: { n: leader.gross_profit, decimals: 4 } }}
+                        {{#def.format: { n: leader.gross_profit, decimals: 0 } }}
                     </td>
                     <td>
-                        {{#def.format: { n: leader.net_profit, decimals: 4 } }}
+                        {{#def.format: { n: leader.net_profit, decimals: 0 } }}
                     </td>
                 </tr>
             {{~}}
