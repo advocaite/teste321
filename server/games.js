@@ -52,7 +52,7 @@ exports.show = function(req, res, next) {
              order = 'ASC';
              break;
          default :
-             byDb = 'gross_profit';
+             byDb = 'net_profit';
              order = 'DESC';
      }
 
@@ -63,4 +63,3 @@ exports.show = function(req, res, next) {
         res.render('leaderboard', { user: user, leaders: leaders, sortBy: byDb, order: order });
      });
  };
-
