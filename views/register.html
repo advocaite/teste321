@@ -8,6 +8,19 @@
       s.style.display = 'block';
     }
 
+    function onAgreeClick() {
+      var agree = document.getElementById('agree').checked;
+      var submit = document.getElementById('registerSubmit');
+      var acceptTerms = document.getElementById('acceptTerms');
+      if(agree) {
+        submit.disabled = false;
+        acceptTerms.style.display = 'none';
+      } else {
+        submit.disabled = true;
+        acceptTerms.style.display = 'block';
+      }
+    }
+
     window.onload = function () {
         if (document.getElementById('confirmation') !== null) {
             document.getElementById('confirmation').onchange = validatePassword;
@@ -71,9 +84,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="large-7 columns input">
+                        <div class="row">
+                            <div class="large-3 columns">
+                                <input type="checkbox" id="agree" onClick="onAgreeClick()">
+                                  <label for="agree">I agree</label>
+                                </input>
+                            </div>
+                            <div class="large-9 columns">
+                              <p class="small">
+                                By accessing NXTBubble.com or its service:<br/>
+                                Acknowledge that you have read and agree to the website's <a href="/terms-conditions" target="_blank">Terms &amp; Conditions.</a> <br/>
+                                Attest that you are 18 years old or older. <br/>
+                                Affirm that you are in a jurisdiction where the NXTBubble.com service is legal
+                              </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="large-7 columns">
                         <div class="g-recaptcha" data-sitekey="6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU" data-callback="enableSubmit"></div>
-                        <input id="registerSubmit" style="display: none" class="border-button blue" type="submit" value="Register"/>
+                        <input id="registerSubmit" style="display: none" class="border-button blue" type="submit" value="Register" disabled="true"/>
+                        <p class="small" id="acceptTerms" style="display: block;">
+                          You must accept the Terms &amp; Conditions before you can register.
+                        </p>
                     </div>
                 </div>
             </form>

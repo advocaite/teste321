@@ -148,6 +148,8 @@ module.exports = function(app) {
     });
     app.get('/stats', stats.index);
 
+    app.get('/terms-conditions', staticPageLogged('terms'));
+
 
     // Admin stuff
     app.get('/admin-giveaway', adminRestrict, admin.giveAway);
