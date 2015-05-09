@@ -101,8 +101,8 @@
                     than this, depending on the block competition at the time of your withdrawal.
                 </p>
                 <p>
-                   The minimum withdrawal amount is 1.00000001 NXT. Please remember that 1 NXT fee will be deducted, so if you
-                   withdraw the minimum amount, you will only receive 0.00000001 NXT! I would not advise doing that.
+                   The minimum withdrawal amount is 1.01 NXT. Please remember that 1 NXT fee will be deducted, so if you
+                   withdraw the minimum amount, you will only receive 0.01 NXT! I would not advise doing that.
                 </p>
             </dd>
             <dd>
@@ -154,33 +154,30 @@
                     Suppose the 300 NXT player comes 3rd. He's due 7.5 NXT (300/40) but there are only 2.5 NXT left in the pot, so he gets those and that's all. There's nothing left for the 4th or worse place players.
                 </p>
                 <p>
-                    1% of games will instant bust (0x) and no bonuses will be awarded, all other games have bonuses equal to 1% of the amount wagered.
+                    1.5% of games will instant bust (0x) and no bonuses will be awarded, all other games have bonuses equal to 1% of the amount wagered.
                 </p>
             </dd>
             <h3>Fairness</h3>
             <dd>
                 <b><a name="odds"></a>What are the game odds?</b>
                 <p>
-                    The house margin is scaled between 0 and 1.5 %, depending on how long you hold. An additional 1 % is effectively
-                    taken from every bet and put into the <a href="#bonus">bonus pool</a>, which is distributed in its entirety
+                    The house margin is scaled between 0 and 1 %, depending on how long you hold. An additional 1.5 % is effectively
+                    taken from every bet and put into the <a href="#bonus">bonus pool</a>, of which 1% is distributed
                     every game. As a consequence, skilless or random play has—at worst—an expected return of -2.5 %, but it is possible to overcome
                     the house margin by skillfully getting bonuses.
                 </p>
                 <p>
-                    The numbers are baked into the game, so you never need to worry about it. We do not
-                    have a fixed house margin, as this would prevent highly conservative play (e.g. If you were
-                    only attempting to make $2 in a $100 game, a house margin of 1 % would be 50 % of your potential profits!).
+                    The numbers are baked into the game, so you never need to worry about it. 
                     Our unique formula makes it fair for both highly conservative play (cash out early) and highly aggressive
                     play (hold until you're a millionaire). All games are <a href="#fair">provably fair</a>.
                 </p>
                 <p>
                     The exact formula for the houses expected return is:<br />
-                    <code>1.5 % * (intendedCashOut - roomAmount) * (roomAmount / intendedCashOut)</code><br />
+                    <code>1 % * (intendedCashOut - roomAmount) * (roomAmount / intendedCashOut)</code><br />
                     But to really get a good sense of how this affects you, please use our handy <a href="/calculator">odds calculator</a>.
                 </p>
                 <p>
-                    The other important thing to keep in mind is that every game has a 1 % chance of instantly busting. We do not make
-                    <strong>any</strong> money on it, but rather use this to fund the bonus scheme. This is an important consideration to make if you
+                    The other important thing to keep in mind is that every game has a 1.5 % chance of instantly busting. This is an important consideration to make if you
                     are playing in such a way that you never win the bonus.
                 </p>
                 <img src="/img/house-edge.png">
@@ -191,7 +188,7 @@
                     The code that decides the multiplier for each round is here:
                 </p>
                 <p>
-                    <a href="https://github.com/moneypot/bustabit-gameserver/blob/master/server/lib.js#L146-L158">https://github.com/moneypot/gameserver/blob/master/server/lib.js#L146-L158</a>
+                    <a href="https://github.com/TwinWinNerD/bustabit-gameserver/blob/master/server/lib.js#L146-L157">https://github.com/TwinWinNerD/bustabit-gameserver/blob/master/server/lib.js#L146-L157</a>
                 </p>
                 <p>
                     It basically does three things.
@@ -200,40 +197,39 @@
                     First, it mixes the hash with the clientSeed (decided by the provably fair seeding event) using hmac-sha256
                 </p>
                 <p>
-                    Secondly it gives a 1 in 101 chance of instant busting
+                    Secondly it gives a 1 in 67 chance of instant busting
                 </p>
                 <p>
                     Third, it works out what the multiplier would be if there was no
                     house edge.
                 </p>
                 <p>
-                    Fourth, it takes 1.5% off the multiplier and adds on 0.015x:
+                    Fourth, it takes 1% off the multiplier and adds on 0.01x:
                 </p>
                 <p>
-                    So half the time (other than 0x bust which we can ignore because
-                    they pay for themselves with the bonus) the multiplier will be 1.985x
+                    So half the time (other than 0x bust) the multiplier will be 1.99x
                     or more.
                 </p>
                 <p>
-                    That means if we bet 1.985x we have a 50% chance of winning (again,
+                    That means if we bet 1.99x we have a 50% chance of winning (again,
                     ignoring 0x busts), and so the house edge is:
                 </p>
                 <p>
-                    <code>100 - (1.985 * 50) = 100 - 99.25 = 0.75%</code>
+                    <code>100 - (1.99 * 50) = 100 - 99.5 = 0.5%</code>
                 </p>
                 <p>
-                    The extra 0.015 that gets added on to the multiplier is half of the 1.5%
-                    that was taken off in this case, leaving the house edge at 0.75%. As
-                    the multiplier gets bigger, the 1.5% that is taken off gets bigger, and
-                    the 0.015x that gets added on becomes less and less significant,
-                    causing the house edge to tend to 1.5%
+                    The extra 0.01 that gets added on to the multiplier is half of the 1%
+                    that was taken off in this case, leaving the house edge at 0.5%. As
+                    the multiplier gets bigger, the 1% that is taken off gets bigger, and
+                    the 0.01x that gets added on becomes less and less significant,
+                    causing the house edge to tend to 1%.
                 </p>
             </dd>
             <dd>
                 <b><a name="fair"></a>Is the game fair?</b>
                 <p>
                     Absolutely! And we can prove it. Please see:
-                    <a href="https://bitcointalk.org/index.php?topic=922898.0">the bitcoin talk thread</a>
+                    <a href="https://nxtforum.org/nxtbubble-com/nxtbubble-com-provable-fair-seeding-event/">the nxtforum.org thread</a>
                     for technical details.
                 </p>
             </dd>
