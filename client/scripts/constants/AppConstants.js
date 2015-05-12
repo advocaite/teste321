@@ -3,9 +3,9 @@ define(['lib/key-mirror'], function(KeyMirror){
     var host = '';
 
     if(window.document.location.host === 'www.nxtbubble.com' || window.document.location.host === 'nxtbubble.com') {
-        host = 'https://game.nxtbubble.com';
+        host = window.document.location.host + ':3842';
     } else {
-        host = window.document.location.host.replace(/:3841$/, ':3842');
+        host = window.document.location.host.replace(/:3841$/, ':3842')
     }
 
     return {
