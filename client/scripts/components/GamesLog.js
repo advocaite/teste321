@@ -103,7 +103,7 @@ define([
                 return D.tr({ key: 'game_' + i },
 
                     D.td(null,
-                        D.a({ href: '/games/' + game.game_id, target: '_blank',
+                        D.a({ href: '/roll/' + game.game_id, target: '_blank',
                             className: className
                         },
                             Clib.formatDecimals(game.game_crash / 100, 2), D.i(null, 'x'))
