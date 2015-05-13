@@ -720,7 +720,7 @@ exports.handleWithdrawRequest = function(req, res, next) {
                 if (err === 'NOT_ENOUGH_MONEY')
                     return res.render('withdraw_request', {user: user, id: uuid.v4(), warning: 'Not enough money to process withdraw.'});
                 else if (err === 'HOT_WALLET_ERROR')
-                    return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Hot wallet offline or empty. Please try again later.' });
+                    return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Hot wallet offline or empty. Please try again later or contact the support.' });
                 else if (err === 'PENDING') //TODO: Whats with this error code?
                     return res.render('withdraw_request', { user: user,  id: uuid.v4(), success: 'Withdrawal successful, however hot wallet was empty. Withdrawal will be reviewed and sent ASAP' });
                 else if(err === 'SAME_WITHDRAWAL_ID')
