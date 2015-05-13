@@ -77,7 +77,7 @@ function CustomChart(startingFrom, cum, chartData) {
 
         chart.addListener("clickGraphItem", function (event) {
             var gameId = event.item.dataContext.game_id;
-            window.location="/game/" + gameId;
+            window.location="/games/" + gameId;
         });
 
 
