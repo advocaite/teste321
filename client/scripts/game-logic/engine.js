@@ -24,7 +24,9 @@ define([
          */
         _.extend(this, Events);
 
-        self.ws = io(AppConstants.Engine.HOST);
+        self.ws = io.connect(AppConstants.Engine.HOST, {
+            path: '/game/socket.io'
+        });
 
         /** The engine is connected to the server, if not connected, all fields are unreadable */
         self.isConnected = false;

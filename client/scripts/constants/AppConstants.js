@@ -1,13 +1,5 @@
 define(['lib/key-mirror'], function(KeyMirror){
 
-    var host = '';
-
-    if(window.document.location.host === 'www.nxtbubble.com' || window.document.location.host === 'nxtbubble.com') {
-        host = window.document.location.host + ':3842';
-    } else {
-        host = window.document.location.host.replace(/:3841$/, ':3842')
-    }
-
     return {
 
         ActionTypes: KeyMirror({
@@ -46,7 +38,7 @@ define(['lib/key-mirror'], function(KeyMirror){
 
         Engine: {
             STOP_PREDICTING_LAPSE: 300,
-            HOST: host,
+            HOST: 'https://nxtbubble.com/game',
             MAX_BET: 100000 * Math.pow(10,8) /** Max bet per game 100,000 NXT, this will be calculated dynamically in the future, based on the invested amount in the casino **/
         },
 
