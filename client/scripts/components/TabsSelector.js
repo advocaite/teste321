@@ -76,12 +76,6 @@ define([
                         D.a(null, 'History')
                     ),
                     D.li({
-                            className: 'chat-log-tab ' + ((this.state.selectedTab === 'chat') ? 'tab-active' : ''),
-                            onClick: this._selectTab('chat')
-                        },
-                        D.a(null, 'Chat')
-                    ),
-                    D.li({
                             className: 'chat-log-tab ' + ((this.state.selectedTab === 'strategyEditor') ? 'tab-active' : ''),
                             onClick: this._selectTab('strategyEditor')
                         },

@@ -917,7 +917,7 @@ tr.user-cashed.me {
 
 .games-log tbody {
     overflow-y: auto;
-    height: 250px;
+    height: 470px;
 }
 
 .games-log tr:nth-of-type(even) {
@@ -967,6 +967,10 @@ tr.user-cashed.me {
 /* ==========================================================================
    Tabs
    ========================================================================== */
+
+.log-chat {
+  margin-top: 20px;
+}
 
 .log-chat-tabs-container {
     position: relative;

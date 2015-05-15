@@ -11,6 +11,7 @@ define([
     'components/TabsSelector',
     'components/Players',
     'components/BetBar',
+    'components/Chat',
     'game-logic/engine'
 ], function(
     React,
@@ -19,6 +20,7 @@ define([
     TabsSelectorClass,
     PlayersClass,
     BetBarClass,
+    Chat,
     Engine
 ){
     var Chart = React.createFactory(ChartClass);
@@ -26,6 +28,7 @@ define([
     var TabsSelector = React.createFactory(TabsSelectorClass);
     var Players = React.createFactory(PlayersClass);
     var BetBar = React.createFactory(BetBarClass);
+    var Chat = React.createFactory(Chat);
 
     var D = React.DOM;
 
@@ -65,7 +68,12 @@ define([
                 D.div({ className: 'grid grid-pad' },
                     D.div({ className: 'col-7-12 game' },
                         Chart(),
-                        Controls()
+                        Controls(),
+                        D.div({},
+                            D.div({ className: 'log-chat'},
+                                Chat()
+                            )
+                        )
                     ),
                     D.div({ className: 'col-5-12 tabs' },
                         D.div({ className: 'players' },
@@ -78,7 +86,6 @@ define([
                             TabsSelector()
                         )
                     )
-
                 )
             )
         }
