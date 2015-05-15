@@ -24,9 +24,13 @@ define([
          */
         _.extend(this, Events);
 
-        self.ws = io.connect(AppConstants.Engine.HOST, {
-            path: '/game/socket.io'
-        });
+        var options = {};
+
+        if (window.document.location.host.indexOf('nxtbubble.com') !== -1) {
+            options.path =  '/game/socket.io';
+        }
+
+        self.ws = io.connect(AppConstants.Engine.HOST, options);
 
         /** The engine is connected to the server, if not connected, all fields are unreadable */
         self.isConnected = false;
