@@ -5,7 +5,7 @@ define(['lib/key-mirror'], function(KeyMirror){
     if (window.document.location.host.indexOf('nxtbubble.com') !== -1)  {
         host = 'https://nxtbubble.com/game';
     } else {
-        host = 'localhost:3842';
+        host = window.location.hostname + ':3842';
     }
 
     return {
