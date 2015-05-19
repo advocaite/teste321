@@ -169,13 +169,15 @@ define([
                     pri += ' msg-highlight-message';
                 }
 
+                var timestamp = new Date(message.time).toLocaleTimeString().substr(0, 5);
+
                 return D.li({ className: pri , key: 'msg' + index },
                     D.a({
                             href: '/user/' + message.username,
                             target: '_blank'
                         },
-                        '(' + message.userid + ') ',
-                        message.username, ':'),
+                        '' + timestamp + ': <',
+                        message.username, '>'),
                         ' ',
                         D.span({
                           className: 'msg-body',
