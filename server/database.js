@@ -694,6 +694,10 @@ exports.getSiteStats = function(callback) {
                 'SUM(plays.cash_out)::bigint cashed_out, ' +
                 'SUM(plays.bonus)::bigint bonused ' +
                 'FROM plays', as('plays', callback));
+        },
+        function(callback) {
+          query('SELECT COALESCE(SUM(giveaways.amount), 0)::bigint sum FROM giveaways',
+            as('giveaways', callback));
         }
     ];
 

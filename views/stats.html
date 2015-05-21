@@ -41,6 +41,10 @@
                             <td class="strong">{{#def.format: { n: (it.stats.deposits.sum - (it.stats.withdrawals.sum * -1)), decimals: 2 } }} NXT</td>
                         </tr>
                         <tr>
+                            <td><b>Free NXT distributed:</b></td>
+                            <td>{{#def.format: { n: it.stats.giveaways.sum, decimals: 2 } }} NXT</td>
+                        </tr>
+                        <tr>
                             <td></td>
                             <td></td>
                         </tr>
