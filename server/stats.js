@@ -17,7 +17,7 @@ function getSiteStats() {
     });
 }
 
-setInterval(getSiteStats, 1000 * 60 * 20);
+setInterval(getSiteStats, 1000 * 60 * 5);
 getSiteStats();
 
 exports.index = function(req, res, next) {
