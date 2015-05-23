@@ -2,13 +2,13 @@
 
 {{##def.content:
 <div class="content row panel radius">
-    <h5 id="top">Weekly Top 5 players <strong>Week {{=it.week}} - {{=it.year}}</strong></h5>
+    <h5 id="top">Weekly Leaderboard Promotion <strong>Week {{=it.week}} - {{=it.year}}</strong></h5>
     <a href="/weekly-leaderboard?year={{=it.previousYear}}&week={{=it.previousWeek}}">&#xAB; Previous</a>
     &nbsp;
     <a href="/weekly-leaderboard?year={{=it.nextYear}}&week={{=it.nextWeek}}">Next &#xbb;</a>
     <hr>
 
-    <h6>Net profit</h6>
+    <h6>Top Profit</h6>
 
     <table class="leaders">
         <thead>
@@ -63,7 +63,7 @@
         </tbody>
     </table>
 
-    <h6>Wagered</h6>
+    <h6>Top Wagered</h6>
 
     <table class="leaders">
         <thead>
@@ -119,7 +119,9 @@
     </table>
 
     <div class="warning">
-        * This price will be won by the player that holds this position on Sunday 11:59 pm GMT of Week {{=it.week}} {{=it.year}}.
+        * This price will be won by the player that holds this position on Sunday 11:59 pm GMT of Week {{=it.week}} {{=it.year}}. 
+        <br>
+        Hint: This promo starts from week 22, previous prices are not rewarded.
     </div>
 </div>
 #}}
