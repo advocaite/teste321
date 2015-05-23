@@ -2,6 +2,7 @@
  var async = require('async');
  var timeago = require('timeago');
  var database = require('./database');
+ var currentWeekNumber = require('current-week-number');
 
  /**
   * GET
@@ -51,10 +52,14 @@ exports.show = function(req, res, next) {
              byDb = 'net_profit';
              order = 'ASC';
              break;
-        case 'gross_desc':
+         case 'gross_desc':
              byDb = 'gross_profit';
              order = 'DESC';
              break;
+         case 'wagered_desc':
+              byDb = 'wagered';
+              order = 'DESC';
+              break;
          default :
              byDb = 'net_profit';
              order = 'DESC';
@@ -64,6 +69,48 @@ exports.show = function(req, res, next) {
          if (err)
              return next(new Error('Unable to get leader board: \n' + err));
 
-        res.render('leaderboard', { user: user, leaders: leaders, sortBy: byDb, order: order });
+        res.render('leaderboard', {
+          user: user,
+          leaders: leaders,
+          sortBy: byDb,
+          order: order,
+          week: currentWeekNumber(),
+          year: new Date().getFullYear()
+        });
+     });
+ };
+
+ exports.getWeeklyLeaderBoard = function(req, res, next) {
+     var user = req.user;
+     var week = Number(req.query.week);
+     var year = Number(req.query.year);
+
+     var nextWeek = week + 1;
+     var nextYear = year;
+     var previousWeek = week - 1;
+     var previousYear = year;
+
+     if (nextWeek > 52) {
+       nextWeek = 1;
+       nextYear++;
+     } else if (previousWeek < 1) {
+       previousWeek = 52;
+       previousYear--;
+     }
+
+     database.getWeeklyLeaderBoards(year, week, function(err, result) {
+       if (err) return next(new Error('Unable to get leader board: \n' + err));
+
+       return res.render('weekly-leaderboard', {
+         user: user,
+         net_leaders: result.net,
+         wagered_leaders: result.wagered,
+         week: week,
+         year: year,
+         nextWeek: nextWeek,
+         nextYear: nextYear,
+         previousWeek: previousWeek,
+         previousYear: previousYear
+       });
      });
  };

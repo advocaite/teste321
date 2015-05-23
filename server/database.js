@@ -656,6 +656,31 @@ exports.getLeaderBoard = function(byDb, order, callback) {
     });
 };
 
+exports.getWeeklyLeaderBoards = function(year, week, callback) {
+
+    async.parallel({
+      net: function (done) {
+        var sql = 'SELECT * FROM weekly_leaderboard WHERE year = $1 AND week = $2 ' +
+        'ORDER BY net_rank ASC LIMIT 5';
+
+        query(sql, [year, week], done);
+      },
+      wagered: function (done) {
+        var sql = 'SELECT * FROM weekly_leaderboard WHERE year = $1 AND week = $2 ' +
+        'ORDER BY wagered_rank ASC LIMIT 5';
+
+        query(sql, [year, week], done);
+      }
+    }, function (err, results) {
+      if (err) return callback(err);
+
+      callback(null, {
+        net: results.net.rows,
+        wagered: results.wagered.rows
+      });
+    });
+};
+
 exports.getSiteStats = function(callback) {
 
     function as(name, callback) {
@@ -726,6 +751,17 @@ function refreshView() {
 
         setTimeout(refreshView, 5    * 60 * 1000);
     });
+
+    query('REFRESH MATERIALIZED VIEW CONCURRENTLY weekly_leaderboard;', function(err) {
+        if (err) {
+            console.error('[INTERNAL_ERROR] unable to refresh leaderboard got: ', err);
+        } else {
+            console.log('weekly leaderboard refreshed');
+        }
+
+        setTimeout(refreshView, 5    * 60 * 1000);
+    });
+
 
 }
 setTimeout(refreshView, 1000);

@@ -1,0 +1,127 @@
+{{##def.page_title = 'Leader Board' #}}
+
+{{##def.content:
+<div class="content row panel radius">
+    <h5 id="top">Weekly Top 5 players <strong>Week {{=it.week}} - {{=it.year}}</strong></h5>
+    <a href="/weekly-leaderboard?year={{=it.previousYear}}&week={{=it.previousWeek}}">&#xAB; Previous</a>
+    &nbsp;
+    <a href="/weekly-leaderboard?year={{=it.nextYear}}&week={{=it.nextWeek}}">Next &#xbb;</a>
+    <hr>
+
+    <h6>Net profit</h6>
+
+    <table class="leaders">
+        <thead>
+            <tr>
+                <td>
+                    Rank
+                </td>
+                <td>
+                    Player
+                </td>
+                <td class="ldb-net">
+                      Net Profit
+                </td>
+                <td>
+                    Price
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{~it.net_leaders :leader:index}}
+                <tr>
+                    <td>
+                        {{=leader.net_rank}}
+                    </td>
+                    <td>
+                        <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
+                    </td>
+                    <td>
+                        {{#def.format: { n: leader.net_profit, decimals: 0 } }}
+                    </td>
+                    <td>
+                        {{?leader.net_rank == 1 }}
+                            500 NXT *
+                        {{?}}
+
+                        {{?leader.net_rank == 2 }}
+                            300 NXT *
+                        {{?}}
+
+                        {{?leader.net_rank == 3 }}
+                            200 NXT *
+                        {{?}}
+
+                        {{?leader.net_rank == 4 || leader.net_rank == 5}}
+                            -
+                        {{?}}
+                    </td>
+                </tr>
+            {{~}}
+
+        </tbody>
+    </table>
+
+    <h6>Wagered</h6>
+
+    <table class="leaders">
+        <thead>
+            <tr>
+                <td>
+                    Rank
+                </td>
+                <td>
+                    Player
+                </td>
+                <td>
+                    Wagered
+                </td>
+                <td>
+                    Price
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{~it.wagered_leaders :leader:index}}
+                <tr>
+                    <td>
+                        {{=leader.wagered_rank}}
+                    </td>
+                    <td>
+                        <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
+                    </td>
+                    <td>
+                        {{#def.format: { n: leader.wagered, decimals: 0 } }}
+                    </td>
+                    <td>
+                        {{?leader.wagered_rank == 1 }}
+                            1000 NXT *
+                        {{?}}
+
+                        {{?leader.wagered_rank == 2 }}
+                            600 NXT *
+                        {{?}}
+
+                        {{?leader.wagered_rank == 3 }}
+                            400 NXT *
+                        {{?}}
+
+                        {{?leader.wagered_rank == 4 || leader.wagered_rank == 5}}
+                            -
+                        {{?}}
+                    </td>
+                </tr>
+            {{~}}
+
+        </tbody>
+    </table>
+
+    <div class="warning">
+        * This price will be won by the player that holds this position on Sunday 11:59 pm GMT of Week {{=it.week}} {{=it.year}}.
+    </div>
+</div>
+#}}
+
+{{#def.include('./template/main')}}

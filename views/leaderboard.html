@@ -4,6 +4,7 @@
 <div class="content row panel radius">
 
     <h5 id="top">Top 10 players</h5>
+    <a href="/weekly-leaderboard?year={{=it.year}}&week={{=it.week}}">Weekly leaderboard</a>
     <hr>
     <table class="leaders">
         <thead>
@@ -13,6 +14,12 @@
                 </td>
                 <td>
                     Player
+                </td>
+                <td>
+                    {{?it.sortBy != 'wagered' || it.order != 'DESC'}}
+                    <a href="/leaderboard?by=wagered_desc"><i class="fa fa-sort-desc"></i></a>
+                    {{?}}
+                    Wagered
                 </td>
                 <td class="ldb-gross">
                     {{?it.sortBy != 'gross_profit' || it.order != 'DESC'}}
@@ -40,6 +47,9 @@
                     </td>
                     <td>
                         <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
+                    </td>
+                    <td>
+                        {{#def.format: { n: leader.wagered, decimals: 0 } }}
                     </td>
                     <td>
                         {{#def.format: { n: leader.gross_profit, decimals: 0 } }}

@@ -115,6 +115,7 @@ module.exports = function(app) {
     app.get('/icarus', staticPageLogged('icarus'));
 
     app.get('/leaderboard', games.getLeaderBoard);
+    app.get('/weekly-leaderboard', games.getWeeklyLeaderBoard);
     app.get('/roll/:id', games.show);
     app.get('/user/:name', user.profile);
 

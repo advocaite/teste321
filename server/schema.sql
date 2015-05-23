@@ -479,6 +479,7 @@ CREATE MATERIALIZED VIEW leaderboard AS
  WITH t AS (
          SELECT user_id,
             (COALESCE(sum(cash_out - bet), 0::numeric) + COALESCE(sum(bonus), 0::numeric))::bigint AS gross_profit,
+            (COALESCE(sum(bet), 0::numeric))::bigint AS wagered,
             (COALESCE(sum(cash_out), 0::numeric) + COALESCE(sum(bonus), 0::numeric) - COALESCE(sum(bet), 0::numeric))::bigint AS net_profit,
             count(*) AS games_played
            FROM plays
@@ -487,6 +488,7 @@ CREATE MATERIALIZED VIEW leaderboard AS
  SELECT t.user_id,
     (SELECT username FROM users WHERE users.id = user_id),
     t.gross_profit,
+    t.wagered,
     t.net_profit,
     t.games_played,
     rank() OVER (ORDER BY t.net_profit DESC) AS rank
@@ -499,6 +501,46 @@ CREATE UNIQUE INDEX leaderboard_user_id_idx
 
 CREATE INDEX leaderboard_username_idx ON leaderboard USING btree (lower(username));
 
+CREATE INDEX leaderboard_wagered_idx ON leaderboard USING btree (wagered);
+
 CREATE INDEX leaderboard_gross_profit_idx ON leaderboard USING btree (gross_profit);
 
 CREATE INDEX leaderboard_net_profit_idx ON leaderboard USING btree (net_profit);
+
+
+CREATE MATERIALIZED VIEW weekly_leaderboard AS
+ WITH t AS (
+         SELECT user_id,
+            (COALESCE(sum(cash_out - bet), 0::numeric) + COALESCE(sum(bonus), 0::numeric))::bigint AS gross_profit,
+            (COALESCE(sum(bet), 0::numeric))::bigint AS wagered,
+            (COALESCE(sum(cash_out), 0::numeric) + COALESCE(sum(bonus), 0::numeric) - COALESCE(sum(bet), 0::numeric))::bigint AS net_profit,
+            count(*) AS games_played,
+            EXTRACT(WEEK FROM created) as week,
+            EXTRACT(YEAR FROM created) as year
+           FROM plays
+          GROUP BY user_id, week, year
+        )
+ SELECT t.user_id,
+    (SELECT username FROM users WHERE users.id = user_id),
+    t.wagered,
+    t.gross_profit,
+    t.net_profit,
+    t.games_played,
+    rank() OVER (PARTITION BY t.week, t.year ORDER BY t.net_profit DESC) AS net_rank,
+    rank() OVER (PARTITION BY t.week, t.year ORDER BY t.wagered DESC) AS wagered_rank,
+    week,
+    year
+   FROM t;
+
+   CREATE UNIQUE INDEX weekly_leaderboard_user_id_idx
+     ON weekly_leaderboard
+     USING btree
+     (user_id, week, year);
+
+   CREATE INDEX weekly_leaderboard_username_idx ON weekly_leaderboard USING btree (lower(username));
+
+   CREATE INDEX weekly_leaderboard_wagered_idx ON weekly_leaderboard USING btree (wagered);
+
+   CREATE INDEX weekly_leaderboard_gross_profit_idx ON weekly_leaderboard USING btree (gross_profit);
+
+   CREATE INDEX weekly_leaderboard_net_profit_idx ON weekly_leaderboard USING btree (net_profit);
