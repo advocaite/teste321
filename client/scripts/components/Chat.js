@@ -161,6 +161,7 @@ define([
         switch(message.type) {
             case 'say':
                 if (message.role === 'admin') pri += ' msg-admin-message';
+                if (message.role === 'moderator') pri += ' msg-moderator-message';
 
                 var username = self.state.engine.username;
 
