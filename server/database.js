@@ -741,27 +741,20 @@ exports.getSiteStats = function(callback) {
 };
 
 function refreshView() {
-
-    query('REFRESH MATERIALIZED VIEW CONCURRENTLY leaderboard;', function(err) {
-        if (err) {
-            console.error('[INTERNAL_ERROR] unable to refresh leaderboard got: ', err);
-        } else {
-            console.log('leaderboard refreshed');
-        }
-
-        setTimeout(refreshView, 5    * 60 * 1000);
-    });
-
-    query('REFRESH MATERIALIZED VIEW CONCURRENTLY weekly_leaderboard;', function(err) {
-        if (err) {
-            console.error('[INTERNAL_ERROR] unable to refresh leaderboard got: ', err);
-        } else {
-            console.log('weekly leaderboard refreshed');
-        }
-
-        setTimeout(refreshView, 5    * 60 * 1000);
-    });
-
-
+  async.parallel([
+    function (done) {
+      query('REFRESH MATERIALIZED VIEW CONCURRENTLY leaderboard;', done);
+    },
+    function (done) {
+      query('REFRESH MATERIALIZED VIEW CONCURRENTLY weekly_leaderboard;', done);
+    }
+  ], function (err, results) {
+    if (err) {
+      console.log('err refreshing leaderboards', err);
+    } else {
+      console.log('leaderboards refreshed');
+    }
+    setTimeout(refreshView, 5 * 60 * 1000);
+  });
 }
 setTimeout(refreshView, 1000);
