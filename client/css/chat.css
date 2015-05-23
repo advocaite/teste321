@@ -44,7 +44,11 @@
 }
 
 .msg-chat-message.msg-admin-message a {
-    color: #ce1e1e;
+    color: #3d93da;
+}
+
+.msg-chat-message.msg-moderator-message a {
+    color: #71ee6d;
 }
 
 .msg-info-message {
