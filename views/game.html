@@ -10,6 +10,9 @@
             <b>Played: </b>{{=it.game.created}} <small>{{=it.game.timeago}}</small>
         </p>
         <hr>
+        <a href="/roll/{{=it.game.id-1}}">Previous Roll</a>   
+        <a href="/roll/{{=it.game.id+1}}">Next Roll</a>
+        <hr>
         <h6>Players</h6>
         <table class="user-table">
           <thead>
