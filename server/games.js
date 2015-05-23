@@ -82,8 +82,8 @@ exports.show = function(req, res, next) {
 
  exports.getWeeklyLeaderBoard = function(req, res, next) {
      var user = req.user;
-     var week = Number(req.query.week);
-     var year = Number(req.query.year);
+     var week = Number(req.query.week) || currentWeekNumber();
+     var year = Number(req.query.year) || new Date().getFullYear();
 
      var nextWeek = week + 1;
      var nextYear = year;
