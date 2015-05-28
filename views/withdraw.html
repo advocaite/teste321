@@ -13,7 +13,6 @@
 <form action="/logout" method="post" id='logout'></form>
 <div class="content row panel radius">
     <div class="settings">
-        <div class="small-2 columns">
             <ul class="menu">
                 <li>
                     <a href="/account">Account</a>
@@ -31,15 +30,9 @@
                 <li>
                     <a href="/support">Support</a>
                 </li>
-                <li>
-                    <a onclick="logout();">
-                        Logout
-                    </a>
-                </li>
             </ul>
-        </div>
-        <div class="small-10 columns sets-content">
-            <a class="border-button right green" href="/withdraw/request">Request Withdraw</a>
+        <div class="panel">
+            <a class="button orange float-right" href="/withdraw/request">Request Withdraw</a>
             <h5 >Withdraw History</h5>
             <hr>
             {{?it.user.withdrawals.length > 0}}

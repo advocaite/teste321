@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import 'foundation.min.css';
 @import 'header.css';
 @font-face {
   font-family: ubuntu_monobold;
@@ -416,7 +417,7 @@ table tbody tr td {
 .center {
   text-align: center;
 }
-.content-body {
+.content {
   margin: 40px auto;
   max-width: 62.5rem;
   width: 100%;
