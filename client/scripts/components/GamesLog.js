@@ -111,31 +111,37 @@ define([
                     D.td(null, cashed_at),
                     D.td(null, bet),
                     D.td(null, bonus),
-                    D.td(null, profit),
-                    D.td(null,
-                        D.input({type: 'input', className: 'games-log-hash', readOnly: true, value: game.hash }),
-                        D.div({ className: 'hash-copy-cont', onClick: copyHash(game.game_id, game.hash) },
-                            D.span({ className: 'hash-copy' }, D.i({ className: 'fa fa-clipboard' })))
-                    )
+                    D.td(null, profit)
 
                 );
             });
 
-            return D.table({ className: 'games-log' },
-                D.thead(null,
-                    D.tr(null,
 
-                        D.th(null, 'Crash'),
-                        D.th(null, '@'),
-                        D.th(null, 'Bet'),
-                        D.th(null, 'Bonus'),
-                        D.th(null, 'Profit'),
-                        D.th(null, 'Hash')
+            return D.div({ className: 'history'},
+              D.div({ className: 'header-bg'}),
+              D.div({ className: 'table-inner'},
+                D.table({ className: 'games-log' },
+                  D.thead(null,
+                    D.tr(null,
+                      D.th(null,
+                        D.div({ className:'th-inner'}, 'Crash')
+                      ),
+                      D.th(null,
+                        D.div({ className:'th-inner'}, 'Bet')
+                      ),
+                      D.th(null,
+                        D.div({ className:'th-inner'}, 'Pay')
+                      ),
+                      D.th(null,
+                        D.div({ className:'th-inner'}, 'Profit')
+                      )
                     )
-                ),
-                D.tbody(null,
+                  ),
+                  D.tbody(null,
                     rows
+                  )
                 )
+              )
             );
         }
 
