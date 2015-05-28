@@ -21,7 +21,7 @@ define([
     TabsSelectorClass,
     PlayersClass,
     BetBarClass,
-    Chat,
+    ChatClass,
     RocketClass,
     Engine
 ){
@@ -33,6 +33,7 @@ define([
     var TabsSelector = React.createFactory(TabsSelectorClass);
     var Players = React.createFactory(PlayersClass);
     var BetBar = React.createFactory(BetBarClass);
+    var Chat = React.createFactory(ChatClass);
 
     return React.createClass( {
       displayName: 'Game',
@@ -78,6 +79,9 @@ define([
         }
         return D.div({ className: 'inner-wrapper' },
           D.div({ className: 'col-left' },
+            Chat()
+          ),
+          D.div({ className: 'col-middle' },
             D.div({ className: 'rocket-outer' },
               D.div({ className: 'rocket-inner' },
                 D.div.apply(null, divArgs),
