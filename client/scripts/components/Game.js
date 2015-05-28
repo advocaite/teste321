@@ -68,7 +68,6 @@ define([
       },
 
       render: function() {
-        console.log(this.props.engine);
         if (!this.state.isConnected) {
           return D.div(({className: 'loading'}), 'Connecting to server..');
         }
