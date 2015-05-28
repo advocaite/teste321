@@ -67,6 +67,15 @@ define([
          */
         self.gameState = null;
 
+        /**
+         * User state
+         * Posible states: 'WATCHING'  || 'PLAYING'
+         * WATCHING: Just watching the game
+         * PLAYING: Bet in the current game
+        */
+        self.userState = null;
+
+
         /** Creation time of current game. This is the server time, not clients.. **/
         self.created = null;
 
@@ -241,6 +250,7 @@ define([
             self.gameState = 'ENDED';
             self.cashingOut = false;
             self.lag = false;
+            self.userState = 'WATCHING';
 
             self.trigger('game_crash', data);
         });
@@ -283,6 +293,7 @@ define([
                 self.placingBet = false;
                 self.nextBetAmount = null;
                 self.nextAutoCashout = null;
+                self.userState = 'PLAYING';
             }
 
             self.joined.splice(data.index, 0, data.username);
@@ -308,6 +319,7 @@ define([
             if (self.username === resp.username) {
                 self.cashingOut = false;
                 self.balanceSatoshis += self.playerInfo[resp.username].bet * resp.stopped_at / 100;
+                self.userState = 'WATCHING';
             }
 
             self.calcBonuses();
@@ -376,6 +388,7 @@ define([
                         self.isConnected = true;
                         self.gameState = resp.state;
                         self.playerInfo = resp.player_info;
+                        self.userState = self.playerInfo[self.username] && !self.playerInfo[self.username].stopped_at ? 'PLAYING' : 'WATCHING';
 
                         // set current game properties
                         self.gameId = resp.game_id;
@@ -646,6 +659,21 @@ define([
                 return true;
         }
         return false;
+    };
+
+
+    /**
+     * Returns the elapsed time of the current game
+     * If the game is not in progress returns null
+     * Use it for render, strategy, etc.
+     * @return {number | null}
+     */
+    Engine.prototype.getElapsedTime = function() {
+      if (this.gameState === 'IN_PROGRESS') {
+        return Date.now() - this.startTime;
+      } else {
+        return null;
+      }
     };
 
     /**

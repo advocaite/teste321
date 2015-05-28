@@ -205,12 +205,27 @@ define([
             }
         },
 
-        /** Control Inputs: Bet, AutoCash, AutoBet  **/
-        _getControlInputs: function () {
-            var self = this;
+        _getBetting: function () {
+          var invalidBet = this._invalidBet();
 
-            var betInput = D.div(null,
-                D.span({ className: 'bet-span strong' }, 'Bet'),
+          var button = BetButton({
+              engine: this.state.engine,
+              invalidBet: this._invalidBet,
+              placeBet: this._placeBet,
+              cancelBet: this._cancelBet
+          });
+
+          return D.div(null,
+              button
+          );
+        },
+
+        _getBetter: function () {
+          var self = this;
+
+          var betInput = D.div(null,
+              D.label(null, 'Bet', D.br(), 'Size'),
+              D.div({ className: 'input-wrapper'},
                 D.input({
                     type: 'text',
                     name: 'bet-size',
@@ -223,11 +238,13 @@ define([
                         self._setBetSize(e.target.value);
                     }
                 }),
-                D.span({ className: 'sticky' }, 'NXT')
-            );
+                D.span({ className: 'bet-unit'}, 'NXT')
+              )
+          );
 
-            var autoCashOut = D.div(null,
-                D.div({ className: 'auto-cash-out-span' }, 'Auto Cash Out @ '),
+          var autoCashOut = D.div(null,
+              D.label(null, 'Auto', D.br(), 'Cash', D.br(), 'Out'),
+              D.div({ className: 'input-wrapper'},
                 D.input({
                     min: 1,
                     step: 0.01,
@@ -238,27 +255,54 @@ define([
                         self._setAutoCashOut(e.target.value);
                     }
                 }),
-                D.span({ className: 'sticky' }, 'x')
-            );
+                D.span({ className: 'bet-unit'}, 'x')
+              )
+          );
 
+          var button = BetButton({
+              engine: this.state.engine,
+              invalidBet: this._invalidBet,
+              placeBet: this._placeBet,
+              cancelBet: this._cancelBet
+          });
 
-            return D.div({ className: 'inputs-cont grid grid-pad' },
-                D.div({ className: 'col-1-1' },
-                    betInput
-                ),
-                D.div({ className: 'col-1-1' },
-                    autoCashOut
-                )
-            );
+          return D.div(null,
+              D.div({ className: 'action cashout' },
+                  autoCashOut
+              ),
+              D.div({ className: 'action betsize' },
+                  betInput
+              ),
+              button
+          );
+        },
+
+        _getCashOut: function() {
+          var button = CashOutButton({
+              engine: this.state.engine,
+              invalidBet: this._invalidBet,
+              cashOut: this._cashOut
+          });
+
+          return D.div(null,
+            button
+          );
+        },
+
+        _getContents: function() {
+          if (this.state.engine.gameState === 'IN_PROGRESS' && this.state.engine.userState === 'PLAYING') {
+            return this._getCashOut();
+          } else if (this.state.engine.nextBetAmount || (this.state.engine.gameState === 'STARTING' && this.state.engine.userState === 'PLAYING')) {
+            return this._getBetting();
+          } else { // user can place a bet
+            return this._getBetter();
+          }
         },
 
         render: function () {
             var self = this;
-            var pi = this.state.engine.currentPlay();
-            var betting = this.state.engine.isBetting();
-
             // If they're not logged in, let just show a login to play
-            if (!this.state.engine.username)
+            if (!this.state.engine.username) {
                 return D.div({ className: 'login-container grid grid-pad' },
                     D.div({ className: 'controls'},
                         D.div({ className: 'login'}, D.a({className: 'big-button unselect', href: '/login' }, 'Login to play'),
@@ -266,66 +310,20 @@ define([
                         )
                     )
                 );
-
-            // Able to bet, and not betting
-            var ableToBet;
-            if (betting)
-                ableToBet = false;
-            else if (this.state.engine.gameState === 'IN_PROGRESS' && pi && pi.bet && !pi.stopped_at) //TODO: Document this if and maybe reduce
-                ableToBet = false;
-            else
-                ableToBet = true;
-
-            // Able to bet, or is already betting
-            var ableToBetOrBetting = ableToBet || betting;
-
-            var button;
-            if (ableToBetOrBetting) {
-                button = BetButton({
-                    engine: this.state.engine,
-                    invalidBet: this._invalidBet,
-                    placeBet: this._placeBet,
-                    cancelBet: this._cancelBet
-                });
-                //If the game is not able to bet
-            } else {
-                button = CashOutButton({
-                    engine: this.state.engine,
-                    invalidBet: this._invalidBet,
-                    cashOut: this._cashOut
-                });
             }
-
-            var buttonClass;
-            var buttonCol, controlInputs;
-            if (ableToBet) {
-                buttonClass = 'col-1-2 mobile-col-1-1';
-                controlInputs = D.div({ className: 'col-1-2 mobile-col-1-1' },
-                    this._getControlInputs()
-                );
-            } else {
-                buttonClass = 'col-1-1 mobile-col-1-1';
-                controlInputs = null;
-            }
-            buttonCol = D.div({ className: buttonClass }, button );
 
             //If the user is logged in render the controls
-            return D.div(null,
-                D.div({ className: 'controls-container' },
+            return D.div({ className: 'gui ' },
+                D.div({ className: 'gui-inner' },
 
-                    D.h5({ className: 'information'},
+                    D.div({ className: 'information'},
                         this._getStatusMessage()
                     ),
-
-                    D.div({ className: 'controls-grid grid grid-pad' },
-                        controlInputs,
-                        buttonCol
+                    this._getContents(),
+                    D.div({ className: 'game-hash'},
+                      'Hash: ',
+                      D.a({href:"/faq#fair", target: 'blank'}, this.state.engine.lastHash)
                     )
-                ),
-
-                D.div({ className: 'hash-cont'  },
-                    D.span({ className: 'hash-text' }, 'Last Hash'),
-                    D.input({ className: 'hash-input', type: 'text', value: this.state.engine.lastHash, readOnly: true })
                 )
             );
         }
