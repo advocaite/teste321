@@ -32,7 +32,7 @@
       </div>
       <div class="balance header-el">
         <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
-        <span class="currency">BITS</span>
+        <span class="currency">NXT</span>
       </div>
       <div class="menu header-el">
           <a href="/play">Play</a>
@@ -45,7 +45,7 @@
       </div>
       {{?it.user && it.user.balance_satoshis < 100}}
         {{?it.user.eligible == true}}
-          <div class="header-el"><a href="/request" class="button green">Collect your 5 free bits</a></div>
+          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
         {{??}}
           <div class="deposit header-el">
             <a href="/deposit" class="button green">Deposit Bitcoin</a>

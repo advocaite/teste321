@@ -69,7 +69,7 @@ h1.logo {
 }
 .balance:before {
   content: "";
-  background-image: url("/img/balance-icon.png");
+  background-image: url("/img/balance-nxt-icon.png");
   height: 36px;
   width: 36px;
   display: block;
