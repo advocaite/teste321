@@ -133,7 +133,7 @@ define([
                         D.div({ className:'th-inner'}, 'Bet')
                       ),
                       D.th(null,
-                        D.div({ className:'th-inner'}, 'Pay')
+                        D.div({ className:'th-inner'}, 'Bonus')
                       ),
                       D.th(null,
                         D.div({ className:'th-inner'}, 'Profit')
