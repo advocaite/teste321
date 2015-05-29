@@ -2,8 +2,8 @@ define(['lib/key-mirror'], function(KeyMirror){
 
     var host = '';
 
-    if (window.document.location.host.indexOf('nxtbubble.com') !== -1)  {
-        host = 'https://nxtbubble.com/game';
+    if (window.document.location.host.indexOf('nxt.tothemoon.me') !== -1)  {
+        host = 'https://nxt.tothemoon.me/game';
     } else {
         host = window.location.hostname + ':3842';
     }
