@@ -69,6 +69,10 @@ define([
 
             var msgs = this.refs.messages.getDOMNode();
             msgs.scrollTop = msgs.scrollHeight;
+
+            window.onresize = function(event) {
+                document.querySelector('.messages-list').style.height = window.innerHeight - 110 + 'px';
+            };
         },
 
         componentWillUnmount: function() {
@@ -142,14 +146,17 @@ define([
                 );
 
             var ulStyle = {
-                height: this.state.height
+                height: window.innerHeight - 110 + 'px'
             };
 
-            return D.div({ className: 'messages-container' },
-                D.ul({ className: 'messages', ref: 'messages', style: ulStyle },
+            return D.div({ className: 'messages' },
+            D.div({ className: 'messages-container' },
+                D.div({ className: 'header-bg'}, D.span(null, 'Chat')),
+                D.ul({ className: 'messages-list', ref: 'messages', style: ulStyle },
                     messages
                 ),
                 chatInput
+              )
             );
         }
     });

@@ -12,6 +12,7 @@ define([
     'components/Players',
     'components/BetBar',
     'components/Chat',
+    'components/Rocket',
     'game-logic/engine'
 ], function(
     React,
@@ -20,75 +21,86 @@ define([
     TabsSelectorClass,
     PlayersClass,
     BetBarClass,
-    Chat,
+    ChatClass,
+    RocketClass,
     Engine
 ){
+    var D = React.DOM;
+
+    var Rocket = React.createFactory(RocketClass);
     var Chart = React.createFactory(ChartClass);
     var Controls  = React.createFactory(ControlsClass);
     var TabsSelector = React.createFactory(TabsSelectorClass);
     var Players = React.createFactory(PlayersClass);
     var BetBar = React.createFactory(BetBarClass);
-    var Chat = React.createFactory(Chat);
+    var Chat = React.createFactory(ChatClass);
 
-    var D = React.DOM;
+    return React.createClass( {
+      displayName: 'Game',
 
-    return React.createClass({
-        displayName: 'Game',
-
-        getInitialState: function () {
-            return {
-                isConnected: Engine.isConnected
-            }
-        },
-
-        componentDidMount: function() {
-            Engine.on({
-                'connected': this._onChange,
-                'disconnected': this._onChange
-            });
-        },
-
-        componentWillUnmount: function() {
-            Engine.off({
-                'connected': this._onChange,
-                'disconnected': this._onChange
-            });
-        },
-
-        _onChange: function() {
-            if(this.state.isConnected != Engine.isConnected)
-                this.setState({ isConnected: Engine.isConnected });
-        },
-
-        render: function() {
-            if (!this.state.isConnected)
-                return D.p(null, 'Connecting to server..');
-
-            return D.div({ className: 'content' },
-                D.div({ className: 'grid grid-pad' },
-                    D.div({ className: 'col-7-12 game' },
-                        Chart(),
-                        Controls(),
-                        D.div({},
-                            D.div({ className: 'log-chat'},
-                                Chat()
-                            )
-                        )
-                    ),
-                    D.div({ className: 'col-5-12 tabs' },
-                        D.div({ className: 'players' },
-                            Players()
-                        ),
-                        D.div({ className: 'bet-bar' },
-                            BetBar()
-                        ),
-                        D.div({ className: 'log-chat' },
-                            TabsSelector()
-                        )
-                    )
-                )
-            )
+      getInitialState: function () {
+        return {
+          isConnected: Engine.isConnected
         }
+      },
+
+      propTypes: {
+        engine: React.PropTypes.object.isRequired
+      },
+
+      componentDidMount: function() {
+        Engine.on({
+          'connected': this._onChange,
+          'disconnected': this._onChange
+        });
+      },
+
+      componentWillUnmount: function() {
+        Engine.off({
+          'connected': this._onChange,
+          'disconnected': this._onChange
+        });
+      },
+
+      _onChange: function() {
+          if(this.state.isConnected != Engine.isConnected)
+              this.setState({ isConnected: Engine.isConnected });
+      },
+
+      render: function() {
+        if (!this.state.isConnected) {
+          return D.div(({className: 'loading'}), 'Connecting to server..');
+        }
+
+        var divArgs = [{id: "rocket", className: 'rocket' }, D.div({ className: 'ship' }), D.div({ className: 'rocket-flame' })]
+        for (i = 0; i < 100; i++){
+          divArgs.push(D.div({ className: 'explosion-particle' }));
+        }
+        return D.div({ className: 'inner-wrapper' },
+          D.div({ className: 'col-left' },
+            Chat()
+          ),
+          D.div({ className: 'col-middle' },
+            D.div({ className: 'rocket-outer' },
+              D.div({ className: 'rocket-inner' },
+                D.div.apply(null, divArgs),
+                D.div({id: "game-multiplier", className: 'multiplier'})
+              ),
+              D.div({ className: 'max-win'}, 'Max profit: ', (this.props.engine.maxWin/1e8).toFixed(2), ' NXT')
+            ),
+            Rocket({ engine: this.props.engine }),
+            Controls({ engine: this.props.engine })
+          ),
+          D.div({ className: 'col-right' },
+            D.div({ className: 'players' },
+              Players({ engine: this.props.engine })
+            ),
+            D.div({ className: 'log-chat' },
+              TabsSelector({ engine: this.props.engine })
+            )
+          )
+        )
+      }
     });
 
 });

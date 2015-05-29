@@ -13,7 +13,7 @@ define([
     var Game = React.createFactory(GameClass);
 
     React.render(
-        Game(),
+        Game({ engine: Engine }),
         document.getElementById('game')
     );
 
