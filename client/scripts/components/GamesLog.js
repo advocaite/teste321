@@ -126,6 +126,9 @@ define([
                       D.th(null,
                         D.div({ className:'th-inner'}, 'Crash')
                       ),
+                    D.th(null,
+                        D.div({ className:'th-inner'}, '@')
+                      ),
                       D.th(null,
                         D.div({ className:'th-inner'}, 'Bet')
                       ),
