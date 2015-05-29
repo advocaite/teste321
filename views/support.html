@@ -1,45 +1,29 @@
 {{##def.page_title = 'Support' #}}
 
 {{##def.content:
-<script type="text/javascript">
-    function logout() {
-        if (document.getElementById('logout') ) {
-            if (confirm("Are you sure you want to log out?")) {
-                document.getElementById("logout").submit();
-            }
-        }
-    }
-</script>
 <form action="/logout" method="post" id='logout'></form>
 <div class="content row panel radius">
 
     <div class="settings">
-        <div class="small-2 columns">
-            <ul class="menu">
-                <li>
-                    <a href="/account">Account</a>
-                </li>
-                <li>
-                    <a href="/security">Security</a>
-                </li>
-                <li>
-                    <a href="/deposit">Deposit</a>
-                </li>
-                <li>
-                    <a href="withdraw">Withdraw</a>
-                </li>
+        <ul class="menu">
+            <li>
+                <a href="/account">Account</a>
+            </li>
+            <li>
+                <a href="/security">Security</a>
+            </li>
+            <li>
+                <a href="/deposit">Deposit</a>
+            </li>
+            <li>
+                <a href="withdraw">Withdraw</a>
+            </li>
 
-                <li class="active">
-                    Support
-                </li>
-                <li>
-                    <a onclick="logout();">
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="small-10 columns sets-content">
+            <li class="active">
+                Support
+            </li>
+        </ul>
+        <div class="panel">
             <h5>Need help? Please contact us</h5>
                 <hr>
                 <div class="contact">

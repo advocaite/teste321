@@ -4,51 +4,31 @@
 <div class="content row panel radius">
 
     <div class="settings">
-        <div class="small-2 columns">
-            <ul class="menu">
-                <li>
-                    <a class="active" href="/account">Account</a>
-                </li>
-                <li>
-                    <a href="/deposit">Deposit</a>
-                </li>
-                <li>
-                    <a href="/withdraw">Withdraw</a>
-                </li>
+        <ul class="menu">
+            <li>
+                <a class="active" href="/account">Account</a>
+            </li>
+            <li>
+                <a href="/deposit">Deposit</a>
+            </li>
+            <li>
+                <a href="/withdraw">Withdraw</a>
+            </li>
 
-                <li>
-                    <a href="/support">Support</a>
-                </li>
-                <li>
-                    <a onclick="logout();">
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="small-10 columns sets-content">
+            <li>
+                <a href="/support">Support</a>
+            </li>
+        </ul>
+        <div class="panel">
             <h5>Request Free NXT</h5>
-                {{?typeof it.user.eligible !== 'number'}}
-                    <p class="small ">**Every minute you are able to request 0.02 free NXT, just claim them!</p>
-                    <form class="giveaway-form" action="/request" method="post">
-                        <script type="text/javascript">
-                            var RecaptchaOptions = {
-                                theme : 'white'
-                            };
-                        </script>
-                        <script type="text/javascript"
-                                src="https://www.google.com/recaptcha/api/challenge?k=6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU">
-                        </script>
-                        <noscript>
-                            <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU"
-                                    height="300" width="500" frameborder="0"></iframe><br>
-                            <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                            </textarea>
-                            <input type="hidden" name="recaptcha_response_field"
-                                   value="manual_challenge">
-                        </noscript>
-                        <input class="right border-button red" type="submit" value="request"/>
-                    </form>
+            {{?typeof it.user.eligible !== 'number'}}
+                <p class="small ">**Every minute you are able to request 0.02 free NXT, just claim them!</p>
+                <form class="giveaway-form" action="/request" method="post">
+                    <script type="text/javascript">
+                        var RecaptchaOptions = {
+                            theme : 'white'
+                        };
+                    </script>
                     <script type="text/javascript"
                             src="https://www.google.com/recaptcha/api/challenge?k=6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU">
                     </script>
@@ -58,11 +38,24 @@
                         <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                         </textarea>
                         <input type="hidden" name="recaptcha_response_field"
-                               value="manual_challenge"/>
+                               value="manual_challenge">
                     </noscript>
-                {{??}}
-                    <h4>You will be eligible for free 0.02 NXT in {{=it.user.eligible}} minutes</h4>
-                {{?}}
+                    <input class="right button green" type="submit" value="request"/>
+                </form>
+                <script type="text/javascript"
+                        src="https://www.google.com/recaptcha/api/challenge?k=6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU">
+                </script>
+                <noscript>
+                    <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU"
+                            height="300" width="500" frameborder="0"></iframe><br>
+                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                    </textarea>
+                    <input type="hidden" name="recaptcha_response_field"
+                           value="manual_challenge"/>
+                </noscript>
+            {{??}}
+                <h4>You will be eligible for free 0.02 NXT in {{=it.user.eligible}} minutes</h4>
+            {{?}}
         </div>
     </div>
 </div>

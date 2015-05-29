@@ -26,19 +26,11 @@ define([
 
         render: function() {
 
-            if (this.props.engine.cashingOut) {
-                return D.div({ className: 'cash-out' },
-                    D.a({ className: 'big-button-disable unclick' },
-                        'Cash out at ', Payout({ engine: this.props.engine }), ' NXT'
-                    )
-                );
-            } else {
-                return D.div({ className: 'cash-out', onMouseDown: this._cashOut },
-                    D.a({ className: 'big-button unclick' },
-                        'Cash out at ', Payout({ engine: this.props.engine }), ' NXT'
-                    )
-                );
-            }
+          return D.div({ className: 'cash-out' },
+            D.a({className: 'bet-btn button orange full', onMouseDown: this._cashOut },
+              'Cash out at ', Payout({engine: this.props.engine}), ' NXT'
+            )
+          );
         }
     });
 });

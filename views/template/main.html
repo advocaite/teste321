@@ -26,22 +26,25 @@
 
         </div>
         {{??it.user.advice == 'received'}}
-        <div class="success">
-            Congratulations you have been credited 0.02 free NXT. Have fun!
-        </div>
+
         {{?? it.user.advice}}
         <div class="success">
            {{!it.user.advice}}
         </div>
-        {{??it.user && it.user.balance_satoshis < 100 }}
-            {{?it.user.eligible == true}}
-                <div class="success"><a href="/request">Collect your 0.02 free NXT!</a></div>
-            {{?}}
         {{?}}
 
     {{?}}
 
     <div class="content">
+        <div id="space-wrap" class="space-wrap">
+          <div class="ufo"></div>
+          <div class="ufo2"></div>
+          <div class="earth"></div>
+          <div class="space-gradient"></div>
+          <div class="space-container-wrap">
+            <div class="space-container"></div>
+          </div>
+        </div>
         {{#def.content || ""}}
     </div>
 

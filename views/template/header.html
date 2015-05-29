@@ -1,40 +1,82 @@
-    <header>
-        <nav class="nav-top-bar">
+<script type="text/javascript">
+  function logout() {
+    if (document.getElementById('logout') ) {
+      if (confirm("Are you sure you want to log out?")) {
+        document.getElementById("logout").submit();
+      }
+    }
+  }
+</script>
+<header class="header">
+<form action="/logout" method="post" id='logout'></form>
+    <div class="logo">
+        <a href="/", title="NXTBubble">
+            <span class="coin"></span>
+            <h1>
+                NXTBubble
+            </h1>
+        </a>
+    </div>
 
-            <div class="title">
-                <a href="/">
-                    <h1 class="hide-for-small-only">NXTBubble</h1>
-                </a>
-            </div>
+    {{?it.amount}}
+    <div class="table-title">
+        <h2> {{=it.amount/100}} Bit Table </h2>
+    </div>
+    {{?}}
 
-            {{?it.amount}}
-            <div class="table-title">
-                <h2> {{=it.amount/100}} Bit Table </h2>
-            </div>
-            {{?}}
+    {{?it.user}}
+      <div class="account header-el dropdown-mode">
+        <a href="/account">{{=it.user.username}}</a>
+        <span class="caret"></span>
+        <ul class="dropdown">
+          <li><a href="/account">Account</a></li>
+          <li><a href="/deposit">Deposit</a></li>
+          <li><a href="/withdraw">Withdraw</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="#" onclick="logout();">Logout</a></li>
+        </ul>
+      </div>
+      <div class="balance header-el">
+        <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
+        <span class="currency">NXT</span>
+      </div>
+      {{?it.user && it.user.balance_satoshis < 100}}
+        {{?it.user.eligible == true}}
+          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
+        {{??}}
+          <div class="deposit header-el">
+            <a href="/deposit" class="button green">Deposit NXT</a>
+          </div>
+        {{?}}
+      {{?}}
+      <div class="menu header-el">
+          <a href="/play">Play</a>
+          <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
+          <a href="/request">Faucet</a>
+          <a href="/weekly-leaderboard">Promotion</a>
+          <a href="/leaderboard">Leaderboard</a>
+          <a href="/stats">Stats</a>
+          <a href="/faq">FAQ</a>
+      </div>
 
-            <div class="show-for-small-up user-login">
-            {{?it.user}}
-                <div class="balance-bits">NXT: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span></div>
-                <div class="username"><a href="/account">{{=it.user.username}}</a></div>
-                <a href="/play">Play</a>
-                <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
-                <a href="/request">Faucet</a>
-                <a href="/weekly-leaderboard">Promotion</a>
-                <a href="/leaderboard">Leaderboard</a>
-                <a href="/stats">Stats</a>
-                <a href="/faq">FAQ   </a>
-            {{??}}
-                <a href="/play">Play</a>
-                <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
-                <a href="/weekly-leaderboard">Promotion</a>
-                <a href="/leaderboard">Leaderboard</a>
-                <a href="/stats">Stats</a>
-                <a href="/faq">FAQ</a>
-                <a href="/register">Register</a>
-                <a href="/login">Log in   </a>
-            {{?}}
-            </div>
-
-        </nav>
-    </header>
+      {{?it.user.admin}}
+        <div><a class="username header-el button" href="/admin">admin</a></div>
+      {{?}}
+    {{??}}
+      <nav>
+        <ul class="auth">
+          <li><a href="/register" class="button green">Register</a></li>
+          <li><a href="/login" class="button">Login</a></li>
+        </ul>
+        <div class="menu header-el">
+          <a href="/play">Play</a>
+          <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
+          <a href="/request">Faucet</a>
+          <a href="/weekly-leaderboard">Promotion</a>
+          <a href="/leaderboard">Leaderboard</a>
+          <a href="/stats">Stats</a>
+          <a href="/faq">FAQ</a>
+      </div>
+      </nav>
+    {{?}}
+</header>

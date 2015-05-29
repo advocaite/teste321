@@ -12,30 +12,22 @@
 </script>
 
 
-<div class="login">
+<div class="panel auth-con content">
     <form action="/login" method="post">
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Username
-                    <input type="text" name="username" required/>
-                </label>
-            </div>
+        <h5>Login <small><a href="register">Don't have an account yet?</a></small></h5>
+        <hr>
+        <div class="field">
+          <label>Username</label>
+          <input type="text" name="username" required/>
         </div>
-         <div class="row">
-            <div class="large-12 columns">
-                <label>Password
-                    <input type="password" name="password" required />
-                </label>
-            </div>
-         </div>
-         <div class="row">
-            <div class="g-recaptcha" data-sitekey="6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU" data-callback="enableSubmit"></div>
-         </div>
-         <div class="row">
-            <div class="large-12 columns">
-                <a class="small" href="/forgot-password">Forgot your password?</a>
-                <input id="loginSubmit" style="display: none" class="border-button right blue" value="Login" type="submit" />
-            </div>
+        <div class="field">
+          <label>Password <small><a href="/forgot-password">Forgot your password?</a></small></label>
+          <input type="password" name="password" required />
+        </div>
+        <div class="g-recaptcha" data-sitekey="6LdfOAYTAAAAAObF55v-yVI8kesqwIimDitHRsGU" data-callback="enableSubmit"></div>
+
+        <a class="small" href="/forgot-password">Forgot your password?</a>
+        <input id="loginSubmit" style="display: none" class="button green right" value="Login" type="submit" />
         </div>
 
     </form>

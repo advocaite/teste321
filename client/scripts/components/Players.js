@@ -109,7 +109,7 @@ define([
 
             }
 
-            /** Create the rows for the table **/
+          /** Create the rows for the table **/
 
             //Users Playing and users cashed
             if(game.gameState === 'IN_PROGRESS' || game.gameState === 'STARTING') {
@@ -169,7 +169,7 @@ define([
                     trUsersWonCashed
                 );
 
-                containerClass = 'users-playing-container';
+                containerClass = 'players-container users-playing-container';
                 tableClass = 'users-playing';
 
                 //Users Lost and users Won
@@ -199,7 +199,7 @@ define([
                             },
                             entry.username)),
                         D.td(null, '-'),
-                        D.td(null, Clib.formatSatoshis(entry.bet, 2)),
+                        D.td(null, Clib.formatSatoshis(entry.bet, 0)),
                         D.td(null, bonus),
                         D.td(null, profit)
                     );
@@ -232,7 +232,7 @@ define([
                             },
                             entry.username)),
                         D.td(null, stopped / 100, 'x'),
-                        D.td(null, Clib.formatSatoshis(bet, 2)),
+                        D.td(null, Clib.formatSatoshis(bet, 0)),
                         D.td(null, bonus),
                         D.td(null, profit)
                     );
@@ -244,26 +244,38 @@ define([
                     trUsersWonCashed
                 );
 
-                containerClass = 'users-cashed-container';
+                containerClass = 'players-container users-cashed-container';
                 tableClass = 'users-summary';
             }
 
             return D.div({ className: containerClass },
+                D.div({ className: 'header-bg'}),
+                D.div({ className: 'table-inner'},
                 D.table({ className: tableClass },
                     D.thead(null,
                         D.tr(null,
-                            D.th(null, 'User'),
-                            D.th(null, '@'),
-                            D.th(null, 'Bet'),
-                            D.th(null, 'Bonus'),
-                            D.th(null, 'Profit')
+                            D.th(null,
+                              D.div({ className: 'th-inner'}, 'Player')
+                            ),
+                            D.th(null,
+                              D.div({ className: 'th-inner'}, '@')
+                            ),
+                            D.th(null,
+                              D.div({ className: 'th-inner'}, 'Bet')
+                            ),
+                            D.th(null,
+                              D.div({ className: 'th-inner'}, 'Bonus')
+                            ),
+                            D.th(null,
+                              D.div({ className: 'th-inner'}, 'Profit')
+                            )
                         )
                     ),
                     tBody
                 )
+              )
             );
         }
 
     });
-
 });
