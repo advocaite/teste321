@@ -15,7 +15,8 @@
 }
 
 .messages-list {
-    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display:inline-block;
     overflow-y: scroll;
     width: 100%;
     font-size: 1rem;
