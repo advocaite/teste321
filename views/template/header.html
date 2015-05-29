@@ -8,9 +8,15 @@
   }
 </script>
 <header class="header">
-    <h1 class="logo">
-      <a href="/", title="NXTBubble">NXTBubble</a>
-    </h1>
+<form action="/logout" method="post" id='logout'></form>
+    <div class="logo">
+        <a href="/", title="NXTBubble">
+            <span class="coin"></span>
+            <h1>
+                NXTBubble
+            </h1>
+        </a>
+    </div>
 
     {{?it.amount}}
     <div class="table-title">
@@ -34,6 +40,15 @@
         <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
         <span class="currency">NXT</span>
       </div>
+      {{?it.user && it.user.balance_satoshis < 100}}
+        {{?it.user.eligible == true}}
+          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
+        {{??}}
+          <div class="deposit header-el">
+            <a href="/deposit" class="button green">Deposit NXT</a>
+          </div>
+        {{?}}
+      {{?}}
       <div class="menu header-el">
           <a href="/play">Play</a>
           <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
@@ -41,17 +56,8 @@
           <a href="/weekly-leaderboard">Promotion</a>
           <a href="/leaderboard">Leaderboard</a>
           <a href="/stats">Stats</a>
-          <a href="/faq">FAQ   </a>
+          <a href="/faq">FAQ</a>
       </div>
-      {{?it.user && it.user.balance_satoshis < 100}}
-        {{?it.user.eligible == true}}
-          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
-        {{??}}
-          <div class="deposit header-el">
-            <a href="/deposit" class="button green">Deposit Bitcoin</a>
-          </div>
-        {{?}}
-      {{?}}
 
       {{?it.user.admin}}
         <div><a class="username header-el button" href="/admin">admin</a></div>

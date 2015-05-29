@@ -3,50 +3,53 @@
 {{##def.content:
     <div class="index">
         <div class="i-content">
-            <div class="hero-unit">
+            <div class="row hero-unit">
               <h1 class="title">Launch your NXT to the moon!</h1>
               <h4 class="faucet">Receive <em>0.02 free NXT</em> per minute, so you can always play for fun and without commitment</h4>
               <a href="/play" class="cta">Play Now</a>
             </div>
 
+            <div class="row stats">
+              <div class="large-4 column stat-wrapper">
+                <div class="stat"><span class="amount">{{=it.stats.users.count}}</span><span class="stats-label">Total Users</span></div>
+              </div>
+              <div class="large-4 column stat-wrapper">
+                <div class="stat"><span class="amount">{{=it.stats.plays.count }}</span><span class="stats-label">Total Bets</span></div>
+              </div>
+              <div class="large-4 column stat-wrapper">
+                <div class="stat"><span class="amount">{{#def.format: {n: (9 + it.stats.plays.cashed_out + it.stats.plays.bonused) } }} NXT</span><span class="stats-label">Total Won</span></div>
+              </div>
+            </div>
 
-            <div class="features">
-              <div class="feature-wrap">
-                <div class="feature">
+            <div class="row features">
+                <div class="large-3 medium-6 column feature">
                   <img src="img/icons/bullseye.svg" alt="Skill"/>
                   <h2>1% Skill</h4>
                   <p class="text">Anyone can board a rocket, but it takes <a href="/guide">skill</a> to be a real astronaut.</p>
                 </div>
-              </div>
-              <div class="feature-wrap">
-                <div class="feature">
+                <div class="large-3 medium-6 column feature">
                   <img src="img/icons/clock.svg" alt="Real Time"/>
                   <h2>Real Time</h4>
                   <p class="text">Liftoff in T-minus 3..2.. Hurry! Next destination: moon.</p>
                 </div>
-              </div>
-              <div class="feature-wrap">
-                <div class="feature">
+                <div class="large-3 medium-6 column feature">
                   <img src="img/icons/secure.svg" alt="Secure"/>
                   <h2>Provably Fair</h4>
                   <p class="text">All rocket launches are approved by NASA and <a href="faq#fair">Provably fair</a>.</p>
                 </div>
-              </div>
-              <div class="feature-wrap">
-                <div class="feature">
+                <div class="large-3 medium-6 column feature">
                   <img src="img/icons/group.svg" alt="Social"/>
                   <h2>Be Social</h4>
                   <p class="text">We're all in the same rocket, so lets enjoy the ride together!</p>
                 </div>
-              </div>
             </div>
 
-            <div class="features">
+            <div class="row hero-unit">
                 <span style="text-align: center; font-size: 200%;">NXTBubble is running a weekly promotion, check it out here: <a href="/weekly-leaderboard">Weekly Leaderboard</a>.</span>
             </div>
 
-            <div class="features">
-                <div class="feature-wrap">
+            <div class="row features">
+                <div class="large-4 column">
                     <div class="feature">
                         <a href="https://github.com/TwinWinNerD/bustabit-gameserver" target="_blank">
                           <img src="img/icons/github.png" alt=""/>
@@ -54,7 +57,7 @@
                         <p class="text">Source code by Bustabit.</p>
                     </div>
                 </div>
-                <div class="feature-wrap">
+                <div class="large-4 column">
                     <div class="feature">
                         <a href="http://nxt.org/" target="_blank">
                           <img src="img/icons/nxtinside.png" alt=""/>
@@ -62,7 +65,7 @@
                         <p class="text">Powered by NXT.</p>
                     </div>
                 </div>
-                <div class="feature-wrap">
+                <div class="large-4 column">
                     <div class="feature">
                         <a href="http://nxtcs.com/" target="_blank" style="color: black;">
                           <span style="font-size: 300%; font-weight: bold;">
@@ -72,6 +75,16 @@
                         <p class="text">Powered by NXTCS.</p>
                     </div>
                 </div>
+            </div>
+            <div class="footer">
+                <p>NXTBubble.com</p>
+                <nav>
+                    <ul>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/leaderboard">Leaderboard</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

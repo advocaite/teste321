@@ -151,6 +151,7 @@ define([
 
             return D.div({ className: 'messages' },
             D.div({ className: 'messages-container' },
+                D.div({ className: 'header-bg'}, D.span(null, 'Chat')),
                 D.ul({ className: 'messages-list', ref: 'messages', style: ulStyle },
                     messages
                 ),

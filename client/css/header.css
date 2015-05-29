@@ -27,11 +27,24 @@
   float: right;
   margin: 12px 6px;
 }
-.logo {
+
+.logo h1 {
   float: left;
   height: 30px;
   overflow: hidden;
-  margin: 12px;
+  margin: 16px 12px 12px 4px;
+  text-indent: -999px;
+  width: 200px;
+  background-image: url("/img/tothemoon-logo.png");
+}
+
+.logo .coin {
+  float: left;
+  margin: 12px 0 12px 12px ;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  background-image: url("/img/balance-nxt-icon.png");
 }
 
 h1.logo {
@@ -171,6 +184,6 @@ h1.logo {
   padding: 0 15px;
   height: 30px;
   line-height: 30px;
-  font-size: 13px;
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: bold;
 }

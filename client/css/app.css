@@ -85,11 +85,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html,
-body,
-.wrapper {
-  min-width: 1100px;
-}
 body {
   -webkit-font-smoothing: antialiased;
   font: 14px "Verlag A", "Verlag B", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -419,7 +414,6 @@ table tbody tr td {
 }
 .content {
   margin: 40px auto;
-  max-width: 62.5rem;
   width: 100%;
   color: #222;
 }
@@ -12953,50 +12947,21 @@ body {
   line-height: 28px;
   font-size: 16px;
 }
-.stats .stat-wrapper {
-  width: 33.3%;
-  padding: 0 5px;
-  float: left;
-}
-.stats .stat-wrapper:first-child {
-  padding-left: 0;
-}
 .stats .stat-wrapper .amount {
   color: #f7941f;
   margin-right: 5px;
   font-size: 20px;
 }
-.stats .stat-wrapper .label {
+.stats .stat-wrapper .stats-label {
   color: #fff;
   text-transform: uppercase;
   font-size: 13px;
   color: #bbbcbd;
 }
-.features {
-  zoom: 1;
-  margin: 0 auto 60px auto;
-  width: 80%;
-}
-.features:before,
-.features:after {
-  content: "";
-  display: table;
-}
-.features:after {
-  clear: both;
-}
-.features .feature-wrap {
-  float: left;
-  width: 25%;
-  padding: 0 5px;
-}
-.features .feature-wrap:first-child {
-  padding-left: 0;
-}
+
 .features .feature {
   padding: 30px;
-  width: 210px;
-  height: 210px;
+  min-height: 150px;
   -webkit-border-radius: 200px;
   border-radius: 200px;
   background: rgba(0,0,0,0.3);
@@ -13024,7 +12989,7 @@ body {
   -webkit-box-shadow: 0 -1px 0 rgba(0,0,0,0.3);
   box-shadow: 0 -1px 0 rgba(0,0,0,0.3);
   padding: 15px;
-  margin: 0 auto;
+  margin: 60px auto;
   width: 80%;
   font-size: 15px;
 }
@@ -13040,7 +13005,11 @@ body {
 }
 .footer a {
   color: #fff;
-}
+}	
 .auth-con {
   width: 600px;
+}
+
+.row {
+    max-width: 100em;
 }

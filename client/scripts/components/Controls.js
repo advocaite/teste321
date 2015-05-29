@@ -303,13 +303,12 @@ define([
             var self = this;
             // If they're not logged in, let just show a login to play
             if (!this.state.engine.username) {
-                return D.div({ className: 'login-container grid grid-pad' },
-                    D.div({ className: 'controls'},
-                        D.div({ className: 'login'}, D.a({className: 'big-button unselect', href: '/login' }, 'Login to play'),
-                            D.a({ href: '/register', className: 'register'}, 'or register ')
-                        )
-                    )
-                );
+              return D.div({ className: 'gui' },
+                D.div({ className: 'gui-inner'},
+                  D.a({className: 'bet-btn button orange full', href: '/login' }, 'Login'),
+                  D.a({href: '/register', className: 'register button green full'}, 'Register')
+                )
+              );
             }
 
             //If the user is logged in render the controls
