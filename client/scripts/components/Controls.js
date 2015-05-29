@@ -227,7 +227,6 @@ define([
               D.label(null, 'Bet', D.br(), 'Size'),
               D.div({ className: 'input-wrapper'},
                 D.input({
-                    type: 'text',
                     name: 'bet-size',
                     min: 0.01,
                     step: 0.01,
@@ -310,6 +309,7 @@ define([
                 )
               );
             }
+            var invalidBet = this._invalidBet();
 
             //If the user is logged in render the controls
             return D.div({ className: 'gui ' },
@@ -318,9 +318,10 @@ define([
                     D.div({ className: 'information'},
                         this._getStatusMessage()
                     ),
+                    (invalidBet ? D.div({className: 'error-msg'}, invalidBet) : null),
                     this._getContents(),
                     D.div({ className: 'game-hash'},
-                      'Hash: ',
+                      'Previous Hash: ',
                       D.a({href:"/faq#fair", target: 'blank'}, this.state.engine.lastHash)
                     )
                 )

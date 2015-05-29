@@ -12868,6 +12868,7 @@ body {
   margin-bottom: 10px;
   text-shadow: 1px 2px 0 #181a1f;
   font-size: 55px;
+  font-weight: bold; 
 }
 .index .faucet {
   margin-bottom: 40px;

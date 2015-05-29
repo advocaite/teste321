@@ -28,7 +28,7 @@ define([
 
           return D.div({ className: 'cash-out' },
             D.a({className: 'bet-btn button orange full', onMouseDown: this._cashOut },
-              'Cash out at ', Payout({engine: this.props.engine}), ' bits'
+              'Cash out at ', Payout({engine: this.props.engine}), ' NXT'
             )
           );
         }

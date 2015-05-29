@@ -85,7 +85,8 @@ define([
               D.div({ className: 'rocket-inner' },
                 D.div.apply(null, divArgs),
                 D.div({id: "game-multiplier", className: 'multiplier'})
-              )
+              ),
+              D.div({ className: 'max-win'}, 'Max profit: ', (this.props.engine.maxWin/1e8).toFixed(2), ' NXT')
             ),
             Rocket({ engine: this.props.engine }),
             Controls({ engine: this.props.engine })
