@@ -1,6 +1,7 @@
 @import 'normalize.css';
 @import 'header.css';
 @import 'chat.css';
+@import 'foundation.min.css';
 @font-face {
   font-family: ubuntu_monobold;
   font-style: normal;
@@ -161,8 +162,8 @@ b {
   background-color: #2a2c36;
 }
 ::-webkit-scrollbar {
-  width: 10px;
   background-color: #1c1c1f;
+  width: 10px;
 }
 input[type="text"],
 input[type="email"],
@@ -194,15 +195,15 @@ textarea:focus {
 }
 .wrapper {
   position: absolute;
-  top: 54px;
   bottom: 0;
   width: 100%;
+  top: 54px;
 }
-.inner-wrapper {
+/*.inner-wrapper {
   position: relative;
   height: 100%;
   overflow: hidden;
-}
+}*/
 .col-left {
   position: absolute;
   top: 0;
@@ -400,12 +401,11 @@ nav ul li {
   font-weight: normal;
 }
 .rocket-outer {
-  position: absolute;
   top: 0;
-  bottom: 150px;
-  width: 100%;
   text-align: center;
   overflow: hidden;
+  width: 100%;
+  bottom: 150px;
 }
 .rocket-outer:before {
   content: "";
@@ -12632,23 +12632,30 @@ nav ul li {
 }
 .players {
   height: 50%;
-  padding: 15px 15px 15px 0;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .players tr td {
   overflow-x: hidden;
 }
-.players tr td:first-child {
+/*.players tr td:first-child {
   max-width: 100px;
 }
 .players tr td:nth-child(2) {
   max-width: 60px;
-}
+}*/
 .log-chat {
   height: 50%;
-  padding: 0 15px 15px 0;
 }
+.log-chat-container {
+  overflow-y: auto;
+  height: 100%;
+}
+
 .players-container,
 .log-chat-tabs-container {
+  width: 100%;
   height: 100%;
   position: relative;
 }
@@ -12673,20 +12680,20 @@ nav ul li {
   border-right: 1px solid #292d35;
   border-left: 1px solid #292d35;
   overflow: hidden;
+  width: 100%;
   padding-top: 30px;
 }
 .players-container .header-bg,
 .history .header-bg {
-  background: #292d35 url("/img/header-bg.png");
   height: 30px;
-  position: absolute;
-  top: 0;
   right: 0;
   left: 0;
+  position: absolute;
+  top: 0;
+  background: #292d35 url("/img/header-bg.png");
 }
 .players-container .table-inner,
 .history .table-inner {
-  overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
 }
@@ -12795,9 +12802,7 @@ nav ul li {
 }
 
 .gui {
-  position: absolute;
   width: 100%;
-  padding: 15px;
   bottom: 0;
   left: 0;
 }
@@ -12812,6 +12817,7 @@ nav ul li {
   overflow: hidden;
   position: relative;
   zoom: 1;
+  height: 100%;
 }
 .gui .gui-inner:before,
 .gui .gui-inner:after {
@@ -12869,15 +12875,15 @@ nav ul li {
 }
 .gui .bet-btn {
   font-size: 32px;
-  margin: 10px;
   padding: 0 40px;
   text-align: center;
   height: 50px;
-  width: 305px;
-  line-height: 50px;
   cursor: pointer;
-  float: right;
   text-transform: none;
+  width: 250px;
+  float: right;
+  margin: 10px;
+  line-height: 50px;
 }
 .gui .bet-btn:active {
   top: 1px;
@@ -12896,8 +12902,9 @@ nav ul li {
   margin-bottom: 10px;
 }
 .gui .button.full {
-  width: calc(100% - 20px);
   margin: 10px;
+  width: calc(100% - 20px);
+  font-size: 24px;
 }
 .gui .button.register {
   margin-top: 0;
@@ -13085,9 +13092,11 @@ nav ul li {
   font-size: 11px;
   padding: 0 10px 10px 15px;
   color: #bbbcbd;
-  height: 25px;
   line-height: 25px;
   margin: 30px 0 0 0;
+  position: absolute;
+  bottom: 0;
+  height: 45px;
 }
 .game-hash a {
   color: #bbbcbd;
@@ -13117,13 +13126,14 @@ nav ul li {
 
 .strategy-container input {
   width: 50px;
+  height: 17px;
+  margin: 0;
 }
 
 /* ==========================================================================
    Strategy Editor
    ========================================================================== */
 .strategy-container {
-    height: 100%;
     color: black;
     margin-bottom: 1em;
 }
@@ -13131,7 +13141,7 @@ nav ul li {
 /* Custom Strategy
    ========================================================================== */
 .strategy-input {
-    height: 253px;
+    height: 200px;
     width: 100%;
     border: 1px solid rgba(94, 94, 94, 0.2);
     display: block;
@@ -13141,8 +13151,6 @@ nav ul li {
    ========================================================================== */
 
 .widget-container {
-    height: 283px
-    width: 100%;
     border: 1px solid rgba(94, 94, 94, 0.2);
     background-color: #f9f9f9;
 }
@@ -13156,6 +13164,9 @@ nav ul li {
     border-bottom: 1px solid #bdbdbd;
     text-align: center;
     width: 5em;
+    display: inline;
+    height: 17px;
+    margin: 0;
 }
 
 .stra-base-bet {
@@ -13176,8 +13187,8 @@ nav ul li {
 
 .stra-on-loss {
     padding-left: 1em;
-    padding-top: .3em;
     padding-bottom: .3em;
+    padding-top: .3em;
 }
 
 .stra-on-loss:first-child {
@@ -13204,6 +13215,10 @@ nav ul li {
     margin-left: 1.2em;
 }
 
+.widget-title {
+    /*float: left;*/
+}
+
 .games-log-goodcrash  {
     color: green;
 }
@@ -13214,6 +13229,86 @@ nav ul li {
 
 .max-win {
   position: absolute;
-  top: 90%;
+  top: 15px;
   right: 15px;
 }
+
+.row {
+    max-width: 100%;
+}
+
+.table-inner tr > td, .table-inner tr >th {
+    max-width: 60px;
+}
+
+@media only screen and (max-width: 64em) {
+    .rocket-outer {
+        margin-top: 40px;
+        min-height: 460px;
+    }
+
+    .gui-inner {
+        min-height: 280px;
+    }
+
+    .players-container {
+        min-height: 300px;
+    }
+
+    .log-chat {
+        height: 300px;
+    }
+
+    .gui .button.full {
+        font-size: 12px !important; 
+    }
+
+    .gui .gui-inner .information {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 64.063em) {
+    .players {
+        height: 45vh;
+    }
+    .log-chat {
+        height: 45vh;
+    }
+
+    .gui {
+        height: 30vh;
+    }
+        
+    .rocket-outer {
+        height: 60vh;
+    }
+
+
+    .wrapper {
+        overflow: hidden;
+    }
+
+}
+
+@media only screen and (min-width: 64.063) and (max-width: 90em) {
+    .gui {
+        height: 30vh;
+    }
+
+    .rocket-outer {
+        height: 60vh;
+    }
+
+}
+
+@media only screen and (min-width: 90.063em) {
+    .gui {
+        height: 20vh;
+    }
+
+    .rocket-outer {
+        height: 70vh;
+    }
+}
+

@@ -51,7 +51,6 @@ define([
               var aco = this.props.engine.nextAutoCashout;
 
               var bet = this.props.engine.nextBetAmount;
-              console.log(bet);
               if(bet) //If the bet is queued
                   bet = Clib.formatSatoshis(bet, 2) + ' NXT';
 

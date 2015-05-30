@@ -84,10 +84,10 @@ define([
 
             return D.div({ className: 'strategy-container' },
                 WidgetElement,
-                D.button({ className: 'strategy-start', onClick: self._runStrategy, disabled: this.state.active || this.state.invalidData || !this.state.engine.username }, 'RUN!'),
-                D.button({ className: 'strategy-stop', onClick: self._stopStrategy, disabled: !this.state.active }, 'STOP'),
-                D.select({ className: 'strategy-select', value: this.state.selectedStrategy,  onChange: self._selectStrategy, ref: 'strategies', disabled: this.state.active }, strategiesOptions),
-                D.span({ className: 'strategy-invalid-data' }, this.state.invalidData || !this.state.engine.username)
+                D.button({ className: 'strategy-start large-3 column', onClick: self._runStrategy, disabled: this.state.active || this.state.invalidData || !this.state.engine.username }, 'RUN!'),
+                D.button({ className: 'strategy-stop large-3 column', onClick: self._stopStrategy, disabled: !this.state.active }, 'STOP'),
+                D.select({ className: 'strategy-select large-6 column', value: this.state.selectedStrategy,  onChange: self._selectStrategy, ref: 'strategies', disabled: this.state.active }, strategiesOptions),                                                
+                D.span({ className: 'strategy-invalid-data large-12 column' }, this.state.invalidData || !this.state.engine.username)
             );
         }
     });
