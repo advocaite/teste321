@@ -76,27 +76,43 @@ define([
         for (i = 0; i < 100; i++){
           divArgs.push(D.div({ className: 'explosion-particle' }));
         }
-        return D.div({ className: 'inner-wrapper' },
-          D.div({ className: 'col-left' },
+        return D.div({ className: 'inner-wrapper row' },
+          D.div({ className: 'small-12 large-3 column' },
             Chat()
           ),
-          D.div({ className: 'col-middle' },
-            D.div({ className: 'rocket-outer' },
-              D.div({ className: 'rocket-inner' },
-                D.div.apply(null, divArgs),
-                D.div({id: "game-multiplier", className: 'multiplier'})
-              ),
-              D.div({ className: 'max-win'}, 'Max profit: ', (this.props.engine.maxWin/1e8).toFixed(2), ' NXT')
+          D.div({ className: 'small-12 large-6 column' },
+            D.div({ className: 'row'},
+              D.div({ className: 'small-12 large-12 column'},
+                D.div({ className: 'rocket-outer' },
+                  D.div({ className: 'rocket-inner' },
+                    D.div.apply(null, divArgs),
+                    D.div({id: "game-multiplier", className: 'multiplier'})
+                  ),
+                  D.div({ className: 'max-win'}, 'Max profit: ', (this.props.engine.maxWin/1e8).toFixed(2), ' NXT')
+                ),
+                Rocket({ engine: this.props.engine })
+              )
             ),
-            Rocket({ engine: this.props.engine }),
-            Controls({ engine: this.props.engine })
+            D.div({ className: 'row'},
+              D.div({ className: 'small-12 large-12 column'},
+                Controls({ engine: this.props.engine })
+              )
+            )
           ),
-          D.div({ className: 'col-right' },
-            D.div({ className: 'players' },
-              Players({ engine: this.props.engine })
+          D.div({ className: 'small-12 large-3 column' },
+            D.div({ className: 'row'},
+              D.div({ className: 'small-12 large-12 column'}, 
+                D.div({ className: 'players' },
+                  Players({ engine: this.props.engine })
+                )
+              )
             ),
-            D.div({ className: 'log-chat' },
-              TabsSelector({ engine: this.props.engine })
+            D.div({ className: 'row'},
+              D.div({ className: 'small-12 large-12 column'}, 
+                D.div({ className: 'log-chat' },
+                  TabsSelector({ engine: this.props.engine })
+                )
+              )
             )
           )
         )

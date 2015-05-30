@@ -71,7 +71,7 @@ define([
             msgs.scrollTop = msgs.scrollHeight;
 
             window.onresize = function(event) {
-                document.querySelector('.messages-list').style.height = window.innerHeight - 110 + 'px';
+                // document.querySelector('.messages-list').style.height = window.innerHeight - 110 + 'px';
             };
         },
 
@@ -146,7 +146,7 @@ define([
                 );
 
             var ulStyle = {
-                height: window.innerHeight - 110 + 'px'
+                // height: window.innerHeight - 110 + 'px'
             };
 
             return D.div({ className: 'messages' },
