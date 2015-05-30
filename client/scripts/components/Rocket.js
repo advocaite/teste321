@@ -18,18 +18,29 @@ define(['lib/react', 'lib/clib'],
             },
 
             componentDidMount: function() {
+                this.gameMultiplier = document.getElementById("game-multiplier");
+                this.spaceWrap = document.getElementById("space-wrap");
+                this.rocket = document.getElementById("rocket");
                 this.mounted = true;
                 this.animRequest = window.requestAnimationFrame(this.draw);
             },
 
+            framesToSkip: 2, // 60 (default) / 2 = 30 fps
+            counter: 0,
+
             draw: function() {
                 if(this.mounted) {
+                    if (this.counter < this.framesToSkip) {
+                        this.counter++;
+                        window.requestAnimationFrame(this.draw);
+                        return;
+                    }
+                    this.counter = 0;
+
                     this.setData(this.props.engine);
-                    this.clean();
-                    this.drawRocket();
                     this.drawGameData();
 
-                    this.animRequest = window.requestAnimationFrame(this.draw);
+                    window.requestAnimationFrame(this.draw);
                 }
             },
 
@@ -65,36 +76,36 @@ define(['lib/react', 'lib/clib'],
               var lastGameCrashedAt = this.engine.tableHistory[0].game_crash
 
                 if(this.engine.gameState === 'IN_PROGRESS') {
-                    document.getElementById("game-multiplier").innerHTML = parseFloat(this.lastBalance).toFixed(2) + 'x';
-                    if (document.getElementById("space-wrap").className.indexOf("waiting") !== -1) {
-                        document.getElementById("space-wrap").className = document.getElementById("space-wrap").className.replace(" waiting", "");
+                    this.gameMultiplier.innerHTML = parseFloat(this.lastBalance).toFixed(2) + 'x';
+                    if (this.spaceWrap.className.indexOf("waiting") !== -1) {
+                        this.spaceWrap.className = this.spaceWrap.className.replace(" waiting", "");
                     }
-                    if (document.getElementById("space-wrap").className.indexOf("flying") === -1) {
-                        document.getElementById("space-wrap").className += " flying";
+                    if (this.spaceWrap.className.indexOf("flying") === -1) {
+                        this.spaceWrap.className += " flying";
                     }
                 } else {
-                    if (document.getElementById("space-wrap").className.indexOf("flying") !== -1) {
-                        document.getElementById("space-wrap").className = document.getElementById("space-wrap").className.replace(" flying", "");
+                    if (this.spaceWrap.className.indexOf("flying") !== -1) {
+                        this.spaceWrap.className = this.spaceWrap.className.replace(" flying", "");
                     }
-                    if (document.getElementById("space-wrap").className.indexOf("waiting") === -1) {
-                        document.getElementById("space-wrap").className += " waiting";
+                    if (this.spaceWrap.className.indexOf("waiting") === -1) {
+                        this.spaceWrap.className += " waiting";
                     }
                 }
 
                 //If the engine enters in the room @ ENDED it doesnt have the crash value, so we dont display it
                 if(this.engine.gameState === 'ENDED' && lastGameCrashedAt) {
                     var html = 'Rocket exploded' + '<br>' + 'at ' + lastGameCrashedAt / 100 + 'x';
-                    document.getElementById("game-multiplier").innerHTML = html;
-                    if (document.getElementById("rocket").className.indexOf("crash") === -1) {
-                        document.getElementById("rocket").className += " crash";
-                        document.getElementById("rocket").className = document.getElementById("rocket").className.replace(" launch", "");
+                    this.gameMultiplier.innerHTML = html;
+                    if (this.rocket.className.indexOf("crash") === -1) {
+                        this.rocket.className += " crash";
+                        this.rocket.className = this.rocket.className.replace(" launch", "");
                     }
                 } else {
-                    if (this.engine.gameState === 'IN_PROGRESS' && document.getElementById("rocket").className.indexOf("crash") !== -1) {
-                        document.getElementById("rocket").className = document.getElementById("rocket").className.replace(" crash", "");
+                    if (this.engine.gameState === 'IN_PROGRESS' && this.rocket.className.indexOf("crash") !== -1) {
+                        this.rocket.className = this.rocket.className.replace(" crash", "");
                     }
-                    if (this.engine.gameState === 'IN_PROGRESS' && document.getElementById("rocket").className.indexOf("launch") === -1) {
-                        document.getElementById("rocket").className += " launch";
+                    if (this.engine.gameState === 'IN_PROGRESS' && this.rocket.className.indexOf("launch") === -1) {
+                        this.rocket.className += " launch";
                     }
                 }
 
