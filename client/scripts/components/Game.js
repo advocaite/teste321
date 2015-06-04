@@ -35,22 +35,24 @@ define([
     var BetBar = React.createFactory(BetBarClass);
     var Chat = React.createFactory(ChatClass);
 
+    function getState(){
+        return {
+            isConnected: Engine.isConnected,
+            engine: Engine
+        };
+    }
+
     return React.createClass( {
       displayName: 'Game',
 
       getInitialState: function () {
-        return {
-          isConnected: Engine.isConnected
-        }
-      },
-
-      propTypes: {
-        engine: React.PropTypes.object.isRequired
+          return getState();
       },
 
       componentDidMount: function() {
         Engine.on({
           'connected': this._onChange,
+          'game_crash': this._onChange,
           'disconnected': this._onChange
         });
       },
@@ -58,13 +60,14 @@ define([
       componentWillUnmount: function() {
         Engine.off({
           'connected': this._onChange,
+          'game_crash': this._onChange,
           'disconnected': this._onChange
         });
       },
 
       _onChange: function() {
-          if(this.state.isConnected != Engine.isConnected)
-              this.setState({ isConnected: Engine.isConnected });
+          if(this.isMounted())
+              this.setState(getState());
       },
 
       render: function() {
@@ -88,14 +91,14 @@ define([
                     D.div.apply(null, divArgs),
                     D.div({id: "game-multiplier", className: 'multiplier'})
                   ),
-                  D.div({ className: 'max-win'}, 'Max profit: ', (this.props.engine.maxWin/1e8).toFixed(2), ' NXT')
+                  D.div({ className: 'max-win'}, 'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' NXT')
                 ),
-                Rocket({ engine: this.props.engine })
+                Rocket({ engine: this.state.engine })
               )
             ),
             D.div({ className: 'row'},
               D.div({ className: 'small-12 large-12 column'},
-                Controls({ engine: this.props.engine })
+                Controls({ engine: this.state.engine })
               )
             )
           ),
@@ -103,14 +106,14 @@ define([
             D.div({ className: 'row'},
               D.div({ className: 'small-12 large-12 column'}, 
                 D.div({ className: 'players' },
-                  Players({ engine: this.props.engine })
+                  Players({ engine: this.state.engine })
                 )
               )
             ),
             D.div({ className: 'row'},
               D.div({ className: 'small-12 large-12 column'}, 
                 D.div({ className: 'log-chat' },
-                  TabsSelector({ engine: this.props.engine })
+                  TabsSelector({ engine: this.state.engine })
                 )
               )
             )
