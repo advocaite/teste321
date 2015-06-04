@@ -52,7 +52,7 @@ define([
       componentDidMount: function() {
         Engine.on({
           'connected': this._onChange,
-          'game_crash': this._onChange,
+          'game_starting': this._onChange,
           'disconnected': this._onChange
         });
       },
@@ -60,7 +60,7 @@ define([
       componentWillUnmount: function() {
         Engine.off({
           'connected': this._onChange,
-          'game_crash': this._onChange,
+          'game_starting': this._onChange,
           'disconnected': this._onChange
         });
       },
