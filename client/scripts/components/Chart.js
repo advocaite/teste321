@@ -2,12 +2,14 @@ define([
     'lib/react',
     'lib/clib',
     'components/Graph',
-    'game-logic/engine'
+    'game-logic/engine',
+    'constants/AppConstants'
 ], function(
     React,
     Clib,
     Graph,
-    Engine
+    Engine,
+    AppConstants
 ){
 
     var D = React.DOM;
@@ -107,7 +109,7 @@ define([
         render: function() {
             return D.div({ className: 'chart', style: { position: 'relative' }},
                 D.div({ style: { position: 'absolute', bottom: '27px', right: '30px', fontSize: '55%' }},
-                    'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' NXT'),
+                    'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' ', AppConstants.Engine.CURRENCY),
 
                 D.canvas({
                     width: this.graph.canvasWidth,

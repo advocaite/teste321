@@ -1,4 +1,4 @@
-define(['lib/clib'], function(Clib){
+define(['lib/clib', 'constants/AppConstants'], function(Clib, AppConstants){
 
     return function (settings) {
         console.assert(settings);
@@ -16,13 +16,13 @@ define(['lib/clib'], function(Clib){
 
         return function(engine) {
             //MoneyBot\n\
-            var baseBetSatoshis = settings.baseBet * Math.pow(10,8);
+            var baseBetSatoshis = settings.baseBet * AppConstants.Engine.DIVIDER;
             var currentBet = baseBetSatoshis;
 
             var onLossIncreaseQty = Number(settings.onLossIncreaseQty);
             var onWinIncreaseQty = Number(settings.onWinIncreaseQty);
             var autoCashAt = Number(settings.autoCashAt);
-            var maxBetStop = Number(settings.maxBetStop) * Math.pow(10,8);
+            var maxBetStop = Number(settings.maxBetStop) * AppConstants.Engine.DIVIDER;
 
             console.assert(Clib.isNumber(autoCashAt));
 
@@ -45,7 +45,7 @@ define(['lib/clib'], function(Clib){
                     }
                 }
 
-                var fixedCurrentBet = (currentBet / Math.pow(10,8)) * Math.pow(10,8);
+                var fixedCurrentBet = (currentBet / AppConstants.Engine.DIVIDER) * AppConstants.Engine.DIVIDER;
 
                 if(fixedCurrentBet > 0 && fixedCurrentBet <= engine.getBalance() && fixedCurrentBet <= engine.getMaxBet() && fixedCurrentBet <= maxBetStop) {
                     engine.placeBet(fixedCurrentBet, Math.round(autoCashAt * 100), false);

@@ -7,6 +7,7 @@ var lib = require('./lib');
 var database = require('./database');
 var withdraw = require('./withdraw');
 var sendEmail = require('./sendEmail');
+var constants = require('./constants');
 var speakeasy = require('speakeasy');
 var qr = require('qr-image');
 var uuid = require('uuid');
@@ -687,10 +688,10 @@ exports.handleWithdrawRequest = function(req, res, next) {
     if (!r.test(amount))
         return res.render('withdraw_request', { user: user, id: uuid.v4(),  warning: 'Not a valid amount' });
 
-    amount = Math.round(parseFloat(amount) * Math.pow(10, 8));
+    amount = Math.round(parseFloat(amount) * constants.DIVIDER);
     assert(Number.isFinite(amount));
 
-    if (amount <= Math.pow(10, 8))
+    if (amount <= constants.DIVIDER)
         return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must be over 1 NXT' });
 
     if (typeof destination !== 'string')

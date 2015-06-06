@@ -1,11 +1,13 @@
 define([
     'lib/react',
     'lib/clib',
-    'components/Payout'
+    'components/Payout',
+    'constants/AppConstants'
 ], function(
     React,
     Clib,
-    PayoutClass
+    PayoutClass,
+    AppConstants
 ){
 
     var Payout = React.createFactory(PayoutClass);
@@ -28,7 +30,7 @@ define([
 
           return D.div({ className: 'cash-out' },
             D.a({className: 'bet-btn button orange full', onMouseDown: this._cashOut },
-              'Cash out at ', Payout({engine: this.props.engine}), ' NXT'
+              'Cash out at ', Payout({engine: this.props.engine}), ' ', AppConstants.Engine.CURRENCY
             )
           );
         }

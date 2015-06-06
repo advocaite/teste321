@@ -1,4 +1,7 @@
-{{##def.format:param:{{=(param.n/Math.pow(10,8)).toFixed(param.decimals).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
+{{##def.format:param:{{=(param.n/100).toFixed(2).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
+{{##def.CURRENCY_FULL_NAME:Bitcoin#}}
+{{##def.CURRENCY:Bits#}}
+{{##def.DIVIDER:100#}}
 
 <!DOCTYPE html>
 <html>

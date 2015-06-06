@@ -2,8 +2,8 @@ define(['lib/key-mirror'], function(KeyMirror){
 
     var host = '';
 
-    if (window.document.location.host.indexOf('nxt.tothemoon.me') !== -1)  {
-        host = 'https://nxt.tothemoon.me/game';
+    if (window.document.location.host.indexOf('btc.tothemoon.me') !== -1)  {
+        host = 'https://btc.tothemoon.me/game';
     } else {
         host = window.location.hostname + ':3842';
     }
@@ -45,9 +45,11 @@ define(['lib/key-mirror'], function(KeyMirror){
 
 
         Engine: {
+            CURRENCY: 'Bits',
+            DIVIDER: 100, // divide satoshis by 100
             STOP_PREDICTING_LAPSE: 300,
             HOST: host,
-            MAX_BET: 100000 * Math.pow(10,8) /** Max bet per game 100,000 NXT, this will be calculated dynamically in the future, based on the invested amount in the casino **/
+            MAX_BET: 1000000 * 100 /** Max bet per game 1,000,000 Bits, this will be calculated dynamically in the future, based on the invested amount in the casino **/
         },
 
         BetButton: {
@@ -58,6 +60,6 @@ define(['lib/key-mirror'], function(KeyMirror){
             MAX_LENGTH: 500
         }
 
-    }
+    };
 
 });

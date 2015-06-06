@@ -50,13 +50,13 @@
                         <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
                     </td>
                     <td>
-                        {{#def.format: { n: leader.wagered, decimals: 0 } }} NXT
+                        {{#def.format: { n: leader.wagered, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                     <td>
-                        {{#def.format: { n: leader.gross_profit, decimals: 0 } }} NXT
+                        {{#def.format: { n: leader.gross_profit, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                     <td>
-                        {{#def.format: { n: leader.net_profit, decimals: 0 } }} NXT
+                        {{#def.format: { n: leader.net_profit, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                 </tr>
             {{~}}

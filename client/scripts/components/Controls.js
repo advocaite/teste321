@@ -7,7 +7,8 @@ define([
     'components/CashOutButton',
     'actions/ControlsActions',
     'stores/ControlsStore',
-    'game-logic/engine'
+    'game-logic/engine',
+    'constants/AppConstants'
 ], function(
     React,
     Clib,
@@ -17,7 +18,8 @@ define([
     CashOutButtonClass,
     ControlsActions,
     ControlsStore,
-    Engine
+    Engine,
+    AppConstants
 ){
 
     var Countdown = React.createFactory(CountDownClass);
@@ -86,7 +88,7 @@ define([
 
         _placeBet: function () {
 
-            var bet = parseFloat(this.state.betSize * Math.pow(10, 8));
+            var bet = parseFloat(this.state.betSize * AppConstants.Engine.DIVIDER);
             console.assert(_.isFinite(bet));
 
             var cashOut = parseFloat(this.state.cashOut);
@@ -118,7 +120,7 @@ define([
             var self = this;
 
             if (self.state.engine.balanceSatoshis < 100)
-                return 'Not enough NXT to play';
+                return 'Not enough ' + AppConstants.Engine.CURRENCY + ' to play';
 
             var bet = Clib.parseBet(self.state.betSize);
             if(bet instanceof Error)
@@ -128,8 +130,8 @@ define([
             if(co instanceof Error)
                 return co.message;
 
-            if (self.state.engine.balanceSatoshis < bet * Math.pow(10, 8))
-                return 'Not enough NXT';
+            if (self.state.engine.balanceSatoshis < bet * AppConstants.Engine.DIVIDER)
+                return 'Not enough ' + AppConstants.Engine.CURRENCY;
 
             return null;
         },
@@ -187,7 +189,7 @@ define([
                     return D.span(null,
                         'Busted @ ', D.b({className: 'red'},
                             this.state.engine.tableHistory[0].game_crash / 100, 'x'),
-                        ' / You lost ', D.b({className: 'red'}, pi.bet / Math.pow(10, 8)), ' ', Clib.grammarBits(pi.bet),
+                        ' / You lost ', D.b({className: 'red'}, pi.bet / AppConstants.Engine.DIVIDER), ' ', Clib.grammarBits(pi.bet),
                         bonus
                     );
 
@@ -237,7 +239,7 @@ define([
                         self._setBetSize(e.target.value);
                     }
                 }),
-                D.span({ className: 'bet-unit'}, 'NXT')
+                D.span({ className: 'bet-unit'}, AppConstants.Engine.CURRENCY)
               )
           );
 

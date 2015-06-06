@@ -31,7 +31,7 @@ exports.giveAwayHandle = function(req, res, next) {
     if (!Number.isFinite(bits) || bits <= 0)
         return next('Problem with bits...');
 
-    var satoshis = Math.round(bits * Math.pow(10, 8));
+    var satoshis = Math.round(bits * 100);
 
     database.addRawGiveaway(giveAwayUsers, satoshis , function(err) {
         if (err) return res.redirect('/admin-giveaway?err=' + err);

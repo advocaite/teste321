@@ -38,19 +38,19 @@
                         <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
                     </td>
                     <td>
-                        {{#def.format: { n: leader.net_profit, decimals: 0 } }} NXT
+                        {{#def.format: { n: leader.net_profit, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                     <td>
                         {{?leader.net_rank == 1 }}
-                            500 NXT *
+                            500 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.net_rank == 2 }}
-                            300 NXT *
+                            300 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.net_rank == 3 }}
-                            200 NXT *
+                            200 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.net_rank == 4 || leader.net_rank == 5}}
@@ -93,19 +93,19 @@
                         <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
                     </td>
                     <td>
-                        {{#def.format: { n: leader.wagered, decimals: 0 } }} NXT
+                        {{#def.format: { n: leader.wagered, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                     <td>
                         {{?leader.wagered_rank == 1 }}
-                            1000 NXT *
+                            1000 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.wagered_rank == 2 }}
-                            600 NXT *
+                            600 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.wagered_rank == 3 }}
-                            400 NXT *
+                            400 {{#def.CURRENCY}} *
                         {{?}}
 
                         {{?leader.wagered_rank == 4 || leader.wagered_rank == 5}}

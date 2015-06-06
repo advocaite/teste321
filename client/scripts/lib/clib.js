@@ -11,7 +11,7 @@ define([
     var rng;
 
     function formatSatoshis(n, decimals) {
-        return formatDecimals(n/Math.pow(10,8), decimals);
+        return formatDecimals(n / AppConstants.Engine.DIVIDER, decimals);
     }
 
     function formatDecimals (n, decimals) {
@@ -50,11 +50,11 @@ define([
 
             var bet = parseFloat(betString);
 
-            if (bet < 0.01)
-                return new Error('The bet should be at least 0.01 NXT');
+            if (bet < 1)
+                return new Error('The bet should be at least 1 ' + AppConstants.Engine.CURRENCY);
 
             if (bet * 100 > AppConstants.Engine.MAX_BET)
-                return new Error('The bet must be less no more than ' + formatSatoshis(AppConstants.Engine.MAX_BET) + ' NXT');
+                return new Error('The bet must be less no more than ' + formatSatoshis(AppConstants.Engine.MAX_BET) + ' ' + AppConstants.Engine.CURRENCY);
 
             return bet;
         },
@@ -152,7 +152,7 @@ define([
 
         //Returns plural or singular, for a given amount of bits.
         grammarBits: function (bits) {
-            return bits <= 100 ? 'NXT' : 'NXT';
+            return AppConstants.Engine.CURRENCY;
         },
 
         //Calculate the payout based on the time

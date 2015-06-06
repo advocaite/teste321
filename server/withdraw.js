@@ -3,11 +3,12 @@ var bc = require('./bitcoin_client');
 var db = require('./database');
 var request = require('request');
 var nxtClient = require('./nxt_client');
+var constants = require('./constants');
 
 // Doesn't validate
 module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, callback) {
     assert(typeof userId === 'number');
-    assert(satoshis > Math.pow(10,8));
+    assert(satoshis > constants.FEE);
     assert(typeof withdrawalAddress === 'string');
     assert(typeof callback === 'function');
 
@@ -24,7 +25,7 @@ module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, cal
 
         assert(fundingId);
 
-        var amount = satoshis - Math.pow(10, 8); // -1 NXT fee
+        var amount = satoshis - constants.FEE;
 
         nxtClient.sendWithdrawal(amount, withdrawalAddress, function (err, hash) {
             if (err) {

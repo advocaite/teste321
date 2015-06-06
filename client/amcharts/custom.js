@@ -6,7 +6,7 @@ function CustomChart(startingFrom, cum, chartData) {
     chartData.forEach(function(entry, i) {
         var profit = (entry.cash_out ? entry.cash_out : 0) + (entry.bonus ? entry.bonus : 0) - entry.bet;
         cum += profit;
-        entry.cum_profit = (cum/Math.pow(10,8));
+        entry.cum_profit = (cum/100);
         entry.n = startingFrom+i;
         if (profit > 0) {
           entry.force_color = 'green'
@@ -26,11 +26,11 @@ function CustomChart(startingFrom, cum, chartData) {
             var r = "<table>" +
                 "<tr><th>Game Id:</th><td>" + entry.game_id + "<br><small>(" + entry.timeago + ")</small>" +
                 "</td></tr>" +
-                '<tr><th>Bet:</th><td>' + (entry.bet/Math.pow(10,8)).toFixed(2) + ' NXT</td></tr>' +
+                '<tr><th>Bet:</th><td>' + (entry.bet/100).toFixed(2) + ' Bits</td></tr>' +
                 "<tr><th>Crash At:</th><td>" + (typeof entry.game_crash !== 'undefined' ? (entry.game_crash/100).toFixed(2) + 'x' : '?') + "</td></tr>" +
                 "<tr><th>Cashed Out:</th><td>" + (entry.cash_out ? (entry.cash_out / entry.bet).toFixed(2) + 'x' : '-') + "</td></tr>" +
-                '<tr><th>Bonus: </th><td>' + (entry.bonus ? (entry.bonus/Math.pow(10,8)).toFixed(4) : 0) + ' NXT</td></tr>' +
-                "<tr><th>Profit:</th><td><b>" + (profit/Math.pow(10,8)).toFixed(4) + " NXT</b></td></tr>" +
+                '<tr><th>Bonus: </th><td>' + (entry.bonus ? (entry.bonus/100).toFixed(2) : 0) + ' Bits</td></tr>' +
+                "<tr><th>Profit:</th><td><b>" + (profit/100).toFixed(2) + " Bits</b></td></tr>" +
                 '</table>';
             return r;
 

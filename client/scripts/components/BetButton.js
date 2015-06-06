@@ -52,7 +52,7 @@ define([
 
               var bet = this.props.engine.nextBetAmount;
               if(bet) //If the bet is queued
-                  bet = Clib.formatSatoshis(bet, 2) + ' NXT';
+                  bet = Clib.formatSatoshis(bet, 2) + ' ' + AppConstants.Engine.CURRENCY;
 
               var msg = null;
               if (aco)
