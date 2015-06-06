@@ -2,7 +2,7 @@ var database = require('./database');
 
 exports.callback = function (req, res) {
   var secret = req.query.secret;
-  
+
   console.log(req.body);
 
   if (secret !== process.env.DEPOSIT_SECRET) {
@@ -10,6 +10,7 @@ exports.callback = function (req, res) {
   }
 
   if (!req.body.data) {
+    console.log('no req.body.data');
     return res.status(500).render('error');
   }
 
@@ -17,6 +18,8 @@ exports.callback = function (req, res) {
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
   if (body.confirmations < 1 || amount < 0) {
+    console.log(body.confirmations);
+    console.log(amount);
     return res.status(500).render('error');
   }
 
@@ -24,10 +27,12 @@ exports.callback = function (req, res) {
   var address = body.address;
 
   database.getUserFromDepositAddress(address, function (err, result) {
+    console.log('get user err', err);
     if (err) {
       return res.status(500).render('error');
     } else {
       database.insertDeposit(result.id, transaction, amount, function (err) {
+        console.log('insert deposit err', err);
         if (err) {
           return res.status(500).render('error');
         } else {
@@ -36,6 +41,4 @@ exports.callback = function (req, res) {
       });
     }
   });
-
-
 };
