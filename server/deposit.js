@@ -17,7 +17,7 @@ exports.callback = function (req, res) {
   var body = req.body.data;
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
-  if (body.confirmations < 1 || amount < 0) {
+  if (body.confirmations != 1 || amount < 0) {
     console.log(body.confirmations);
     console.log(amount);
     return res.status(500).render('error');

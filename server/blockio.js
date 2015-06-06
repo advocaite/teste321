@@ -10,6 +10,7 @@ var block_io = new BlockIo(BLOCK_SECRET_KEY, BLOCK_API_KEY, 2);
 module.exports = {
     createDepositAddress: function(userId, callback) {
         block_io.get_new_address({}, function (err, result) {
+            console.log('block_io err', err);
             if (result && result.status === "success" && result.data.address) {
                 return callback(null, result.data.address);
             } else {
