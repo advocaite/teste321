@@ -1,6 +1,6 @@
 var BlockIo = require('block_io');
 
-var BLOCK_SECRET_KEY = process.env.BLOCK_BITCOIN_KEY;
+var BLOCK_SECRET_KEY = process.env.BLOCK_SECRET_KEY;
 if (!BLOCK_SECRET_KEY) console.log('Must set BLOCK_SECRET_KEY');
 var BLOCK_API_KEY = process.env.BLOCK_BITCOIN_KEY;
 if (!BLOCK_SECRET_KEY) console.log('Must set BLOCK_BITCOIN_KEY');
