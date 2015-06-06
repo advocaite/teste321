@@ -270,7 +270,7 @@ exports.getUserFromUsername = function(username, callback) {
 };
 
 exports.getUserFromDepositAddress = function(depositAddress, callback) {
-    assert(username && callback);
+    assert(depositAddress && callback);
 
     query('SELECT * FROM users_view WHERE depositAddress = lower($1)', [depositAddress], function(err, data) {
         if (err) return callback(err);
