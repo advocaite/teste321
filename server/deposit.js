@@ -17,7 +17,7 @@ exports.callback = function (req, res) {
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
   if (body.confirmations < 1 || amount < 0) {
-    return res.render('error');
+    return res.status(500).render('error');
   }
 
   var transaction = body.txid;
