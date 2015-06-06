@@ -6,11 +6,11 @@ exports.callback = function (req, res) {
   console.log(req.body);
 
   if (secret !== process.env.DEPOSIT_SECRET) {
-    return res.render('error');
+    return res.status(500).render('error');
   }
 
   if (!req.body.data) {
-    return res.render('error');
+    return res.status(500).render('error');
   }
 
   var body = req.body.data;
