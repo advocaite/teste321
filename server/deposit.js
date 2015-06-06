@@ -17,7 +17,7 @@ exports.callback = function (req, res) {
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
   if (body.confirmations < 1 || amount < 0) {
-    return res.status(500).render('error');
+    return res.render('error');
   }
 
   var transaction = body.txid;
@@ -29,7 +29,7 @@ exports.callback = function (req, res) {
     } else {
       database.insertDeposit(result.id, transaction, amount, function (err) {
         if (err) {
-          return res.status(500).render('error');
+          return res.render('error');
         } else {
           return res.send('ok');
         }
