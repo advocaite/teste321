@@ -25,11 +25,11 @@ exports.callback = function (req, res) {
 
   database.getUserFromDepositAddress(address, function (err, result) {
     if (err) {
-      return res.render('error');
+      return res.status(500).render('error');
     } else {
       database.insertDeposit(result.id, transaction, amount, function (err) {
         if (err) {
-          return res.render('error');
+          return res.status(500).render('error');
         } else {
           return res.send('ok');
         }
