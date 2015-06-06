@@ -269,6 +269,23 @@ exports.getUserFromUsername = function(username, callback) {
     });
 };
 
+exports.getUserFromDepositAddress = function(depositAddress, callback) {
+    assert(username && callback);
+
+    query('SELECT * FROM users_view WHERE depositAddress = lower($1)', [depositAddress], function(err, data) {
+        if (err) return callback(err);
+
+        if (data.rows.length === 0)
+            return callback('NO_USER');
+
+        assert(data.rows.length === 1);
+        var user = data.rows[0];
+        assert(typeof user.balance_satoshis === 'number');
+
+        callback(null, user);
+    });
+};
+
 exports.addRecoverId = function(userId, callback) {
     assert(userId && callback);
 
