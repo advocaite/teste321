@@ -198,6 +198,7 @@ CREATE TABLE users (
     password text NOT NULL,
     mfa_secret text,
     balance_satoshis bigint DEFAULT 0 NOT NULL,
+    deposit_address text,
     userclass UserClassEnum DEFAULT 'user' NOT NULL,
     CONSTRAINT users_balance_satoshis_check CHECK ((balance_satoshis >= 0))
 );
@@ -238,6 +239,7 @@ CREATE VIEW users_view AS
     u.password,
     u.mfa_secret,
     u.balance_satoshis,
+    u.deposit_address,
     ( SELECT max(giveaways.created) AS max
            FROM giveaways
           WHERE (giveaways.user_id = u.id)) AS last_giveaway,

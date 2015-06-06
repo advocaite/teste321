@@ -8,6 +8,7 @@ var database = require('./database');
 var withdraw = require('./withdraw');
 var sendEmail = require('./sendEmail');
 var constants = require('./constants');
+var block_io = require('./blockio');
 var speakeasy = require('speakeasy');
 var qr = require('qr-image');
 var uuid = require('uuid');
@@ -320,6 +321,7 @@ exports.giveawayRequest = function(req, res, next) {
 exports.account = function(req, res, next) {
     var user = req.user;
     assert(user);
+    console.log(user);
 
     var tasks = [
         function(callback) {
@@ -332,7 +334,7 @@ exports.account = function(req, res, next) {
             database.getGiveAwaysAmount(user.id, callback);
         },
         function(callback) {
-            database.getUserNetProfit(user.id, callback)
+            database.getUserNetProfit(user.id, callback);
         }
     ];
 
@@ -348,7 +350,6 @@ exports.account = function(req, res, next) {
         user.withdrawals = !withdrawals.sum ? 0 : withdrawals.sum;
         user.giveaways = !giveaways.sum ? 0 : giveaways.sum;
         user.net_profit = net.profit;
-        user.deposit_address = process.env.DEPOSIT_ADDRESS;
 
         res.render('account', {user: user});
     });
@@ -428,7 +429,6 @@ exports.deleteEmail = function(req, res, next) {
 exports.addEmail = function(req, res, next) {
     var user  = req.user;
     assert(user);
-    user.deposit_address = lib.deriveAddress(user.id);
 
     var email = lib.removeNullsAndTrim(req.body.email);
     var password = lib.removeNullsAndTrim(req.body.password);
@@ -732,6 +732,29 @@ exports.handleWithdrawRequest = function(req, res, next) {
                     return next(new Error('Unable to withdraw: \n' + err));
             }
             return res.render('withdraw_request', { user: user, id: uuid.v4(), success: 'OK' });
+        });
+    });
+};
+
+exports.createDepositAddress = function (req, res) {
+    assert(req.user);
+    var user = req.user;
+
+    if (req.user.deposit_address) {
+        return res.redirect('account');
+    }
+
+    block_io.createDepositAddress(user.id, function (err, depositAddress) {
+        if (err) {
+            return res.render('account', { user: user, warning: 'Could not create deposit address, please try again later'});
+        }
+
+        database.updateDepositAddress(user.id, depositAddress, function (err, result) {
+            if (err) {
+                return res.render('account', { user: user, warning: 'Could not insert deposit address in database.'});
+            }
+
+            return res.redirect('account');
         });
     });
 };

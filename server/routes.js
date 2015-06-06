@@ -134,6 +134,8 @@ module.exports = function(app) {
     app.post('/login', user.login);
     app.post('/register', user.register);
 
+    app.get('/create-deposit-address', restrict, user.createDepositAddress);
+
     app.post('/ott', restrict, function(req, res, next) {
         var user = req.user;
         assert(user);

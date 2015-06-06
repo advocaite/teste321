@@ -165,6 +165,16 @@ exports.updateMfa = function(userId, secret, callback) {
     query('UPDATE users SET mfa_secret = $1 WHERE id = $2', [secret, userId], callback);
 };
 
+exports.updateDepositAddress = function(userId, depositAddress, callback) {
+    assert(userId && depositAddress && callback);
+
+    query('UPDATE users SET deposit_address = $1 WHERE id = $2', [depositAddress, userId], function(err, res) {
+        if (err) return callback(err);
+        assert(res.rowCount === 1);
+        callback(null);
+    });
+};
+
 // Possible errors:
 //   NO_USER, WRONG_PASSWORD, INVALID_OTP
 exports.validateUser = function(username, password, otp, callback) {
