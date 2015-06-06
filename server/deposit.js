@@ -20,7 +20,7 @@ exports.callback = function (req, res) {
   if (body.confirmations != 1 || amount < 0) {
     console.log(body.confirmations);
     console.log(amount);
-    return res.status(500).render('error');
+    return res.send('ok');
   }
 
   var transaction = body.txid;
