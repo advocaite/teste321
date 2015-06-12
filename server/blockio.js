@@ -23,7 +23,7 @@ module.exports = {
   },
   sendToWithdrawalAddress: function(amount, from) {
     block_io.withdraw_from_addresses({
-      'amounts': amount - constants.FEE,
+      'amounts': amount - constants.FEE_WHOLE,
       'from_addresses': from,
       'to_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'pin': BLOCK_SECRET_KEY
@@ -38,7 +38,7 @@ module.exports = {
   },
   sendWithdrawal: function(amount, to) {
     block_io.withdraw_from_addresses({
-      'amounts': amount - constants.FEE,
+      'amounts': amount - constants.FEE_WHOLE,
       'from_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'to_addresses': to,
       'pin': BLOCK_SECRET_KEY
