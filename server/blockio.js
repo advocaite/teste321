@@ -38,7 +38,7 @@ module.exports = {
     block_io.withdraw_from_addresses({
       'amounts': amount - constants.FEE,
       'from_addresses': BLOCK_BITCOIN_WITHDRAWAL_ADDRESS,
-      'to_addresses': to
+      'to_addresses': to,
       'pin': BLOCK_SECRET_KEY
     }, function(err, result) {
       console.log('withdraw err', err);
