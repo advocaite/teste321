@@ -1,4 +1,5 @@
 var BlockIo = require('block_io');
+var constants = require('./constants');
 
 var BLOCK_SECRET_KEY = process.env.BLOCK_SECRET_KEY;
 if (!BLOCK_SECRET_KEY) console.log('Must set BLOCK_SECRET_KEY');
@@ -19,14 +20,28 @@ module.exports = {
     });
   },
   sendToWithdrawalAddress: function(amount, from) {
-    var fee = 0.00001;
     block_io.withdraw_from_addresses({
-      'amounts': amount - fee,
+      'amounts': amount - constants.FEE,
       'from_addresses': from,
       'to_addresses': BLOCK_BITCOIN_WITHDRAWAL_ADDRESS,
       'pin': BLOCK_SECRET_KEY
     }, function(err, result) {
-      console.log('withdraw_from_addresses err', err);
+      console.log('sendToWithdrawalAddress err', err);
+      if (result && result.status === "success" && result.data.txid) {
+        return callback(null, result.data.txid);
+      } else {
+        return callback('ERR_SENDING');
+      }        
+    });
+  },
+  sendWithdrawal: function(amount, to) {
+    block_io.withdraw_from_addresses({
+      'amounts': amount - constants.FEE,
+      'from_addresses': BLOCK_BITCOIN_WITHDRAWAL_ADDRESS,
+      'to_addresses': to
+      'pin': BLOCK_SECRET_KEY
+    }, function(err, result) {
+      console.log('withdraw err', err);
       if (result && result.status === "success" && result.data.txid) {
         return callback(null, result.data.txid);
       } else {
