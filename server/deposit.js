@@ -18,7 +18,7 @@ exports.callback = function(req, res) {
   var body = req.body.data;
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
-  if (body.confirmations != 1 || amount < 0 || body.address === BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
+  if (body.confirmations != 1 || amount < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     console.log(body.confirmations);
     console.log(amount);
     return res.send('ok');
