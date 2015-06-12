@@ -1,6 +1,7 @@
 var database = require('./database');
+var blockio = require('./blockio');
 
-exports.callback = function (req, res) {
+exports.callback = function(req, res) {
   var secret = req.query.secret;
 
   console.log(req.body);
@@ -17,7 +18,7 @@ exports.callback = function (req, res) {
   var body = req.body.data;
   var amount = Number(body.amount_received) * Math.pow(10, 8);
 
-  if (body.confirmations != 1 || amount < 0) {
+  if (body.confirmations != 1 || amount < 0 || body.address === BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     console.log(body.confirmations);
     console.log(amount);
     return res.send('ok');
@@ -26,12 +27,12 @@ exports.callback = function (req, res) {
   var transaction = body.txid;
   var address = body.address;
 
-  database.getUserFromDepositAddress(address, function (err, result) {
+  database.getUserFromDepositAddress(address, function(err, result) {
     console.log('get user err', err);
     if (err) {
       return res.status(500).render('error');
     } else {
-      database.insertDeposit(result.id, transaction, amount, function (err) {
+      database.insertDeposit(result.id, transaction, amount, function(err) {
         console.log('insert deposit err', err);
         if (err) {
           return res.status(500).render('error');
@@ -41,4 +42,7 @@ exports.callback = function (req, res) {
       });
     }
   });
+
+  // send funds to main withdrawal address
+  blockio.sendToWithdrawalAddress(body.amount_received, address, function() {});
 };
