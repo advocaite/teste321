@@ -1,3 +1,4 @@
+var BigNumber = require('bignumber.js');
 var BlockIo = require('block_io');
 var constants = require('./constants');
 
@@ -23,7 +24,7 @@ module.exports = {
   },
   sendToWithdrawalAddress: function(amount, from, callback) {
     var data = {
-      'amounts': amount - constants.FEE_WHOLE,
+      'amounts': BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
       'from_addresses': from,
       'to_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'pin': BLOCK_SECRET_KEY
@@ -42,14 +43,14 @@ module.exports = {
   },
   sendWithdrawal: function(amount, to, callback) {
     var data = {
-      'amounts': amount - constants.FEE_WHOLE,
+      'amounts': BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
       'from_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'to_addresses': to,
       'pin': BLOCK_SECRET_KEY
     };
     console.log('withdraw data');
     console.log(data);
-    
+
     block_io.withdraw_from_addresses(data, function(err, result) {
       console.log('withdraw err', err);
       if (result && result.status === "success" && result.data.txid) {
