@@ -21,34 +21,42 @@ module.exports = {
       }
     });
   },
-  sendToWithdrawalAddress: function(amount, from) {
-    block_io.withdraw_from_addresses({
+  sendToWithdrawalAddress: function(amount, from, callback) {
+    var data = {
       'amounts': amount - constants.FEE_WHOLE,
       'from_addresses': from,
       'to_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'pin': BLOCK_SECRET_KEY
-    }, function(err, result) {
+    };
+    console.log('sendToWithdrawalAddress data');
+    console.log(data);
+
+    block_io.withdraw_from_addresses(data, function(err, result) {
       console.log('sendToWithdrawalAddress err', err);
       if (result && result.status === "success" && result.data.txid) {
         return callback(null, result.data.txid);
       } else {
         return callback('ERR_SENDING');
-      }        
+      }
     });
   },
-  sendWithdrawal: function(amount, to) {
-    block_io.withdraw_from_addresses({
+  sendWithdrawal: function(amount, to, callback) {
+    var data = {
       'amounts': amount - constants.FEE_WHOLE,
       'from_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'to_addresses': to,
       'pin': BLOCK_SECRET_KEY
-    }, function(err, result) {
+    };
+    console.log('withdraw data');
+    console.log(data);
+    
+    block_io.withdraw_from_addresses(data, function(err, result) {
       console.log('withdraw err', err);
       if (result && result.status === "success" && result.data.txid) {
         return callback(null, result.data.txid);
       } else {
         return callback('ERR_SENDING');
-      }        
+      }
     });
   }
 };
