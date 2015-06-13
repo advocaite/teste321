@@ -24,7 +24,7 @@ module.exports = {
   },
   sendToWithdrawalAddress: function(amount, from, callback) {
     var data = {
-      'amounts': BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
+      'amounts': new BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
       'from_addresses': from,
       'to_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'pin': BLOCK_SECRET_KEY
@@ -43,7 +43,7 @@ module.exports = {
   },
   sendWithdrawal: function(amount, to, callback) {
     var data = {
-      'amounts': BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
+      'amounts': new BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
       'from_addresses': BLOCK_WITHDRAWAL_ADDRESS,
       'to_addresses': to,
       'pin': BLOCK_SECRET_KEY
