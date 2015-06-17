@@ -691,7 +691,7 @@ exports.handleWithdrawRequest = function(req, res, next) {
     amount = Math.round(parseFloat(amount) * constants.DIVIDER);
     assert(Number.isFinite(amount));
 
-    if (amount <= constants.DIVIDER)
+    if (amount <= (constants.FEE * 2))
         return res.render('withdraw_request', { user: user,  id: uuid.v4(), warning: 'Must be over 1 NXT' });
 
     if (typeof destination !== 'string')

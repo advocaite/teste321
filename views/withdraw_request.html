@@ -44,7 +44,7 @@
                 that uses the sending address, or returns to sender, because any returns will probably be credited to a different player.
             </p>
             <form action="/withdraw-request" method="post">
-                <label for="amount">NXT</label>
+                <label for="amount">{{#def.CURRENCY}}</label>
                 <input type="number" id="amount" name="amount" placeholder="1" min="1" step=".01" required/>
                 <label for="destination">Destination Address</label>
                 <input type="text" id="destination" name="destination" required/>

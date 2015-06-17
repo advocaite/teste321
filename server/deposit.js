@@ -1,3 +1,4 @@
+var BigNumber = require('bignumber.js');
 var database = require('./database');
 var blockio = require('./blockio');
 
@@ -16,9 +17,9 @@ exports.callback = function(req, res) {
   }
 
   var body = req.body.data;
-  var amount = Number(body.amount_received) * Math.pow(10, 8);
+  var amount = BigNumber(body.amount_received).times(Math.pow(10, 8)).toNumber();
 
-  if (body.confirmations != 1 || amount < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
+  if (body.confirmations != 1 || Number(body.balance_change) < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     console.log(body.confirmations);
     console.log(amount);
     return res.send('ok');
