@@ -1,6 +1,7 @@
 var BigNumber = require('bignumber.js');
 var database = require('./database');
 var blockio = require('./blockio');
+var constants = require('./constants');
 
 exports.callback = function(req, res) {
   var secret = req.query.secret;
@@ -19,14 +20,11 @@ exports.callback = function(req, res) {
   var body = req.body.data;
   var amount = new BigNumber(body.amount_received).times(Math.pow(10, 8)).toNumber();
 
-  if (Number(body.balance_change) > 0 && body.is_green) {
-    // send funds to main withdrawal address
+  if (Number(body.balance_change) > 0 && body.confirmations === constants.MIN_SEND_CONFIRMATIONS && body.address !== process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     blockio.sendToWithdrawalAddress(body.amount_received, address, function() {});
   }
 
-  if (body.confirmations != 1 || Number(body.balance_change) < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
-    console.log(body.confirmations);
-    console.log(amount);
+  if (body.confirmations !== 1 || Number(body.balance_change) < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     return res.send('ok');
   }
 
