@@ -19,6 +19,7 @@ exports.callback = function(req, res) {
 
   var body = req.body.data;
   var amount = new BigNumber(body.amount_received).times(Math.pow(10, 8)).toNumber();
+  var address = body.address;
 
   if (Number(body.balance_change) > 0 && body.confirmations === constants.MIN_SEND_CONFIRMATIONS && body.address !== process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     blockio.sendToWithdrawalAddress(body.amount_received, address, function() {});
@@ -29,7 +30,6 @@ exports.callback = function(req, res) {
   }
 
   var transaction = body.txid;
-  var address = body.address;
 
   database.getUserFromDepositAddress(address, function(err, result) {
     console.log('get user err', err);
