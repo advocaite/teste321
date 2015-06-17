@@ -27,6 +27,7 @@ module.exports = {
       'amounts': new BigNumber(amount).minus(constants.FEE_WHOLE).toNumber(),
       'from_addresses': from,
       'to_addresses': BLOCK_WITHDRAWAL_ADDRESS,
+      'priority': 'medium', 
       'pin': BLOCK_SECRET_KEY
     };
     console.log('sendToWithdrawalAddress data');
