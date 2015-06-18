@@ -39,7 +39,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>{{#def.CURRENCY}}<</td>
+                            <td>{{#def.CURRENCY}}</td>
                             <td>Destination Address</td>
                             <td>Status</td>
                             <td class="show-for-large-up">Created</td>
@@ -57,7 +57,7 @@
                                 </td>
                                 <td>
                                     {{?withdrawal.status}}
-                                         <a href="https://blockchain.info/tx/{{{=withdrawal.status}}" target="_blank">Transfered</a>
+                                         <a href="https://blockchain.info/tx/{{=withdrawal.status}}" target="_blank">Transfered</a>
                                     {{??}}
                                         in progress
                                     {{?}}
