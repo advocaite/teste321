@@ -39,7 +39,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>NXT</td>
+                            <td>{{#def.CURRENCY}}<</td>
                             <td>Destination Address</td>
                             <td>Status</td>
                             <td class="show-for-large-up">Created</td>
@@ -49,7 +49,7 @@
                     <tbody>
                         {{~it.user.withdrawals :withdrawal:index}}
                             <tr>
-                                <td>{{#def.format: {n: withdrawal.amount, decimals: 4 } }}</td>
+                                <td>{{#def.format: {n: withdrawal.amount, decimals: 2 } }}</td>
                                 <td>
                                     <span class="visible-for-small-only">{{=withdrawal.shortDestination}}...</span>
                                     <span class="show-for-medium-up">{{=withdrawal.destination}} </span>
@@ -57,7 +57,7 @@
                                 </td>
                                 <td>
                                     {{?withdrawal.status}}
-                                         <a href="http://nxtportal.org/transactions/{{=withdrawal.status}}" target="_blank">Transfered</a>
+                                         <a href="https://blockchain.info/tx/{{{=withdrawal.status}}" target="_blank">Transfered</a>
                                     {{??}}
                                         in progress
                                     {{?}}
