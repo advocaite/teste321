@@ -2,10 +2,12 @@
 
 define([
     'lib/react',
-    'lib/react-radio'
+    'lib/react-radio',
+    'constants/AppConstants'
 ], function(
     React,
-    ReactRadioClass
+    ReactRadioClass,
+    AppConstants
 ){
 
     var ReactRadio = React.createFactory(ReactRadioClass);
@@ -79,7 +81,7 @@ define([
                 D.div({ className: 'stra-base-bet' },
                     D.span({ className: 'widget-title' }, 'Base Bet: '),
                     D.input({ type: 'text', ref: 'bet_amount', onChange: this.updateBetAmount, value: this.state.baseBet, disabled: this.state.active }),
-                    D.span(null, 'NXT')
+                    D.span(null, AppConstants.Engine.CURRENCY)
                 ),
                 D.div({ className: 'stra-cash-out-at' },
                     D.span({ className: 'widget-title' }, 'Auto Cashout at:'),
@@ -89,7 +91,7 @@ define([
                 D.div({ className: 'stra-max-bet-stop' },
                     D.span({ className: 'widget-title' }, 'Stop if bet is > '),
                     D.input({ type: 'text', ref: 'max_bet_stop', onChange: this.updateMaxBetStop, value: this.state.maxBetStop, disabled: this.state.active }),
-                    D.span(null, 'NXT')
+                    D.span(null, AppConstants.Engine.CURRENCY)
                 ),
                 D.div({ className: 'stra-on-loss' },
                     D.span({ className: 'widget-title' }, 'On loss:'),

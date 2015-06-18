@@ -418,7 +418,7 @@ exports.addGiveaway = function(userId, callback) {
                     return callback({ message: 'NOT_ELIGIBLE', time: eligible});
                 }
 
-                var amount = 2000000; // 0.02 NXT
+                var amount = 200; // 2 Bits
                 client.query('INSERT INTO giveaways(user_id, amount) VALUES($1, $2) ', [userId, amount], function(err) {
                     if (err) return callback(err);
 

@@ -37,8 +37,8 @@
         </ul>
       </div>
       <div class="balance header-el">
-        <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
-        <span class="currency">NXT</span>
+        <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span>
+        <span class="currency">{{#def.CURRENCY}}</span>
       </div>
       <div class="menu header-el">
           <a href="/play">Play</a>

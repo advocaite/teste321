@@ -13,6 +13,7 @@ define([
     'components/BetBar',
     'components/Chat',
     'components/Rocket',
+    'constants/AppConstants',
     'game-logic/engine'
 ], function(
     React,
@@ -23,6 +24,7 @@ define([
     BetBarClass,
     ChatClass,
     RocketClass,
+    AppConstants,
     Engine
 ){
     var D = React.DOM;
@@ -91,7 +93,7 @@ define([
                     D.div.apply(null, divArgs),
                     D.div({id: "game-multiplier", className: 'multiplier'})
                   ),
-                  D.div({ className: 'max-win'}, 'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' NXT')
+                  D.div({ className: 'max-win'}, 'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' ' + AppConstants.Engine.CURRENCY)
                 ),
                 Rocket({ engine: this.state.engine })
               )

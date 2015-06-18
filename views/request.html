@@ -1,4 +1,4 @@
-{{##def.page_title = 'Request Free NXT' #}}
+{{##def.page_title = 'Request Free Bits' #}}
 
 {{##def.content:
 <div class="content row panel radius">
@@ -22,7 +22,7 @@
         <div class="panel">
             <h5>Request Free NXT</h5>
             {{?typeof it.user.eligible !== 'number'}}
-                <p class="small ">**Every minute you are able to request 0.02 free NXT, just claim them!</p>
+                <p class="small ">**Every minute you are able to request 0.02 free {{#def.CURRENCY}}, just claim them!</p>
                 <form class="giveaway-form" action="/request" method="post">
                     <script type="text/javascript">
                         var RecaptchaOptions = {
@@ -54,7 +54,7 @@
                            value="manual_challenge"/>
                 </noscript>
             {{??}}
-                <h4>You will be eligible for free 0.02 NXT in {{=it.user.eligible}} minutes</h4>
+                <h4>You will be eligible for free 0.02 {{#def.CURRENCY}} in {{=it.user.eligible}} minutes</h4>
             {{?}}
         </div>
     </div>
