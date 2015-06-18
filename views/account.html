@@ -52,19 +52,19 @@
                     <div id="statistics" >
                         <div class="columns data large-3">
                             <p><b>Deposits </b></p>
-                            <h5>{{#def.format:{n: it.user.deposits, decimals:4} }} NXT</h5>
+                            <h5>{{#def.format:{n: it.user.deposits, decimals:2} }} {{#def.CURRENCY}}</h5>
                         </div>
                         <div class="columns data large-3">
                             <p><b>Withdrawals </b></p>
-                            <h5>{{#def.format:{n: it.user.withdrawals, decimals:4} }} NXT</h5>
+                            <h5>{{#def.format:{n: it.user.withdrawals, decimals:2} }} {{#def.CURRENCY}}</h5>
                         </div>
                         <div class="columns data large-3">
                             <p><b>Free NXT Collected </b></p>
-                            <h5>{{#def.format:{n: it.user.giveaways, decimals:4} }} NXT</h5>
+                            <h5>{{#def.format:{n: it.user.giveaways, decimals:2} }} {{#def.CURRENCY}}</h5>
                         </div>
                         <div class="columns data large-3">
                             <p><b>Net Profit</b></p>
-                            <h5>{{#def.format:{n: it.user.net_profit, decimals:4} }} NXT</h5>
+                            <h5>{{#def.format:{n: it.user.net_profit, decimals:2} }} {{#def.CURRENCY}}</h5>
                         </div>
                     </div>
                 </div>
@@ -72,11 +72,11 @@
                 <div class="large-12 columns" style="margin-top: 20px;">
                     {{?typeof it.user.eligible !== 'number' }}
                     {{?it.user.balance_satoshis > 100}}
-                    <div class="success bits">You are eligible for free 0.02 NXT <a href="/request">CLICK HERE TO REQUEST
+                    <div class="success bits">You are eligible for free 2 {{#def.CURRENCY}} <a href="/request">CLICK HERE TO REQUEST
                         THEM!</a></div>
                     {{?}}
                     {{??}}
-                    <div class="success bits">You'll be eligible for 0.02 free NXT in {{=it.user.eligible}} minutes</div>
+                    <div class="success bits">You'll be eligible for 2 free {{#def.CURRENCY}} in {{=it.user.eligible}} minutes</div>
                     {{?}}
                 </div>
             </div>
