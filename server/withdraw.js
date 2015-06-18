@@ -1,4 +1,5 @@
 var assert = require('assert');
+var BigNumber = require('bignumber.js');
 var bc = require('./bitcoin_client');
 var db = require('./database');
 var request = require('request');
@@ -25,8 +26,8 @@ module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, cal
 
     assert(fundingId);
 
-    var amountSatoshis = satoshis - constants.FEE;
-    var amountWhole = satoshis / Math.pow(10, 8);
+    var amountSatoshis = new BigNumber(satoshis).minus(constants.FEE).toNumber();
+    var amountWhole = new BigNumber(satoshis).dividedBy(Math.pow(10, 8));
 
     blockio.sendWithdrawal(amountWhole, withdrawalAddress, function(err, hash) {
       if (err) {
