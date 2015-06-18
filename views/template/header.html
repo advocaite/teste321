@@ -40,15 +40,6 @@
         <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
         <span class="currency">NXT</span>
       </div>
-      {{?it.user && it.user.balance_satoshis < 100}}
-        {{?it.user.eligible == true}}
-          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
-        {{??}}
-          <div class="deposit header-el">
-            <a href="/deposit" class="button green">Deposit NXT</a>
-          </div>
-        {{?}}
-      {{?}}
       <div class="menu header-el">
           <a href="/play">Play</a>
           <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
