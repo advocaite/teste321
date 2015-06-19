@@ -133,7 +133,7 @@ define([
                             user.username)),
                         D.td(null, '-'),
                         D.td(null,
-                            user.bet ? Clib.formatSatoshis(user.bet, 2) : '?'
+                            user.bet ? Clib.formatSatoshis(user.bet, 0) : '?'
                         ),
                         D.td({ className: bonusClass }, bonus),
                         D.td(null, '-')
