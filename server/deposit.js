@@ -14,7 +14,7 @@ exports.callback = function(req, res) {
 
   if (!req.body.data) {
     console.log('no req.body.data');
-    return res.status(500).render('error');
+    return res.send('ok');
   }
 
   var body = req.body.data;
