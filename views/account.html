@@ -29,6 +29,7 @@
                         <br/>
                         {{?it.user.deposit_address}}
                             <span>{{=it.user.deposit_address}}</span>
+                            <img class="right" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{=it.user.deposit_address}}&choe=UTF-8"/>
                         {{??}}
                             <a href="/create-deposit-address" class="button green">Create deposit address</a>
                         {{?}}
