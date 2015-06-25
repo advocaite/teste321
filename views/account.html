@@ -54,14 +54,9 @@
 
                 </div>
 
-                <strong style="color: red;">* If you fail to attach this message unencrypted, the deposit can't be added to your account. Be aware that after clicking the "Add message"-Checkbox, that you need to uncheck the "Encrypted Message"-Chechbox.</strong>
             </div>
             <div class="large-6 columns">
-                Transfer NXT, with the unique number attached <strong>unencrypted</strong>, to this address to have your account credited. Accounts
-                are only credited after <b>one NXT confirmation</b>
-                which depending on external factors can take a while. You can check
-                <a href="http://nxtportal.org/accounts/{{=it.user.deposit_address}}">nxtportal.org</a> to see if your
-                transactions have confirmed yet. Deposits take two confirmations, so about four minutes.
+                Transfer bitcoins to this address to have your account credited. Accounts are only credited after one bitcoin confirmation which depending on external factors can take a while. You can check <a href="https://blockchain.info/address/{{=it.user.deposit_address}}">blockchain.info</a> to see if your transactions have confirmed yet.
                 <strong><a href="/faq#deposit">
                     <small>more?</small>
                 </a></strong>
@@ -94,11 +89,11 @@
             <div class="large-12 columns" style="margin-top: 20px;">
                 {{?typeof it.user.eligible !== 'number' }}
                 {{?it.user.balance_satoshis > 100}}
-                <div class="success bits">You are eligible for free 0.02 NXT <a href="/request">CLICK HERE TO REQUEST
+                <div class="success bits">You are eligible for free 2 Bits <a href="/request">CLICK HERE TO REQUEST
                     THEM!</a></div>
                 {{?}}
                 {{??}}
-                <div class="success bits">You'll be eligible for 0.02 free NXT in {{=it.user.eligible}} minutes</div>
+                <div class="success bits">You'll be eligible for 2 free Bits in {{=it.user.eligible}} minutes</div>
                 {{?}}
             </div>
         </div>
