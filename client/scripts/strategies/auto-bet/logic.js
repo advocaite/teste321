@@ -16,13 +16,13 @@ define(['lib/clib'], function(Clib){
 
         return function(engine) {
             //MoneyBot\n\
-            var baseBetSatoshis = settings.baseBet * Math.pow(10,8);
+            var baseBetSatoshis = settings.baseBet * 100;
             var currentBet = baseBetSatoshis;
 
             var onLossIncreaseQty = Number(settings.onLossIncreaseQty);
             var onWinIncreaseQty = Number(settings.onWinIncreaseQty);
             var autoCashAt = Number(settings.autoCashAt);
-            var maxBetStop = Number(settings.maxBetStop) * Math.pow(10,8);
+            var maxBetStop = Number(settings.maxBetStop) * 100;
 
             console.assert(Clib.isNumber(autoCashAt));
 
@@ -45,7 +45,7 @@ define(['lib/clib'], function(Clib){
                     }
                 }
 
-                var fixedCurrentBet = (currentBet / Math.pow(10,8)) * Math.pow(10,8);
+                var fixedCurrentBet = (currentBet / 100) * 100;
 
                 if(fixedCurrentBet > 0 && fixedCurrentBet <= engine.getBalance() && fixedCurrentBet <= engine.getMaxBet() && fixedCurrentBet <= maxBetStop) {
                     engine.placeBet(fixedCurrentBet, Math.round(autoCashAt * 100), false);

@@ -3,7 +3,7 @@
 
             <div class="title">
                 <a href="/">
-                    <h1 class="hide-for-small-only">NXT ToTheMoon!</h1>
+                    <h1 class="hide-for-small-only">BTC ToTheMoon!</h1>
                 </a>
             </div>
 
@@ -15,27 +15,25 @@
 
             <div class="show-for-small-up user-login">
             {{?it.user}}
-                <div class="balance-bits">NXT: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span></div>
+                <div class="balance-bits">Bits: <span id="balance_bits">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span></div>
                 <div class="username"><a href="/account">{{=it.user.username}}</a></div>
                 <a href="/play">Play</a>
-                <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
                 <a href="/request">Faucet</a>
                 <a href="/weekly-leaderboard">Promotion</a>
                 <a href="/leaderboard">Leaderboard</a>
                 <a href="/stats">Stats</a>
                 <a href="/faq">FAQ   </a>
-                <a href="https://nxt.tothemoon.me/play" style="
+                <a href="https://btc.tothemoon.me/play" style="
                   color: orange;
                   border: 2px solid grey;
                   padding: 5px;">Switch Design</a>                
             {{??}}
                 <a href="/play">Play</a>
-                <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
                 <a href="/weekly-leaderboard">Promotion</a>
                 <a href="/leaderboard">Leaderboard</a>
                 <a href="/stats">Stats</a>
                 <a href="/faq">FAQ</a>
-                <a href="https://nxt.tothemoon.me/play" style="
+                <a href="https://btc.tothemoon.me/play" style="
                   color: orange;
                   border: 2px solid grey;
                   padding: 5px;">Switch Design</a>                

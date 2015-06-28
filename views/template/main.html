@@ -1,4 +1,4 @@
-{{##def.format:param:{{=(param.n/Math.pow(10,8)).toFixed(param.decimals).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
+{{##def.format:param:{{=(param.n/100).toFixed(param.decimals).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
 
 <!DOCTYPE html>
 <html>
@@ -21,13 +21,13 @@
             </div>
         {{??it.user.advice == 'new'}}
         <div class="success">
-            Welcome to NXTBubble.com, to start you can have 0.02 free NXT, NXT
+            Welcome to ToTheMoon.com, to start you can have 2 free Bits
             <a href="/request">you can request them here</a> or you can just watch the current games... have fun :D
 
         </div>
         {{??it.user.advice == 'received'}}
         <div class="success">
-            Congratulations you have been credited 0.02 free NXT. Have fun!
+            Congratulations you have been credited 2 free Bits. Have fun!
         </div>
         {{?? it.user.advice}}
         <div class="success">
@@ -35,7 +35,7 @@
         </div>
         {{??it.user && it.user.balance_satoshis < 100 }}
             {{?it.user.eligible == true}}
-                <div class="success"><a href="/request">Collect your 0.02 free NXT!</a></div>
+                <div class="success"><a href="/request">Collect your 2 free Bits!</a></div>
             {{?}}
         {{?}}
 

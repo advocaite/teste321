@@ -4,7 +4,7 @@
     <div class="row panel radius">
         <h4>Game #<strong>{{=it.game.id}}</strong> information</h4>
         <p>
-            <b>Busted At: </b> {{#def.format: { n: it.game.game_crash * 1e6, decimals: 2 } }}x
+            <b>Busted At: </b> {{#def.format: { n: it.game.game_crash, decimals: 2 } }}x
         </p>
         <p>
             <b>Played: </b>{{=it.game.created}} <small>{{=it.game.timeago}}</small>
@@ -33,24 +33,24 @@
                         </strong>
                     </td>
                     <td>
-                        {{#def.format: { n: play.bet, decimals: 2 } }} NXT
+                        {{#def.format: { n: play.bet, decimals: 2 } }} Bits
                     </td>
                     <td>
                         {{? play.cash_out}}
-                        {{#def.format: {n: play.cash_out / play.bet * Math.pow(10,8), decimals: 4} }}x
+                        {{#def.format: {n: play.cash_out / play.bet * 100, decimals: 2} }}x
                         {{??}}
                         Lose
                         {{?}}
                     </td>
                     <td>
                         {{? play.bonus }}
-                           {{#def.format: {n: play.bonus/play.bet* 100 * Math.pow(10,8), decimals: 2} }}%
+                           {{#def.format: {n: play.bonus/play.bet * 100 * 100, decimals: 2} }}%
                         {{??}}
                           -
                         {{?}}
                     </td>
                     <td>
-                        {{#def.format: { n: (play.cash_out ? play.cash_out : 0) - play.bet + ( play.bonus ? play.bonus : 0) , decimals: 4 } }}
+                        {{#def.format: { n: (play.cash_out ? play.cash_out : 0) - play.bet + ( play.bonus ? play.bonus : 0) , decimals: 2 } }}
                         NXT
                     </td>
                 </tr>

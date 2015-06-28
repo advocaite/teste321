@@ -26,7 +26,7 @@ define([
 
         var options = {};
 
-        if (window.document.location.host.indexOf('nxt-old.tothemoon.me') !== -1) {
+        if (window.document.location.host.indexOf('btc-old.tothemoon.me') !== -1) {
             options.path =  '/game/socket.io';
         }
 
