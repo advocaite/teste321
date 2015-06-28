@@ -36,6 +36,14 @@
           <li><a href="#" onclick="logout();">Logout</a></li>
         </ul>
       </div>
+      <div class="account header-el dropdown-mode">
+        <a href="#">Change currency</a>
+        <span class="caret"></span>
+        <ul class="dropdown">
+          <li><a href="https://btc.tothemoon.me">BTC</a></li>
+          <li><a href="https://nxt.tothemoon.me">NXT</a></li>
+        </ul>
+      </div>
       <div class="balance header-el">
         <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span>
         <span class="currency">{{#def.CURRENCY}}</span>
