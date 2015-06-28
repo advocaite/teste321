@@ -56,7 +56,7 @@
                     <tbody>
                         {{~it.user.withdrawals :withdrawal:index}}
                             <tr>
-                                <td>{{#def.format: {n: withdrawal.amount, decimals: 4 } }}</td>
+                                <td>{{#def.format: {n: withdrawal.amount, decimals: 2 } }}</td>
                                 <td>
                                     <span class="visible-for-small-only">{{=withdrawal.shortDestination}}...</span>
                                     <span class="show-for-medium-up">{{=withdrawal.destination}} </span>
