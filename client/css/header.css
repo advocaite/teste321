@@ -134,6 +134,7 @@
     position: absolute;
     width: 100px;
     border: 2px solid grey;
+    background-color: white;
 }
 
 .currencies ul {
