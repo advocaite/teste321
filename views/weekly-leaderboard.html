@@ -30,6 +30,7 @@
         <tbody>
 
             {{~it.net_leaders :leader:index}}
+            {{?leader.net_profit > 0}}
                 <tr>
                     <td>
                         {{=leader.net_rank}}
@@ -58,6 +59,7 @@
                         {{?}}
                     </td>
                 </tr>
+            {{?}}
             {{~}}
 
         </tbody>
@@ -96,19 +98,9 @@
                         {{#def.format: { n: leader.wagered, decimals: 0 } }} Bits
                     </td>
                     <td>
-                        {{?leader.wagered_rank == 1 }}
-                            100000 Bits *
-                        {{?}}
+                        {{#def.format: { n: ((16 - leader.wagered_rank) * 0.0001 * leader.wagered), decimals: 0 } }} Bits
 
-                        {{?leader.wagered_rank == 2 }}
-                            60000 Bits *
-                        {{?}}
-
-                        {{?leader.wagered_rank == 3 }}
-                            40000 Bits *
-                        {{?}}
-
-                        {{?leader.wagered_rank == 4 || leader.wagered_rank == 5}}
+                        {{?leader.wagered_rank > 15}}
                             -
                         {{?}}
                     </td>
