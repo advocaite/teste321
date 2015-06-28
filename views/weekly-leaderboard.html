@@ -96,19 +96,9 @@
                         {{#def.format: { n: leader.wagered, decimals: 0 } }} {{#def.CURRENCY}}
                     </td>
                     <td>
-                        {{?leader.wagered_rank == 1 }}
-                            100000 {{#def.CURRENCY}} *
-                        {{?}}
+                        {{#def.format: { n: ((16 - leader.wagered_rank) * 0.0001 * leader.wagered), decimals: 0 } }} Bits
 
-                        {{?leader.wagered_rank == 2 }}
-                            60000 {{#def.CURRENCY}} *
-                        {{?}}
-
-                        {{?leader.wagered_rank == 3 }}
-                            40000 {{#def.CURRENCY}} *
-                        {{?}}
-
-                        {{?leader.wagered_rank == 4 || leader.wagered_rank == 5}}
+                        {{?leader.wagered_rank > 15}}
                             -
                         {{?}}
                     </td>
