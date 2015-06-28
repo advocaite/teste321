@@ -93,7 +93,7 @@ define([
                     D.div.apply(null, divArgs),
                     D.div({id: "game-multiplier", className: 'multiplier'})
                   ),
-                  D.div({ className: 'max-win'}, 'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' ' + AppConstants.Engine.CURRENCY)
+                  D.div({ className: 'max-win'}, 'Max profit: ', (this.state.engine.maxWin/1e8).toFixed(2), ' BTC')
                 ),
                 Rocket({ engine: this.state.engine })
               )
