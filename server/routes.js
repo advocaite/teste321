@@ -8,7 +8,6 @@ var sendEmail = require('./sendEmail');
 var stats = require('./stats');
 var deposit = require('./deposit');
 
-
 function staticPageLogged(page, loggedGoTo) {
 
     return function(req, res) {
@@ -91,7 +90,7 @@ function error(req, res, next) {
 
 module.exports = function(app) {
 
-    app.get('/', staticPageLogged('index'));
+    app.get('/', stats.index);
     app.get('/register', staticPageLogged('register', '/play'));
     app.get('/login', staticPageLogged('login', '/play'));
     app.get('/reset/:recoverId', user.resetForm);
@@ -135,6 +134,8 @@ module.exports = function(app) {
     app.post('/login', user.login);
     app.post('/register', user.register);
 
+    app.get('/create-deposit-address', restrict, user.createDepositAddress);
+
     app.post('/ott', restrict, function(req, res, next) {
         var user = req.user;
         assert(user);
@@ -147,7 +148,7 @@ module.exports = function(app) {
             res.send(token);
         });
     });
-    app.get('/stats', stats.index);
+    app.get('/stats', stats.stats);
 
     app.get('/terms-conditions', staticPageLogged('terms'));
 

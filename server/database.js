@@ -165,6 +165,16 @@ exports.updateMfa = function(userId, secret, callback) {
     query('UPDATE users SET mfa_secret = $1 WHERE id = $2', [secret, userId], callback);
 };
 
+exports.updateDepositAddress = function(userId, depositAddress, callback) {
+    assert(userId && depositAddress && callback);
+
+    query('UPDATE users SET deposit_address = $1 WHERE id = $2', [depositAddress, userId], function(err, res) {
+        if (err) return callback(err);
+        assert(res.rowCount === 1);
+        callback(null);
+    });
+};
+
 // Possible errors:
 //   NO_USER, WRONG_PASSWORD, INVALID_OTP
 exports.validateUser = function(username, password, otp, callback) {
@@ -246,6 +256,23 @@ exports.getUserFromUsername = function(username, callback) {
     assert(username && callback);
 
     query('SELECT * FROM users_view WHERE lower(username) = lower($1)', [username], function(err, data) {
+        if (err) return callback(err);
+
+        if (data.rows.length === 0)
+            return callback('NO_USER');
+
+        assert(data.rows.length === 1);
+        var user = data.rows[0];
+        assert(typeof user.balance_satoshis === 'number');
+
+        callback(null, user);
+    });
+};
+
+exports.getUserFromDepositAddress = function(depositAddress, callback) {
+    assert(depositAddress && callback);
+
+    query('SELECT * FROM users_view WHERE deposit_address = $1', [depositAddress], function(err, data) {
         if (err) return callback(err);
 
         if (data.rows.length === 0)
@@ -391,7 +418,7 @@ exports.addGiveaway = function(userId, callback) {
                     return callback({ message: 'NOT_ELIGIBLE', time: eligible});
                 }
 
-                var amount = 2000000; // 0.02 NXT
+                var amount = 200; // 2 Bits
                 client.query('INSERT INTO giveaways(user_id, amount) VALUES($1, $2) ', [userId, amount], function(err) {
                     if (err) return callback(err);
 
