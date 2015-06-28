@@ -31,7 +31,7 @@ module.exports = function(userId, satoshis, withdrawalAddress, withdrawalId, cal
 
     blockio.sendWithdrawal(amountWhole, withdrawalAddress, function(err, hash) {
       if (err) {
-        db.reverseWithdrawal(userId, amountSatoshis, fundingId, function(err, result) {
+        db.reverseWithdrawal(userId, satoshis, fundingId, function(err, result) {
           return callback('HOT_WALLET_ERROR');
         });
       } else {
