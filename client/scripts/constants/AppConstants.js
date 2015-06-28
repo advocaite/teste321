@@ -2,7 +2,7 @@ define(['lib/key-mirror'], function(KeyMirror){
 
     var host = '';
 
-    if (window.document.location.host.indexOf('btc.tothemoon.me') !== -1)  {
+    if (window.document.location.host.indexOf('btc-old.tothemoon.me') !== -1)  {
         host = 'https://btc.tothemoon.me/game';
     } else {
         host = window.location.hostname + ':3842';
