@@ -82,7 +82,7 @@ define([
                     }
 
                     profit = Clib.formatSatoshis(profit);
-                    bet = Clib.formatSatoshis(bet, 2);
+                    bet = Clib.formatSatoshis(bet, 0);
 
                     //If we didn't play
                 } else {
