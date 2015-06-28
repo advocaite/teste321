@@ -7,66 +7,6 @@
     &nbsp;
     <a href="/weekly-leaderboard?year={{=it.nextYear}}&week={{=it.nextWeek}}">Next &#xbb;</a>
     <hr>
-
-    <h6>Top Profit</h6>
-
-    <table class="leaders">
-        <thead>
-            <tr>
-                <td>
-                    Rank
-                </td>
-                <td>
-                    Player
-                </td>
-                <td class="ldb-net">
-                      Net Profit
-                </td>
-                <td>
-                    Prize
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-
-            {{~it.net_leaders :leader:index}}
-            {{?leader.net_profit > 0}}
-                <tr>
-                    <td>
-                        {{=leader.net_rank}}
-                    </td>
-                    <td>
-                        <a href="/user/{{=leader.username}}">{{=leader.username}}</a>
-                    </td>
-                    <td>
-                        {{#def.format: { n: leader.net_profit, decimals: 0 } }} Bits
-                    </td>
-                    <td>
-                        {{?leader.net_rank == 1 }}
-                            50000 Bits *
-                        {{?}}
-
-                        {{?leader.net_rank == 2 }}
-                            30000 Bits *
-                        {{?}}
-
-                        {{?leader.net_rank == 3 }}
-                            20000 Bits *
-                        {{?}}
-
-                        {{?leader.net_rank == 4 || leader.net_rank == 5}}
-                            -
-                        {{?}}
-                    </td>
-                </tr>
-            {{?}}
-            {{~}}
-
-        </tbody>
-    </table>
-
-    <h6>Top Wagered</h6>
-
     <table class="leaders">
         <thead>
             <tr>
