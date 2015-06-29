@@ -34,7 +34,7 @@ define(['lib/react', 'lib/clib'], function(React, Clib) {
         },
 
         render: function() {
-            return D.span(null, Clib.formatSatoshis(this.state.payout, 4));
+            return D.span(null, Clib.formatSatoshis(this.state.payout, 2));
         }
     });
 
