@@ -214,8 +214,8 @@ define([
                 D.input({
                     type: 'text',
                     name: 'bet-size',
-                    min: 0.01,
-                    step: 0.01,
+                    min: 1,
+                    step: 1,
                     type: 'number',
                     value: self.state.betSize,
                     onChange: function (e) {
@@ -230,7 +230,7 @@ define([
                 D.div({ className: 'auto-cash-out-span' }, 'Auto Cash Out @ '),
                 D.input({
                     min: 1,
-                    step: 0.01,
+                    step: 1,
                     value: self.state.cashOut,
                     type: 'number',
                     name: 'cash-out',
