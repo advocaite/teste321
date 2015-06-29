@@ -129,7 +129,7 @@ define([
                 return co.message;
 
             if (self.state.engine.balanceSatoshis < bet * Math.pow(10, 8))
-                return 'Not enough Bits';
+                return 'Not enough NXT';
 
             return null;
         },
