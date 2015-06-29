@@ -661,13 +661,13 @@ exports.getWeeklyLeaderBoards = function(year, week, callback) {
     async.parallel({
       net: function (done) {
         var sql = 'SELECT * FROM weekly_leaderboard WHERE year = $1 AND week = $2 ' +
-        'ORDER BY net_rank ASC LIMIT 5';
+        'ORDER BY net_rank ASC LIMIT 20';
 
         query(sql, [year, week], done);
       },
       wagered: function (done) {
         var sql = 'SELECT * FROM weekly_leaderboard WHERE year = $1 AND week = $2 ' +
-        'ORDER BY wagered_rank ASC LIMIT 5';
+        'ORDER BY wagered_rank ASC LIMIT 20';
 
         query(sql, [year, week], done);
       }
