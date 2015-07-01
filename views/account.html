@@ -48,6 +48,7 @@
                         {{?it.user.deposit_address}}
                             <span>{{=it.user.deposit_address}}</span>
                             <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{=it.user.deposit_address}}&choe=UTF-8"/>
+                            <script>function shapeshift_click(a,e){e.preventDefault();var link=a.href;window.open(link,'1418115287605','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=0,left=0,top=0');return false;}</script> <a onclick="shapeshift_click(this, event);" href="https://shapeshift.io/shifty.html?destination={{=it.user.deposit_address}}&amp;apiKey=9cd5bdd358986f50b84dd23bc89dd15fdccc510ac0a67e4d30a849b2a9b2cc22028c3b67d74032e6e1c2890329dccd25b9367a31a06934be931f4dc37de40fa8"><img src="https://shapeshift.io/images/shifty/large_dark_ss.png" class="ss-button"></a>
                         {{??}}
                             <a href="/create-deposit-address" class="button green">Create deposit address</a>
                         {{?}}
