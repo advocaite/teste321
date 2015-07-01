@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         {{?leader.wagered_rank <= 15}}
-                            {{#def.format: { n: ((16 - leader.wagered_rank) * 0.0001 * leader.wagered), decimals: 0 } }} NXT
+                            {{#def.format: { n: ((16 - leader.wagered_rank) * 0.0001 * leader.wagered), decimals: 0 } }} NXT  <strong>({{#def.format: { n: ((16-leader.wagered_rank)), decimals: 2} }}%)</strong>
                         {{?}}
                         {{?leader.wagered_rank > 15}}
                             -
