@@ -1,4 +1,4 @@
-{{##def.format:param:{{=(param.n/100).toFixed(param.decimals).toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
+{{##def.format:param:{{=(param.n/100).toFixed(2).toString().replace(/(\d)(?:(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,")}}#}}
 
 <!DOCTYPE html>
 <html>
