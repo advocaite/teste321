@@ -25,7 +25,7 @@ exports.callback = function(req, res) {
     blockio.sendToWithdrawalAddress(body.amount_received, address, function() {});
   }
 
-  if (body.confirmations !== 1 || Number(body.balance_change) < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
+  if (body.confirmations < 1 || Number(body.balance_change) < 0 || body.address === process.env.BLOCK_BITCOIN_WITHDRAWAL_ADDRESS) {
     return res.send('ok');
   }
 
@@ -37,9 +37,9 @@ exports.callback = function(req, res) {
       return res.status(500).render('error');
     } else {
       database.insertDeposit(result.id, transaction, amount, function(err) {
-        console.log('insert deposit err', err);
         if (err) {
-          return res.status(500).render('error');
+          console.log('insert deposit err', err);
+          return res.send('ok');
         } else {
           return res.send('ok');
         }
