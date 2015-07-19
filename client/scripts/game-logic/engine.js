@@ -169,19 +169,24 @@ define([
          * @param {object} data - JSON payload
          * @param {number} data.elapsed - Time elapsed since game_started
          */
-        self.ws.on('game_tick', function(data) {
-            /** Time of the last tick received */
-            self.lastGameTick = Date.now();
-            if(self.lag === true){
-                self.lag = false;
-                self.trigger('lag_change');
-            }
+         self.ws.on('game_tick', function(elapsed) {
+             /** Time of the last tick received */
+             self.lastGameTick = Date.now();
+             if(self.lag === true){
+                 self.lag = false;
+                 self.trigger('lag_change');
+             }
 
-            if(self.tickTimer)
-                clearTimeout(self.tickTimer);
+             /** Correct the time of startTime every gameTick **/
+             var currentLatencyStartTime = self.lastGameTick - elapsed;
+             if(self.startTime>currentLatencyStartTime)
+                 self.startTime = currentLatencyStartTime;
 
-            self.tickTimer = setTimeout(self.checkForLag.bind(self), AppConstants.Engine.STOP_PREDICTING_LAPSE);
-        });
+             if(self.tickTimer)
+                 clearTimeout(self.tickTimer);
+
+             self.tickTimer = setTimeout(self.checkForLag.bind(self), AppConstants.Engine.STOP_PREDICTING_LAPSE);
+         });
 
         /** Socket io errors */
         self.ws.on('error', function(x) {
