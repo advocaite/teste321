@@ -57,6 +57,7 @@
 
 .top-bar-section li a.green {
     background-color: #33ac0e !important;
+    border-bottom: 1px solid #1f6708 !important;
 }
 
 .top-bar-section li a.green:hover {
@@ -66,11 +67,21 @@
 
 .top-bar-section li a.grey {
     background-color: #88909a !important;
+    border-bottom: 1px solid #50565e !important;
 }
 
 .top-bar-section li a.grey:hover {
     background-color: #2285a2 !important;
     color: #fff !important;
+}
+
+.top-bar-section li.action {
+    margin-left: 8px;
+}
+
+.top-bar-section li.action:last-child {
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .top-bar .name .coin {
