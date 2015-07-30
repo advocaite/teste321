@@ -97,11 +97,11 @@
                     <b>If you lose your two-factor authentication codes you may be permanently locked out of your account. Ensure you backup
                         your 2FA application, or save this QR code or secret. Do not enable 2FA unless you are sure you have a safe copy of this information</b>
                 </p>
-                <div class="column medium-6">
+                <div class="column medium-4">
                     {{=it.user.qr_svg}}
                     <small>Secret: {{=it.user.mfa_potential_secret}}</small>
                 </div>
-                <form class="column medium-6" action="/enable-2fa" method="post">
+                <form class="column medium-8" action="/enable-2fa" method="post">
                     <label>2FA Code
                         <input type="hidden" name="mfa_potential_secret" value="{{=it.user.mfa_potential_secret}}" />
                         <input type="hidden" name="sig" value="{{=it.user.sig}}" />

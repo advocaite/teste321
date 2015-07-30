@@ -1,7 +1,8 @@
 @import 'normalize.css';
-@import 'header.css';
 @import 'chat.css';
 @import 'foundation.min.css';
+@import 'header.css';
+
 @font-face {
   font-family: ubuntu_monobold;
   font-style: normal;
@@ -194,7 +195,6 @@ textarea:focus {
   box-shadow: 0 0 0 1px rgba(247,148,31,0.2), inset 0 1px 1px 0 rgba(0,0,0,0.1);
 }
 .wrapper {
-  position: absolute;
   bottom: 0;
   width: 100%;
   top: 54px;
@@ -226,16 +226,6 @@ textarea:focus {
   top: 0;
   bottom: 0;
 }
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-nav ul li {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
 .button {
   background-color: #88909a;
   -webkit-border-radius: 5px;
@@ -259,7 +249,6 @@ nav ul li {
   text-transform: uppercase;
   font-size: 13px;
   height: 30px;
-  line-height: 30px;
   text-align: center;
   display: inline-block;
 }
@@ -12659,7 +12648,7 @@ nav ul li {
   height: 100%;
   position: relative;
 }
-.history {
+div.history {
   position: absolute;
   top: 30px;
   bottom: 0;
@@ -12672,7 +12661,7 @@ nav ul li {
   border-radius: 3px;
 }
 .players-container,
-.history {
+div.history {
   background: #181a1e;
   -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.4);
   box-shadow: 0 2px 0 rgba(0,0,0,0.1), 0 1px 1px rgba(0,0,0,0.4);
@@ -12684,7 +12673,7 @@ nav ul li {
   padding-top: 30px;
 }
 .players-container .header-bg,
-.history .header-bg {
+div.history .header-bg {
   height: 30px;
   right: 0;
   left: 0;
@@ -12693,18 +12682,18 @@ nav ul li {
   background: #292d35 url("/img/header-bg.png");
 }
 .players-container .table-inner,
-.history .table-inner {
+div.history .table-inner {
   overflow-y: auto;
   height: 100%;
 }
 .players-container table,
-.history table {
+div.history table {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .players-container table .th-inner,
-.history table .th-inner {
+div.history table .th-inner {
   position: absolute;
   top: 0;
   line-height: 30px;
@@ -12724,38 +12713,38 @@ nav ul li {
   font-size: 0.8em;
 }
 .players-container table th:first-child .th-inner,
-.history table th:first-child .th-inner {
+div.history table th:first-child .th-inner {
   -webkit-box-shadow: none;
   box-shadow: none;
   border: 0;
 }
 .players-container table th,
-.history table th {
+div.history table th {
   text-align: left;
   padding: 0 10px;
 }
 .players-container table td,
-.history table td {
+div.history table td {
   padding: 6px 10px;
 }
 .players-container table tr:nth-child(odd) td,
-.history table tr:nth-child(odd) td {
+div.history table tr:nth-child(odd) td {
   background: #1a1c21;
 }
 .players-container table .user-playing,
-.history table .user-playing {
+div.history table .user-playing {
   color: #e58929;
   text-shadow: 0 0 5px #c16e17;
 }
 .players-container table .user-cashed,
-.history table .user-cashed,
+div.history table .user-cashed,
 .players-container table .user-won,
-.history table .user-won {
+div.history table .user-won {
   color: #33ac0e;
   text-shadow: 0 0 5px #298a0b;
 }
 .players-container table .user-lost,
-.history table .user-lost {
+div.history table .user-lost {
   color: #f71f1f;
   text-shadow: 0 0 5px #d70808;
 }
