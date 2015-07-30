@@ -1,102 +1,67 @@
 <script type="text/javascript">
-  function logout() {
-    if (document.getElementById('logout') ) {
-      if (confirm("Are you sure you want to log out?")) {
-        document.getElementById("logout").submit();
-      }
+function logout() {
+    if (document.getElementById('logout')) {
+        if (confirm("Are you sure you want to log out?")) {
+            document.getElementById("logout").submit();
+        }
     }
-  }
+}
 </script>
-<header class="header">
-<form action="/logout" method="post" id='logout'></form>
-    <div class="logo">
-        <a href="/", title="NXTBubble">
-            <span class="coin"></span>
-            <h1>
-                NXTBubble
-            </h1>
-        </a>
-    </div>
-
-    {{?it.amount}}
-    <div class="table-title">
-        <h2> {{=it.amount/100}} Bit Table </h2>
-    </div>
-    {{?}}
-
-    {{?it.user}}
-      <div class="account header-el dropdown-mode">
-        <a href="/account">{{=it.user.username}}</a>
-        <span class="caret"></span>
-        <ul class="dropdown">
-          <li><a href="/account">Account</a></li>
-          <li><a href="/deposit">Deposit</a></li>
-          <li><a href="/withdraw">Withdraw</a></li>
-          <li><a href="/support">Support</a></li>
-          <li><a href="#" onclick="logout();">Logout</a></li>
+<header>
+    <form action="/logout" method="post" id='logout'></form>
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <span class="coin"></span>
+                <h1><a href="/">NXT.ToTheMoon.me</a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
-      </div>
-      <div class="account header-el dropdown-mode">
-        <a href="#">Currency</a>
-        <span class="caret"></span>
-        <ul class="dropdown">
-          <li><a href="https://btc.tothemoon.me">BTC</a></li>
-          <li><a href="https://nxt.tothemoon.me">NXT</a></li>
-        </ul>
-      </div>
-      <div class="balance header-el">
-        <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
-        <span class="currency">NXT</span>
-      </div>
-      {{?it.user && it.user.balance_satoshis < 100}}
-        {{?it.user.eligible == true}}
-          <div class="header-el"><a href="/request" class="button green">Collect your free NXT</a></div>
-        {{??}}
-          <div class="deposit header-el">
-            <a href="/deposit" class="button green">Deposit NXT</a>
-          </div>
-        {{?}}
-      {{?}}
-      <div class="menu header-el">
-          <a href="/play">Play</a>
-          <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
-          <a href="/request">Faucet</a>
-          <a href="/weekly-leaderboard">Promotion</a>
-          <a href="/leaderboard">Leaderboard</a>
-          <a href="https://nxt-old.tothemoon.me/play" style="
-            color: orange;
-            border: 2px solid grey;
-            padding: 5px;">Switch Design</a>
-      </div>
-
-      {{?it.user.admin}}
-        <div><a class="username header-el button" href="/admin-giveaway">admin</a></div>
-      {{?}}
-    {{??}}
-      <nav>
-        <ul class="auth">
-          <li><a href="/register" class="button green">Register</a></li>
-          <li><a href="/login" class="button">Login</a></li>
-        </ul>
-        <div class="account header-el dropdown-mode">
-          <a href="#">Currency</a>
-          <span class="caret"></span>
-          <ul class="dropdown">
-            <li><a href="https://btc.tothemoon.me">BTC</a></li>
-            <li><a href="https://nxt.tothemoon.me">NXT</a></li>
-          </ul>
-        </div>
-        <div class="menu header-el">
-          <a href="/play">Play</a>
-          <a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a>
-          <a href="/request">Faucet</a>
-          <a href="/weekly-leaderboard">Promotion</a>
-          <a href="/leaderboard">Leaderboard</a>
-          <a href="https://nxt-old.tothemoon.me/play" style="
-            color: orange;
-            border: 2px solid grey;
-            padding: 5px;">Switch Design</a>          
-      </div>
-      </nav>
-    {{?}}
+        <section class="top-bar-section">
+            <ul class="right">
+                <li><a href="/play">Play</a></li>
+                <li><a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a></li>
+                <li><a href="/request">Faucet</a></li>
+                <li><a href="/weekly-leaderboard">Promotion</a></li>
+                <li><a href="https://nxt-old.tothemoon.me/play">Switch design</a></li>
+                {{?it.user}}
+                <div class="balance header-el show-for-large-up">
+                    <a href="/account">
+                        <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
+                    </a>
+                    <span class="currency">NXT</span>
+                </div>
+                <li class="hide-for-large-up">
+                    <a href="/account">
+                        <span>{{#def.format:{n: it.user.balance_satoshis, decimals:4} }}</span>
+                        <span>NXT</span>
+                    </a>
+                </li>
+                {{?}}
+                <li class="has-dropdown">
+                    <a href="#">Currency</a>
+                    <ul class="dropdown">
+                        <li><a href="https://btc.tothemoon.me/">BTC</a></li>
+                        <li><a href="https://nxt.tothemoon.me/">NXT</a></li>
+                    </ul>
+                </li>
+                {{?it.user}}
+                <li class="has-dropdown">
+                    <a href="#">{{=it.user.username}}</a>
+                    <ul class="dropdown">
+                        <li><a href="/account">Account</a></li>
+                        <li><a href="/deposit">Deposit</a></li>
+                        <li><a href="/withdraw">Withdraw</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="#" onclick="logout();">Logout</a></li>
+                    </ul>
+                </li>
+                {{??}}
+                <li class="menu-action"><a href="/register" class="moon-button button green">Register</a></li>
+                <li class="menu-action"><a href="/login" class="moon-button button grey">Login</a></li>
+                {{?}}
+            </ul>
+        </section>
+    </nav>
 </header>
