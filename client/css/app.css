@@ -564,6 +564,17 @@ hr {
     display: inline-block;
 }
 
+.footer a {
+    color: #fff;
+}
+
+@media only screen and (max-width: 58.75em) {
+    .footer nav ul li {
+        display: block;
+        margin-top: 8px;
+    }
+}
+
 .footer nav ul {
     margin: 0;
     padding: 0;
@@ -13704,10 +13715,6 @@ body {
 
 .footer li {
     margin-left: 15px;
-}
-
-.footer a {
-    color: #fff;
 }
 
 .auth-con {
