@@ -486,12 +486,6 @@ hr {
   position: relative;
   float: left;
 }
-.large-3 {
-  width: 25%;
-}
-.large-9 {
-  width: 75%;
-}
 .faq-nav li a {
   padding: 1px;
   margin: 0;
