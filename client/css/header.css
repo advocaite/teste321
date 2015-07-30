@@ -24,47 +24,46 @@
   margin: 12px;
 }
 .header-el {
-  float: right;
-  margin: 12px 6px;
+  float: left;
+  margin: 8px;
 }
 
-.logo h1 {
+@media only screen and (max-width: 58.75em) {
+  .header-el {
+    float: none;
+    margin: 8px;
+  }
+}
+
+.top-bar .name h1 {
   float: left;
   height: 30px;
-  overflow: hidden;
-  margin: 16px 12px 12px 4px;
-  text-indent: -999px;
   width: 200px;
+  overflow: hidden;
+  text-indent: -999px;
+  margin: 8px;
   background-image: url("/img/tothemoon-logo.png");
 }
+.top-bar .name h1 a {
+  width: 100%;
+}
 
-.logo .coin {
+.top-bar-section li a.green {
+  background-color: #33ac0e !important;
+}
+.top-bar-section li a.grey {
+  background-color: #88909a !important;
+}
+
+.top-bar .name .coin {
   float: left;
-  margin: 12px 0 12px 12px ;
   width: 36px;
   height: 36px;
   overflow: hidden;
+  margin: 4px;
   background-image: url("/img/balance-icon.png");
 }
 
-h1.logo {
-  color: green;
-  font-weight: bold;
-  font-style: inherit;
-  font-size: 2em;
-}
-@media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
-  .logo {
-    background-image: url("/img/tothemoon-logo@2x.png");
-    -webkit-background-size: 200px 30px;
-    -moz-background-size: 200px 30px;
-    background-size: 200px 30px;
-  }
-}
-.logo a {
-  display: block;
-  color: white;
-}
 .balance {
   margin-left: 30px;
   background: #1c1e25;
@@ -90,6 +89,15 @@ h1.logo {
   left: -18px;
   top: -3px;
 }
+
+.balance .amount {
+  color: #fff;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover, .balance .amount:hover {
+  color: #c87629;
+}
+
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
   .balance:before {
     background-image: url("/img/balance-icon@2x.png");
@@ -107,83 +115,4 @@ h1.logo {
   font-size: 13px;
   margin-left: 5px;
   color: #bbbcbd;
-}
-.account {
-  background-color: #1c1e25;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.15));
-  background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.15));
-  background-image: -o-linear-gradient(transparent, rgba(0,0,0,0.15));
-  background-image: -ms-linear-gradient(transparent, rgba(0,0,0,0.15));
-  background-image: linear-gradient(transparent, rgba(0,0,0,0.15));
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-weight: 600;
-  border: 0;
-  text-transform: uppercase;
-  font-size: 13px;
-  height: 30px;
-  line-height: 30px;
-  display: block;
-  text-align: right;
-  min-width: 120px;
-  padding: 0 15px;
-  margin-right: 12px;
-}
-.account a {
-  color: white;
-}
-.account > a {
-  float: left;
-}
-.account:hover {
-  -webkit-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
-}
-.account:hover .caret {
-  border-top-color: #fff;
-}
-.account .caret {
-  border-top-color: #b0b3c1;
-  text-align: right;
-}
-.account .dropdown {
-  left: 0;
-  background: #1a1d22;
-  -webkit-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
-  overflow: hidden;
-  list-style: none;
-}
-.account .dropdown li {
-  display: block;
-  float: none;
-  color: rgba(255,255,255,0.8);
-}
-.account .dropdown li:hover {
-  color: #fff;
-  background: #17191d;
-}
-.account .dropdown li a {
-  border-top: 1px solid rgba(255,255,255,0.03);
-  padding: 0 15px;
-  height: 30px;
-  line-height: 30px;
-  display: block;
-  font-size: 13px;
-  font-weight: normal;
-}
-
-.menu a {
-  color: white;
-  border-top: 1px solid rgba(255,255,255,0.03);
-  padding: 0 15px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 15px;
-  font-weight: bold;
 }
