@@ -84,11 +84,6 @@
     position: relative;
 }
 
-.top-bar-section li.action:last-child {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
 .top-bar .name .coin {
     float: left;
     width: 36px;
@@ -137,6 +132,9 @@
 @media only screen and (min-width: 58.75em) {
     .top-bar-section li: not(.has-form) a: not(.button) {
         padding: 0 10px;
+    }
+    .top-bar-section li.action:last-child {
+        margin-right: 8px;
     }
 }
 
