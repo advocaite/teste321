@@ -484,6 +484,19 @@ hr {
   color: #353535;
   font-weight: 500;
 }
+
+.footer nav ul li {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.footer nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .up-bt {
   font-size: 16px;
   font-weight: bold;

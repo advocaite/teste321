@@ -1,7 +1,8 @@
 @import 'normalize.css';
-@import 'header.css';
 @import 'chat.css';
 @import 'foundation.min.css';
+@import 'header.css';
+
 @font-face {
   font-family: ubuntu_monobold;
   font-style: normal;

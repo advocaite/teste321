@@ -24,13 +24,13 @@ function logout() {
                 <li><a href="https://nxtforum.org/index.php?topic=9045.0" target="_blank">Invest</a></li>
                 <li><a href="/request">Faucet</a></li>
                 <li><a href="/weekly-leaderboard">Promotion</a></li>
-                <li><a href="/leaderboard">Leaderboard</a></li>
+                <li><a href="https://btc-old.tothemoon.me/play">Switch design</a></li>
                 {{?it.user}}
                 <div class="balance header-el show-for-large-up">
                     <a href="/account">
                         <span id="balance_bits" class="amount">{{#def.format:{n: it.user.balance_satoshis, decimals:2} }}</span>
-                        <span class="currency">{{#def.CURRENCY}}</span>
                     </a>
+                    <span class="currency">{{#def.CURRENCY}}</span>
                 </div>
                 <li class="hide-for-large-up">
                     <a href="/account">
@@ -47,7 +47,16 @@ function logout() {
                     </ul>
                 </li>
                 {{?it.user}}
-                  <li><a href="#" onclick="logout();">Logout</a></li>
+                <li class="has-dropdown">
+                    <a href="#">{{=it.user.username}}</a>
+                    <ul class="dropdown">
+                        <li><a href="/account">Account</a></li>
+                        <li><a href="/deposit">Deposit</a></li>
+                        <li><a href="/withdraw">Withdraw</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="#" onclick="logout();">Logout</a></li>
+                    </ul>
+                </li>
                 {{??}}
                 <li><a href="/register" class="green">Register</a></li>
                 <li><a href="/login" class="grey">Login</a></li>
