@@ -548,37 +548,13 @@ hr {
     position: relative;
     float: left;
 }
-
 .faq-nav li a {
-    padding: 1px;
-    margin: 0;
-    display: block;
-    margin-bottom: 5px;
-    color: #353535;
-    font-weight: 500;
-}
-
-.footer nav ul li {
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-}
-
-.footer a {
-    color: #fff;
-}
-
-@media only screen and (max-width: 58.75em) {
-    .footer nav ul li {
-        display: block;
-        margin-top: 8px;
-    }
-}
-
-.footer nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  padding: 1px;
+  margin: 0;
+  display: block;
+  margin-bottom: 5px;
+  color: #353535;
+  font-weight: 500;
 }
 
 .up-bt {
