@@ -195,7 +195,6 @@ textarea:focus {
   box-shadow: 0 0 0 1px rgba(247,148,31,0.2), inset 0 1px 1px 0 rgba(0,0,0,0.1);
 }
 .wrapper {
-  position: absolute;
   bottom: 0;
   width: 100%;
   top: 54px;
@@ -227,16 +226,6 @@ textarea:focus {
   top: 0;
   bottom: 0;
 }
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-nav ul li {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
 .button {
   background-color: #88909a;
   -webkit-border-radius: 5px;
@@ -260,7 +249,6 @@ nav ul li {
   text-transform: uppercase;
   font-size: 13px;
   height: 30px;
-  line-height: 30px;
   text-align: center;
   display: inline-block;
 }

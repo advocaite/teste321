@@ -75,7 +75,7 @@
     color: #fff !important;
 }
 
-.top-bar-section li.action {
+.top-bar-section li.menu-action {
     margin-left: 8px;
 }
 
@@ -133,7 +133,7 @@
     .top-bar-section li: not(.has-form) a: not(.button) {
         padding: 0 10px;
     }
-    .top-bar-section li.action:last-child {
+    .top-bar-section li.menu-action:last-child {
         margin-right: 8px;
     }
 }
