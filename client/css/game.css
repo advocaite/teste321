@@ -13301,3 +13301,6 @@ div.history table .user-lost {
     }
 }
 
+nav.top-bar {
+    overflow: hidden;
+}
