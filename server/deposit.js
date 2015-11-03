@@ -2,6 +2,7 @@ var BigNumber = require('bignumber.js');
 var database = require('./database');
 var blockio = require('./blockio');
 var constants = require('./constants');
+var request = require('request');
 
 exports.callback = function(req, res) {
   var secret = req.query.secret;
@@ -31,21 +32,37 @@ exports.callback = function(req, res) {
 
   var transaction = body.txid;
 
-  database.getUserFromDepositAddress(address, function(err, result) {
-    console.log('get user err', err);
-    if (err) {
-      return res.status(500).render('error');
-    } else {
-      database.insertDeposit(result.id, transaction, amount, function(err) {
+  // get the total amount received to the specified address
+  request('https://blockchain.info/q/txresult/' + transaction + '/' + address, function (err, response, body) {
+    if (!err && body) {
+      var realAmountReceived = new BigNumber(Number(body)).dividedBy(Math.pow(10, 8)).toNumber();
+
+      if (realAmountReceived !== amount) {
+        return res.status(500).render('error');
+      }
+
+      database.getUserFromDepositAddress(address, function(err, result) {
+        console.log('get user err', err);
         if (err) {
-          console.log('insert deposit err', err);
-          return res.send('ok');
+          return res.status(500).render('error');
         } else {
-          return res.send('ok');
+          database.insertDeposit(result.id, transaction, amount, function(err) {
+            if (err) {
+              console.log('insert deposit err', err);
+              return res.send('ok');
+            } else {
+              return res.send('ok');
+            }
+          });
         }
       });
     }
-  });
+
+    console.log('blockchain query err', err)
+
+  })
+
+
 
 
 };
